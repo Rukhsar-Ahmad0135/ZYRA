@@ -3,13 +3,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import UserLayout from "./components/layout/UserLayout";
 import Home from "./Pages/Home";
-import { CartProvider } from "./components/cart/CartContext";
+import { CartProvider } from "./components/cart/CartContext.jsx";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
 import CollectionPage from "./Pages/CollectionPage";
 import CartCheckout from "./components/cart/Checkout";
 import ProductsDetails from "./components/products/ProductsDetails";
+import OrderConfirmation from "./Pages/OrderConfirmation";
 function App() {
   return (
     <CartProvider>
@@ -59,6 +60,10 @@ function App() {
             <Route
               path="checkout"
               element={<CartCheckout></CartCheckout>}
+            ></Route>
+            <Route
+              path="confirmation"
+              element={<OrderConfirmation></OrderConfirmation>}
             ></Route>
             {/* User layout  */}
           </Route>

@@ -4,7 +4,7 @@
  * See the LICENSE file for more information.
  */
 import { RiDeleteBin3Line } from "react-icons/ri";
-import { useCart } from "./CartContext";
+import { useCart } from "./useCart";
 
 const CartContents = () => {
   const { items, updateQuantity, removeItem } = useCart();

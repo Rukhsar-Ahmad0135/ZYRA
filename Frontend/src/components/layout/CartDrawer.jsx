@@ -10,6 +10,7 @@ import CartContents from "../cart/CartContents";
 const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   const navigate = useNavigate();
   const handleCheckout = () => {
+    toggleCartDrawer();
     navigate("/checkout");
   };
   return (

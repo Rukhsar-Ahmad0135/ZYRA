@@ -4,7 +4,7 @@
  * See the LICENSE file for more information.
  */
 import { useEffect, useRef, useState } from "react";
-import { useCart } from "../cart/CartContext";
+import { useCart } from "../cart/useCart";
 import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
 const selectedProduct = {

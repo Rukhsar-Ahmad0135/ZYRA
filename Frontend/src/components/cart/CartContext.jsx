@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-
-const CartContext = createContext(null);
+import { useEffect, useMemo, useState } from "react";
+import { CartContext } from "./cartContext";
 
 const STORAGE_KEY = "zyra_cart_v1";
 
@@ -42,7 +41,7 @@ export const CartProvider = ({ children }) => {
 
   const cartCount = useMemo(
     () => items.reduce((sum, it) => sum + (Number(it.quantity) || 0), 0),
-    [items]
+    [items],
   );
 
   const addToCart = ({ product, size, color, quantity = 1 }) => {
@@ -64,7 +63,7 @@ export const CartProvider = ({ children }) => {
         (p) =>
           p.productId === cartProduct.productId &&
           p.size === cartProduct.size &&
-          p.color === cartProduct.color
+          p.color === cartProduct.color,
       );
       if (idx === -1) return [...prev, cartProduct];
 
@@ -79,7 +78,10 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = ({ productId, size, color }) => {
     setItems((prev) =>
-      prev.filter((p) => !(p.productId === productId && p.size === size && p.color === color))
+      prev.filter(
+        (p) =>
+          !(p.productId === productId && p.size === size && p.color === color),
+      ),
     );
   };
 
@@ -94,9 +96,13 @@ export const CartProvider = ({ children }) => {
       prev.map((p) =>
         p.productId === productId && p.size === size && p.color === color
           ? { ...p, quantity: q }
-          : p
-      )
+          : p,
+      ),
     );
+  };
+
+  const clearCart = () => {
+    setItems([]);
   };
 
   const value = {
@@ -105,15 +111,9 @@ export const CartProvider = ({ children }) => {
     addToCart,
     removeItem,
     updateQuantity,
+    clearCart,
     totalPrice: items.reduce((sum, it) => sum + it.price * it.quantity, 0),
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
-
-export const useCart = () => {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used within CartProvider");
-  return ctx;
-};
-
