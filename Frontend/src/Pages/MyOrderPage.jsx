@@ -4,9 +4,11 @@
  * See the LICENSE file for more information.
  */
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const MyOrderPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     // Fetch orders data
     const timer = setTimeout(() => {
@@ -45,6 +47,9 @@ const MyOrderPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleRowClick = (orderId) => {
+    navigate(`/order/${orderId}`);
+  };
   const formatDate = (value) => {
     const date = value instanceof Date ? value : new Date(value);
     return Number.isNaN(date.getTime()) ? "-" : date.toLocaleDateString();
@@ -80,6 +85,7 @@ const MyOrderPage = () => {
                 return (
                   <tr
                     key={order.id}
+                    onClick={() => handleRowClick(order._id)}
                     className="border-b hover:bg-gray-50 transition-colors"
                   >
                     <td className="py-2 px-2 sm:py-4 sm:px-4">

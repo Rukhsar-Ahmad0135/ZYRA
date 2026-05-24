@@ -11,6 +11,12 @@ import CollectionPage from "./Pages/CollectionPage";
 import CartCheckout from "./components/cart/Checkout";
 import ProductsDetails from "./components/products/ProductsDetails";
 import OrderConfirmation from "./Pages/OrderConfirmation";
+import OrderDetailsPage from "./Pages/OrderDetailsPage";
+import MyOrderPage from "./Pages/MyOrderPage";
+import AdminOrderListPage from "./Pages/Admin/AdminOrderListPage";
+import AdminOrderDetailsPage from "./Pages/Admin/AdminOrderDetailsPage";
+import AdminLayout from "./components/Admin/AdminLayout";
+import AdminHomePage from "./Pages/AdminHomePage";
 function App() {
   return (
     <CartProvider>
@@ -65,7 +71,20 @@ function App() {
               path="confirmation"
               element={<OrderConfirmation></OrderConfirmation>}
             ></Route>
+            <Route
+              path="order/:id"
+              element={<OrderDetailsPage></OrderDetailsPage>}
+            ></Route>
+            <Route
+              path="/my-orders"
+              element={<MyOrderPage></MyOrderPage>}
+            ></Route>
             {/* User layout  */}
+          </Route>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminHomePage />} />
+            <Route path="orders" element={<AdminOrderListPage />} />
+            <Route path="order/:id" element={<AdminOrderDetailsPage />} />
           </Route>
           <Route>{/* Admin layout  */}</Route>
         </Routes>
