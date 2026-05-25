@@ -34,7 +34,7 @@ const AdminSidebar = () => {
       <h2 className="text-xl font-medium mb-6 text-center">Admin Dashboard</h2>
       <nav className="flex flex-col space-y-2">
         <NavLink
-          to="/admin/user"
+          to="/admin/users"
           className={({ isActive }) =>
             isActive
               ? "bg-gray-700 text-white py-3 px-4 rounded flex items-center space-x-2"
