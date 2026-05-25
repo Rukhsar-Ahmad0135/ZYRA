@@ -39,10 +39,14 @@ const EditProductPage = () => {
     const file = e.target.files[0];
     console.log("uploaded file:", file);
   };
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    console.log(productData);
+  };
   return (
     <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
       <h2 className="text-3xl font-bold mb-6">Edit Product</h2>
-      <form action="">
+      <form onSubmit={handlesubmit}>
         {/* name */}
         <div className="mb-4">
           <label className="block font-semibold mb-2">Product Name</label>
@@ -166,6 +170,12 @@ const EditProductPage = () => {
             ))}
           </div>
         </div>
+        <button
+          type="submit"
+          className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors duration-300"
+        >
+          Update Products
+        </button>
       </form>
     </div>
   );
