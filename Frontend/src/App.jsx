@@ -13,7 +13,7 @@ import ProductsDetails from "./components/products/ProductsDetails";
 import OrderConfirmation from "./Pages/OrderConfirmation";
 import OrderDetailsPage from "./Pages/OrderDetailsPage";
 import MyOrderPage from "./Pages/MyOrderPage";
-import AdminOrderListPage from "./Pages/Admin/AdminOrderListPage";
+// import AdminOrderListPage from "./Pages/Admin/AdminOrderListPage";
 import AdminOrderDetailsPage from "./Pages/Admin/AdminOrderDetailsPage";
 import AdminLayout from "./components/Admin/AdminLayout";
 import AdminHomePage from "./Pages/AdminHomePage";
