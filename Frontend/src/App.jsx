@@ -20,6 +20,7 @@ import AdminHomePage from "./Pages/AdminHomePage";
 import UserManagment from "./components/Admin/UserManagment";
 import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
+import OrderManagement from "./components/Admin/OrderManagement.jsx";
 function App() {
   return (
     <CartProvider>
@@ -86,7 +87,8 @@ function App() {
           </Route>
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminHomePage />} />
-            <Route path="orders" element={<AdminOrderListPage />} />
+            <Route path="orders" element={<OrderManagement />} />
+            {/* <Route path="order-list" element={<AdminOrderListPage />} /> */}
             <Route path="order/:id" element={<AdminOrderDetailsPage />} />
             <Route path="users" element={<UserManagment />} />
             <Route path="products" element={<ProductManagement />} />
