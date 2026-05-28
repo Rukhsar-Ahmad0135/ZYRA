@@ -12,7 +12,7 @@ const products = require("./data/products");
 
 dotenv.config();
 //connect to mongeDB
-mongoose, connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
 
 //function to see
 
@@ -31,7 +31,7 @@ const seedData = async () => {
         // assign the default  user id to each product
         const userID = createdUser._id;
         const sampleProducts = products.map((product) => {
-            return{ ...product, userID}
+            return{ ...product, user: userID}
         });
         // inset the products into the database
         await Product.insertMany(sampleProducts);
