@@ -54,7 +54,8 @@ router.put("/:id", protect, async (req, res) => {
     try {
         const { name, description, price, discountPrice, countInStock, category, brand, sizes, colors, collections, material, gender, images, isFeatured, isPublished, tags, dimensions, weight, sku, } = req.body;
         //update product by id
-        const product = await Product.findById(req.params.id);
+        const productId = req.params.id.trim();
+        const product = await Product.findById(productId);
         if (product) {
             //update product fields
             product.name = name || product.name;
@@ -96,7 +97,8 @@ router.put("/:id", protect, async (req, res) => {
     router.delete("/:id", protect, async (req, res) => { 
         try {
             //find the product by id
-            const product = await Product.findById(req.params.id);
+            const productId = req.params.id.trim();
+            const product = await Product.findById(productId);
             if (product) {
                 //remove the product from the database
                 await Product.deleteOne();
