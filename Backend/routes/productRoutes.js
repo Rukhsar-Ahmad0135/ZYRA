@@ -145,10 +145,10 @@ router.get("/",async (req,res)=>{
             if (minPrice || maxPrice) {
                 query.price = {};
                 if (minPrice) {
-                    query.price.gte = Number(minPrice);
+                    query.price.$gte = Number(minPrice);
                 }
                 if (maxPrice) {
-                    query.price.lte = Number(maxPrice);
+                    query.price.$lte = Number(maxPrice);
                 }
             }
             if (search) {
