@@ -9,6 +9,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js"; 
 import cors from "cors";
 import ProductRoutes from "./routes/ProductRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(cors());
 // All routes
 app.use("/api/users", userRoutes);
 app.use("/api/products", ProductRoutes);
+app.use("/api/cart", cartRoutes);
 
 
 const PORT = process.env.PORT || 5000;
