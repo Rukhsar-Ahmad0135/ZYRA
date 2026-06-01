@@ -228,6 +228,21 @@ router.get("/best-seller", async (req, res) => {
     }
 });
 
+//@route GET /api/products/new-arrivals
+//@desc retrive latest 8 products = creation date
+//@access Public
+router.get("/new-arrivals", async (req, res) => { 
+    try {
+        //fetch the latest 8 products based on creation date
+        const newArrivals = await Product.find().sort({ createdAt: -1 }).limit(8);
+        res.json(newArrivals);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+});
+
     //@route GET /api/products/:id
     //@desc Get a single product by ID
     //@access Public
