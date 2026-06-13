@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { CartContext } from "./cartContext";
+import { getOrCreateGuestId } from "../../utils/guestId";
 
 const STORAGE_KEY = "zyra_cart_v1";
 
@@ -44,8 +45,41 @@ export const CartProvider = ({ children }) => {
     [items],
   );
 
-  const addToCart = ({ product, size, color, quantity = 1 }) => {
+  const addToCart = async ({ product, size, color, quantity = 1 }) => {
     const qty = Number(quantity) || 1;
+
+    // Identify user (if logged in) vs guest.
+    // This project currently doesn’t wire auth token into CartContext,
+    // so we treat everything as guest unless caller provides userId/token.
+    const userId = undefined;
+    const token = undefined;
+    // Generate / persist guestId for guest carts
+    const guestId = (() => {
+      try {
+        return getOrCreateGuestId();
+      } catch {
+        return undefined;
+      }
+    })();
+
+    // 1) Write to backend cart
+    try {
+      const { addItemToServerCart } = await import("../../utils/cartApi.js");
+      await addItemToServerCart({
+        productId: product.id,
+
+        size,
+        color,
+        quantity: qty,
+        guestId,
+        userId,
+        token,
+      });
+    } catch {
+      // backend might be unavailable; still keep local cart UX
+    }
+
+    // 2) Update local cart state (for immediate UI)
     const cartProduct = {
       productId: product.id,
       name: product.name,
