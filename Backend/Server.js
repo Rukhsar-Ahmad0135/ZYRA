@@ -51,6 +51,7 @@ import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 import ProductRoutes from "./routes/ProductRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import checkoutRoutes from "./routes/checkoutRoutes.js";
 
 dotenv.config();
 
@@ -63,7 +64,7 @@ app.use(cors());
 app.use("/api/users", userRoutes);
 app.use("/api/products", ProductRoutes);
 app.use("/api/cart", cartRoutes);
-
+app.use("/api/checkout", checkoutRoutes);
 
 const PORT = process.env.PORT || 5000;
 
