@@ -52,6 +52,12 @@ import cors from "cors";
 import ProductRoutes from "./routes/ProductRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
+import orderRoutes from "./routes/orderRoute.js";
+import uploadRoutes from "./routes/uploadroutes.js";
+import subscribeRoutes from "./routes/subscribeRoute.js";
+import adminRoutes from "./routes/adminRoutes.js";
+
+
 
 dotenv.config();
 
@@ -65,7 +71,11 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", ProductRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/checkout", checkoutRoutes);
-
+app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
+app.use("/api/subscribers", subscribeRoutes);
+//admin
+app.use("/api/admin/users", adminRoutes);
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB

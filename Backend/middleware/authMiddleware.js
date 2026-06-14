@@ -28,4 +28,10 @@ const protect = async (req, res, next) => {
     }
 };
 
-module.exports = { protect };
+const admin = (req, res, next) => {
+    // expects req.user.role from protect middleware
+    if (req.user && req.user.role === "admin") return next();
+    return res.status(403).json({ message: "Forbidden - admin only" });
+};
+
+module.exports = { protect, admin };
