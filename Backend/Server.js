@@ -56,7 +56,8 @@ import orderRoutes from "./routes/orderRoute.js";
 import uploadRoutes from "./routes/uploadroutes.js";
 import subscribeRoutes from "./routes/subscribeRoute.js";
 import adminRoutes from "./routes/adminRoutes.js";
-
+import productAdminRoutes from "./routes/productAdminRoutes.js";
+import adminOrderRoutes from "./routes/adminOrderRoutes.js";
 
 
 dotenv.config();
@@ -76,8 +77,11 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/subscribers", subscribeRoutes);
 //admin
 app.use("/api/admin/users", adminRoutes);
-const PORT = process.env.PORT || 5000;
+app.use("/api/admin/products", productAdminRoutes);
+app.use("/api/admin/orders", adminOrderRoutes);
 
+
+const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
