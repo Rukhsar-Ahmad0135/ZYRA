@@ -262,7 +262,7 @@ router.get("/new-arrivals", async (req, res) => {
     });
 
 
-    //@route GET /api/products/best-seller
+//@route GET /api/products/best-seller
     //@desc retrieve the  products with highest rating
 //@access public
 router.get("/best-seller", async (req, res) => {
@@ -291,5 +291,36 @@ router.get("/best-seller", async (req, res) => {
 //             res.status(500).send("Server error");
 //         }
 // });
+
+//@route GET /api/products/best-seller
+    //@desc retrieve the  products with highest rating
+//@access public
+router.get("/best-seller", async (req, res) => {
+    try {
+            res.send("This should not work");
+        }
+    catch (error) {
+            console.error(error);
+        res.status(500).send("Server error");
+        }
+});
+     //@route GET /api/products/:id
+    //@desc get a single product by id
+//@access public
+router.get("/:id", async (req, res) => {
+    try {
+             const product= await Product.findById(req.params.id);
+             if (product) {
+                 res.json(product);
+             } else {
+                 res.status(404).json({ message: "Product not found" });
+             }
+         }
+     catch (error) {
+             console.error(error);
+             res.status(500).send("Server error");
+         }
+ });
+
 
 module.exports = router;
