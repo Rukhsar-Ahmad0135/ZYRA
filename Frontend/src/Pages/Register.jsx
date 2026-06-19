@@ -6,15 +6,19 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import regist from "../assets/register.webp";
+import { registerUser } from "../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    dispatch(registerUser({ name, email, password }));
+    // console.log("Name:", name);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
   };
   return (
     <div className="flex min-h-screen flex-col md:flex-row bg-white">
