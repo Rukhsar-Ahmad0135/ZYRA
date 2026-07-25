@@ -233,12 +233,10 @@ const NewArrivals = () => {
           >
             <img
               src={
-                // backend model uses `images: [{ url, altText }]`
-                products.images?.[0]?.url || products.Image?.[0]?.url
+                products.images?.[0]?.url
               }
               alt={
                 products.images?.[0]?.altText ||
-                products.Image?.[0]?.altText ||
                 products.name
               }
               className="w-full h-[500px] object-cover rounded-lg"

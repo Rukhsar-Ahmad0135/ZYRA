@@ -72,7 +72,7 @@ export const updateProduct = createAsyncThunk(
 export const fetchSimilarProducts = createAsyncThunk(
     "products/fetchSimilarProducts",
     async ({id}) => {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/similar/${id}`);
         return response.data;
     }
 );
@@ -93,7 +93,7 @@ const productSlice = createSlice({
             brand: "",
             minPrice: "",
             maxPrice: "",
-            srotBy: "",
+            sortBy: "",
             search: "",
             material: "",
             collection: "",
@@ -112,7 +112,7 @@ const productSlice = createSlice({
                 brand: "",
                 minPrice: "",
                 maxPrice: "",
-                srotBy: "",
+                sortBy: "",
                 search: "",
                 material: "",
                 collection: "",
@@ -142,7 +142,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProductById.fulfilled, (state, action) => {
                 state.loading = false;
-                state.products = action.payload;
+                state.selectedProduct = action.payload;
             })
             .addCase(fetchProductById.rejected, (state, action) => {
                 state.loading = false;

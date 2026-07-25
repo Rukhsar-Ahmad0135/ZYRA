@@ -40,8 +40,9 @@ export const CartProvider = ({ children }) => {
     }
   }, [items]);
 
+// cartCount = number of unique items (not total quantity)
   const cartCount = useMemo(
-    () => items.reduce((sum, it) => sum + (Number(it.quantity) || 0), 0),
+    () => items.length,
     [items],
   );
 
@@ -66,8 +67,7 @@ export const CartProvider = ({ children }) => {
     try {
       const { addItemToServerCart } = await import("../../utils/cartApi.js");
       await addItemToServerCart({
-        productId: product.id,
-
+        productId: product._id || product.id,
         size,
         color,
         quantity: qty,
@@ -81,7 +81,7 @@ export const CartProvider = ({ children }) => {
 
     // 2) Update local cart state (for immediate UI)
     const cartProduct = {
-      productId: product.id,
+      productId: product._id || product.id,
       name: product.name,
       price: product.price,
       size,

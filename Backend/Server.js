@@ -53,7 +53,7 @@ import ProductRoutes from "./routes/ProductRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
 import orderRoutes from "./routes/orderRoute.js";
-import uploadRoutes from "./routes/uploadroutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 import subscribeRoutes from "./routes/subscribeRoute.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import productAdminRoutes from "./routes/productAdminRoutes.js";
