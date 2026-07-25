@@ -3,87 +3,84 @@
  *
  * See the LICENSE file for more information.
  */
+
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../cart/useCart";
 import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
-const selectedProduct = {
-  id: 1,
-  name: "Stylish Jacket",
-  price: 29.99,
-  originalPrice: 49.99,
-  description: "This is a stylish Jacket perfect for any occasion.",
-  brand: "FashionBrand",
-  material: "Leather",
-  sizes: ["S", "M", "L", "XL"],
-  colors: ["Black", "Brown", "Red"],
-  images: [
-    {
-      url: "https://picsum.photos/500/500?random=1",
-      altText: "Stylish Jacket 1",
-    },
-    {
-      url: "https://picsum.photos/500/500?random=2",
-      altText: "Stylish Jacket 2",
-    },
-  ],
-};
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-const similarProducts = [
-  {
-    id: 1,
-    name: "Casual Shirt",
-    price: 19.99,
-    image: [
-      {
-        url: "https://picsum.photos/500/500?random=3",
-        altText: "Casual Shirt",
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Denim Jeans",
-    price: 39.99,
-    image: [
-      { url: "https://picsum.photos/500/500?random=4", altText: "Denim Jeans" },
-    ],
-  },
-  {
-    id: 3,
-    name: "Denim Jeans",
-    price: 39.99,
-    image: [
-      { url: "https://picsum.photos/500/500?random=5", altText: "Denim Jeans" },
-    ],
-  },
-  {
-    id: 4,
-    name: "Denim Jeans",
-    price: 39.99,
-    image: [
-      { url: "https://picsum.photos/500/500?random=6", altText: "Denim Jeans" },
-    ],
-  },
-];
-const ProductsDetails = () => {
-  const [mainImage, setMainImage] = useState(
-    selectedProduct.images[0]?.url || null,
+const ProductsDetails = ({ productId }) => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const { user, guestId } = useSelector((state) => state.auth);
+  const { similarProducts, loading: reduxLoading, error: reduxError } = useSelector(
+    (state) => state.products,
   );
+
   const { addToCart } = useCart();
 
+  const effectiveProductId = productId || id;
+  const [product, setProduct] = useState(null);
+  const [localLoading, setLocalLoading] = useState(false);
+  const [localError, setLocalError] = useState(null);
+
+  const [mainImage, setMainImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+
   const addToCartTimerRef = useRef(null);
 
+  useEffect(() => {
+    const pid = effectiveProductId;
+    if (!pid) return;
+
+    setLocalLoading(true);
+    setLocalError(null);
+
+    let mounted = true;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${pid}`)
+      .then((res) => {
+        if (!mounted) return;
+        setProduct(res.data);
+      })
+      .catch((e) => {
+        console.error(e);
+        if (!mounted) return;
+        setLocalError("Unable to load product");
+      })
+      .finally(() => {
+        if (!mounted) return;
+        setLocalLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [effectiveProductId]);
+
+  useEffect(() => {
+    if (!product?.images?.length) return;
+    // setMainImage derived from product; avoid extra effect loops by only setting when changed
+    const next = product.images[0]?.url || null;
+    setMainImage((cur) => (cur === next ? cur : next));
+  }, [product]);
+
+
   useEffect(
-    () => () => {
-      if (addToCartTimerRef.current) {
-        clearTimeout(addToCartTimerRef.current);
-      }
-    },
+    () =>
+      () => {
+        if (addToCartTimerRef.current) {
+          clearTimeout(addToCartTimerRef.current);
+        }
+      },
     [],
   );
 
@@ -92,30 +89,58 @@ const ProductsDetails = () => {
 
   const handleAddToCart = () => {
     if (isAddingToCart) return;
-
     if (!selectedColor || !selectedSize) {
       toast.error("Please select a color and size before adding to cart.");
       return;
     }
-    // Add item to cart and show a top-right animated notification.
-    // Notification auto-dismisses after 3000ms and can be closed manually with the X.
+
+    // Cart drawer notification (component-level)
     addToCart({
-      product: selectedProduct,
+      product,
       size: selectedSize,
       color: selectedColor,
       quantity,
     });
-    setIsAddingToCart(true);
-    toast.success(`${selectedProduct.name} added successfully`, {
+
+    toast.success(`${product?.name || "Product"} added successfully`, {
       description: `${quantity} item${quantity > 1 ? "s" : ""} added to your cart`,
       duration: 3000,
     });
+
+    setIsAddingToCart(true);
 
     addToCartTimerRef.current = window.setTimeout(() => {
       setIsAddingToCart(false);
       addToCartTimerRef.current = null;
     }, 3000);
+
+    // If you also rely on redux addToCart thunk, keep it here.
+    // (Your cart slice uses addToCart too; we keep behavior consistent.)
+    dispatch(
+      {
+        type: "cart/addToCart",
+        payload: {
+          productId: effectiveProductId,
+          quantity,
+          size: selectedSize,
+          color: selectedColor,
+          guestId,
+          userId: user?._id,
+        },
+      },
+    );
   };
+
+  const showLoading = localLoading || reduxLoading;
+  if (showLoading) return <p>Loading .....</p>;
+
+  const showError = localError || reduxError;
+  if (showError) return <p>Error {showError}</p>;
+
+  if (!product?._id) return <p>Product not found.</p>;
+
+  const colors = Array.isArray(product.colors) ? product.colors : [];
+  const sizes = Array.isArray(product.sizes) ? product.sizes : [];
 
   return (
     <div className="p-6">
@@ -123,17 +148,19 @@ const ProductsDetails = () => {
         <div className="flex flex-col md:flex-row">
           {/* left thumbnails */}
           <div className="hidden md:flex flex-col space-y-4 mr-6">
-            {selectedProduct.images.map((img, idx) => (
+            {(product.images || []).map((img, idx) => (
               <img
                 key={idx}
                 src={img.url}
                 alt={img.altText || `Thumbnail ${idx}`}
-                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${mainImage === img.url ? "border-black" : "border-gray-300"}`}
+                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${
+                  mainImage === img.url ? "border-black" : "border-gray-300"
+                }`}
                 onClick={() => setMainImage(img.url)}
-                //if any error occur then set main image to default image
               />
             ))}
           </div>
+
           {/* main image */}
           <div className="md:w-1/2">
             <div className="mb-4">
@@ -148,47 +175,44 @@ const ProductsDetails = () => {
               )}
             </div>
           </div>
+
           {/* Mobile thumbnail */}
           <div className="md:hidden flex overscroll-x-scroll space-x-4 mb-4">
-            {selectedProduct.images.map((img, idx) => (
+            {(product.images || []).map((img, idx) => (
               <img
                 key={idx}
                 src={img.url}
                 alt={img.altText || `Thumbnail ${idx}`}
-                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${mainImage === img.url ? "border-black" : "border-gray-300"}`}
+                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${
+                  mainImage === img.url ? "border-black" : "border-gray-300"
+                }`}
                 onClick={() => setMainImage(img.url)}
               />
             ))}
           </div>
+
           {/* Right details */}
           <div className="md:w-1/2 md:ml-10">
-            <h1 className="text-2xl md:text-3xl font-semibold mb-2">
-              {selectedProduct.name}
-            </h1>
+            <h1 className="text-2xl md:text-3xl font-semibold mb-2">{product.name}</h1>
+
             <p className="text-lg text-gray-600 mb-1 line-through">
-              {selectedProduct.originalPrice &&
-                `
-                        ${selectedProduct.originalPrice}`}
+              {product.originalPrice ? ` $${product.originalPrice}` : null}
             </p>
-            <p className="text-xl text-gray-500 mb-2">
-              ${selectedProduct.price}
-            </p>
-            <p className=" text-gray-600 mb-4">
-              ${selectedProduct.description}
-            </p>
+            <p className="text-xl text-gray-500 mb-2">${product.price}</p>
+            <p className="text-gray-600 mb-4">{product.description}</p>
+
             <div className="mb-4">
               <p className="text-gray-700">Color:</p>
               <div className="flex gap-2 mt-2">
-                {selectedProduct.colors.map((color) => (
+                {colors.map((color) => (
                   <button
                     key={color}
                     type="button"
                     className="w-8 h-8 rounded-full border"
                     style={{
-                      backgroundColor: color.toLocaleLowerCase(),
+                      backgroundColor: color.toLowerCase(),
                       filter: "brightness(0.8)",
-                      outline:
-                        selectedColor === color ? "2px solid #111" : "none",
+                      outline: selectedColor === color ? "2px solid #111" : "none",
                     }}
                     onClick={() => setSelectedColor(color)}
                     aria-pressed={selectedColor === color}
@@ -201,7 +225,7 @@ const ProductsDetails = () => {
             <div className="mb-4"></div>
             <p className="text-gray-700">Size:</p>
             <div className="flex gap-2 mt-2">
-              {selectedProduct.sizes.map((size) => (
+              {sizes.map((size) => (
                 <button
                   key={size}
                   className="px-4 py-2 rounded border"
@@ -214,6 +238,7 @@ const ProductsDetails = () => {
                 </button>
               ))}
             </div>
+
             <div className="mb-6">
               <p className="text-gray-700">Quantity:</p>
               <div className="flex items-center space-x-4 mt-2">
@@ -234,7 +259,9 @@ const ProductsDetails = () => {
             </div>
 
             <button
-              className={`bg-black text-white py-2 px-6 rounded w-full mb-4 transition ${isAddingToCart ? "opacity-60 cursor-not-allowed" : "hover:bg-zinc-800"}`}
+              className={`bg-black text-white py-2 px-6 rounded w-full mb-4 transition ${
+                isAddingToCart ? "opacity-60 cursor-not-allowed" : "hover:bg-zinc-800"
+              }`}
               onClick={handleAddToCart}
               disabled={isAddingToCart}
             >
@@ -247,22 +274,21 @@ const ProductsDetails = () => {
                 <tbody>
                   <tr>
                     <td className="py-1">Brand</td>
-                    <td className="py-1">{selectedProduct.brand}</td>
+                    <td className="py-1">{product.brand}</td>
                   </tr>
                   <tr>
                     <td className="py-1">Material</td>
-                    <td className="py-1">{selectedProduct.material}</td>
+                    <td className="py-1">{product.material}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+
         <div className="mt-10">
-          <h2 className="text-2xl text-center font-medium mb-4">
-            You May ALso Like
-          </h2>
-          <ProductGrid products={similarProducts}></ProductGrid>
+          <h2 className="text-2xl text-center font-medium mb-4">You May ALso Like</h2>
+          <ProductGrid products={similarProducts} />
         </div>
       </div>
     </div>
@@ -270,3 +296,4 @@ const ProductsDetails = () => {
 };
 
 export default ProductsDetails;
+

@@ -1,6 +1,5 @@
-// product.js:
-
 const products = [
+  // ===== MEN'S TOP WEAR (10 products) =====
   {
     name: "Classic Oxford Button-Down Shirt",
     description:
@@ -18,12 +17,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=39",
-        altText: "Classic Oxford Button-Down Shirt Front View",
+        url: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+        altText: "Men's Classic Oxford Button-Down Shirt",
       },
       {
-        url: "https://picsum.photos/500/500?random=40",
-        altText: "Classic Oxford Button-Down Shirt Back View",
+        url: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+        altText: "Men's Oxford Shirt Back View",
       },
     ],
     rating: 4.5,
@@ -46,12 +45,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=41",
-        altText: "Slim-Fit Stretch Shirt Front View",
+        url: "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=500&h=500&fit=crop",
+        altText: "Men's Slim-Fit Stretch Shirt",
       },
       {
-        url: "https://picsum.photos/500/500?random=42",
-        altText: "Slim-Fit Stretch Shirt Back View",
+        url: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&h=500&fit=crop",
+        altText: "Men's Slim-Fit Shirt Back View",
       },
     ],
     rating: 4.8,
@@ -74,12 +73,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=43",
-        altText: "Casual Denim Shirt Front View",
+        url: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500&h=500&fit=crop",
+        altText: "Men's Casual Denim Shirt",
       },
       {
-        url: "https://picsum.photos/500/500?random=44",
-        altText: "Casual Denim Shirt Back View",
+        url: "https://images.unsplash.com/photo-1603073163308-9654c3fb70b5?w=500&h=500&fit=crop",
+        altText: "Men's Denim Shirt Back View",
       },
     ],
     rating: 4.6,
@@ -102,12 +101,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=45",
-        altText: "Printed Resort Shirt Front View",
+        url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&h=500&fit=crop",
+        altText: "Men's Printed Resort Shirt",
       },
       {
-        url: "https://picsum.photos/500/500?random=1",
-        altText: "Printed Resort Shirt Back View",
+        url: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500&h=500&fit=crop",
+        altText: "Men's Resort Shirt Alternate View",
       },
     ],
     rating: 4.4,
@@ -130,12 +129,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=47",
-        altText: "Slim-Fit Easy-Iron Shirt Front View",
+        url: "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=500&h=500&fit=crop",
+        altText: "Men's Slim-Fit Easy-Iron Shirt",
       },
       {
-        url: "https://picsum.photos/500/500?random=2",
-        altText: "Slim-Fit Easy-Iron Shirt Front View",
+        url: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+        altText: "Men's Easy-Iron Shirt Detail",
       },
     ],
     rating: 5,
@@ -158,12 +157,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=3",
-        altText: "Polo T-Shirt Front View",
+        url: "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=500&h=500&fit=crop",
+        altText: "Men's Polo T-Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=4",
-        altText: "Polo T-Shirt Back View",
+        url: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&h=500&fit=crop",
+        altText: "Men's Polo T-Shirt Back View",
       },
     ],
     rating: 4.3,
@@ -186,8 +185,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=5",
-        altText: "Oversized Graphic T-Shirt Front View",
+        url: "https://images.unsplash.com/photo-1572495641004-28421ae8d5f5?w=500&h=500&fit=crop",
+        altText: "Men's Oversized Graphic T-Shirt",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&h=500&fit=crop",
+        altText: "Men's Graphic T-Shirt Back View",
       },
     ],
     rating: 4.6,
@@ -210,8 +213,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=6",
-        altText: "Regular-Fit Henley Shirt Front View",
+        url: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=500&fit=crop",
+        altText: "Men's Regular-Fit Henley Shirt",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500&h=500&fit=crop",
+        altText: "Men's Henley Shirt Alternate View",
       },
     ],
     rating: 4.5,
@@ -234,8 +241,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=7",
-        altText: "Long-Sleeve Thermal Tee Front View",
+        url: "https://images.unsplash.com/photo-1618354691228-2b6c1e8a9d9c?w=500&h=500&fit=crop",
+        altText: "Men's Long-Sleeve Thermal Tee",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=500&fit=crop",
+        altText: "Men's Thermal Tee Detail View",
       },
     ],
     rating: 4.4,
@@ -258,13 +269,19 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=8",
-        altText: "V-Neck Classic T-Shirt Front View",
+        url: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&h=500&fit=crop",
+        altText: "Men's V-Neck Classic T-Shirt",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1532678467119-16c2733850d0?w=500&h=500&fit=crop",
+        altText: "Men's V-Neck T-Shirt Alternate View",
       },
     ],
     rating: 4.7,
     numReviews: 28,
   },
+
+  // ===== MEN'S BOTTOM WEAR (10 products) =====
   {
     name: "Slim Fit Joggers",
     description:
@@ -282,8 +299,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=9",
-        altText: "Slim Fit Joggers Front View",
+        url: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop",
+        altText: "Men's Slim Fit Joggers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1552904210-1a9d9b5b9c6b?w=500&h=500&fit=crop",
+        altText: "Men's Joggers Side View",
       },
     ],
     rating: 4.5,
@@ -306,8 +327,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=10",
-        altText: "Cargo Joggers Front View",
+        url: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&h=500&fit=crop",
+        altText: "Men's Cargo Joggers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop",
+        altText: "Men's Cargo Joggers Side View",
       },
     ],
     rating: 4.7,
@@ -330,8 +355,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=11",
-        altText: "Tapered Sweatpants Front View",
+        url: "https://images.unsplash.com/photo-1552904210-1a9d9b5b9c6b?w=500&h=500&fit=crop",
+        altText: "Men's Tapered Sweatpants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1608236415057-8e68c3e7c37e?w=500&h=500&fit=crop",
+        altText: "Men's Sweatpants Alternate View",
       },
     ],
     rating: 4.3,
@@ -354,8 +383,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=12",
-        altText: "Denim Jeans Front View",
+        url: "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=500&h=500&fit=crop",
+        altText: "Men's Denim Jeans Front View",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=500&h=500&fit=crop",
+        altText: "Men's Denim Jeans Back View",
       },
     ],
     rating: 4.6,
@@ -378,8 +411,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=13",
-        altText: "Chino Pants Front View",
+        url: "https://images.unsplash.com/photo-1473968643109-aa3b32f9c9d8?w=500&h=500&fit=crop",
+        altText: "Men's Chino Pants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&h=500&fit=crop",
+        altText: "Men's Chino Pants Side View",
       },
     ],
     rating: 4.8,
@@ -402,8 +439,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=14",
-        altText: "Track Pants Front View",
+        url: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop",
+        altText: "Men's Track Pants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1608236415057-8e68c3e7c37e?w=500&h=500&fit=crop",
+        altText: "Men's Track Pants Alternate View",
       },
     ],
     rating: 4.2,
@@ -426,8 +467,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=15",
-        altText: "Slim Fit Trousers Front View",
+        url: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+        altText: "Men's Slim Fit Trousers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1552904210-1a9d9b5b9c6b?w=500&h=500&fit=crop",
+        altText: "Men's Trousers Back View",
       },
     ],
     rating: 4.7,
@@ -450,8 +495,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=16",
-        altText: "Cargo Pants Front View",
+        url: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&h=500&fit=crop",
+        altText: "Men's Cargo Pants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=500&h=500&fit=crop",
+        altText: "Men's Cargo Pants Side View",
       },
     ],
     rating: 4.5,
@@ -474,8 +523,12 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=17",
-        altText: "Relaxed Fit Sweatpants Front View",
+        url: "https://images.unsplash.com/photo-1552904210-1a9d9b5b9c6b?w=500&h=500&fit=crop",
+        altText: "Men's Relaxed Fit Sweatpants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop",
+        altText: "Men's Sweatpants Alternate View",
       },
     ],
     rating: 4.3,
@@ -498,13 +551,19 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=18",
-        altText: "Formal Dress Pants Front View",
+        url: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+        altText: "Men's Formal Dress Pants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=500&h=500&fit=crop",
+        altText: "Men's Formal Pants Detail View",
       },
     ],
     rating: 4.9,
     numReviews: 8,
   },
+
+  // ===== WOMEN'S BOTTOM WEAR (10 products) =====
   {
     name: "High-Waist Skinny Jeans",
     description:
@@ -522,8 +581,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=19",
-        altText: "High-Waist Skinny Jeans",
+        url: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop",
+        altText: "Women's High-Waist Skinny Jeans",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=500&h=500&fit=crop",
+        altText: "Women's Skinny Jeans Back View",
       },
     ],
     rating: 4.8,
@@ -546,8 +609,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=20",
-        altText: "Wide-Leg Trousers Front View",
+        url: "https://images.unsplash.com/photo-1577900232427-18219b9166a0?w=500&h=500&fit=crop",
+        altText: "Women's Wide-Leg Trousers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop",
+        altText: "Women's Wide-Leg Trousers Side View",
       },
     ],
     rating: 4.7,
@@ -570,8 +637,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=21",
-        altText: "Stretch Leggings Front View",
+        url: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=500&h=500&fit=crop",
+        altText: "Women's Stretch Leggings",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1608236415057-8e68c3e7c37e?w=500&h=500&fit=crop",
+        altText: "Women's Leggings Back View",
       },
     ],
     rating: 4.5,
@@ -594,8 +665,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=22",
-        altText: "Pleated Midi Skirt Front View",
+        url: "https://images.unsplash.com/photo-1604686592790-b9d02b95c212?w=500&h=500&fit=crop",
+        altText: "Women's Pleated Midi Skirt",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1577900232427-18219b9166a0?w=500&h=500&fit=crop",
+        altText: "Women's Midi Skirt Side View",
       },
     ],
     rating: 4.6,
@@ -618,8 +693,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=23",
-        altText: "Flared Palazzo Pants Front View",
+        url: "https://images.unsplash.com/photo-1604686592790-b9d02b95c212?w=500&h=500&fit=crop",
+        altText: "Women's Flared Palazzo Pants",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop",
+        altText: "Women's Palazzo Pants Alternate View",
       },
     ],
     rating: 4.4,
@@ -642,8 +721,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=24",
-        altText: "High-Rise Joggers Front View",
+        url: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=500&h=500&fit=crop",
+        altText: "Women's High-Rise Joggers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop",
+        altText: "Women's Joggers Side View",
       },
     ],
     rating: 4.3,
@@ -666,8 +749,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=25",
-        altText: "Paperbag Waist Shorts Front View",
+        url: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop",
+        altText: "Women's Paperbag Waist Shorts",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1608236415057-8e68c3e7c37e?w=500&h=500&fit=crop",
+        altText: "Women's Paperbag Shorts Side View",
       },
     ],
     rating: 4.5,
@@ -690,8 +777,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=26",
-        altText: "Stretch Denim Shorts Front View",
+        url: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop",
+        altText: "Women's Stretch Denim Shorts",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=500&h=500&fit=crop",
+        altText: "Women's Denim Shorts Back View",
       },
     ],
     rating: 4.7,
@@ -714,8 +805,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=27",
-        altText: "Culottes Front View",
+        url: "https://images.unsplash.com/photo-1604686592790-b9d02b95c212?w=500&h=500&fit=crop",
+        altText: "Women's Culottes",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop",
+        altText: "Women's Culottes Side View",
       },
     ],
     rating: 4.6,
@@ -738,13 +833,19 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=28",
-        altText: "Classic Pleated Trousers Front View",
+        url: "https://images.unsplash.com/photo-1577900232427-18219b9166a0?w=500&h=500&fit=crop",
+        altText: "Women's Classic Pleated Trousers",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1604686592790-b9d02b95c212?w=500&h=500&fit=crop",
+        altText: "Women's Pleated Trousers Side View",
       },
     ],
     rating: 4.8,
     numReviews: 20,
   },
+
+  // ===== WOMEN'S TOP WEAR (10 products) =====
   {
     name: "Knitted Cropped Top",
     description:
@@ -762,8 +863,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=29",
-        altText: "Knitted Cropped Top",
+        url: "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&h=500&fit=crop",
+        altText: "Women's Knitted Cropped Top",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+        altText: "Women's Cropped Top Back View",
       },
     ],
     rating: 4.6,
@@ -786,8 +891,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=30",
-        altText: "Boho Floral Blouse",
+        url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&h=500&fit=crop",
+        altText: "Women's Boho Floral Blouse",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500&h=500&fit=crop",
+        altText: "Women's Floral Blouse Back View",
       },
     ],
     rating: 4.7,
@@ -810,8 +919,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=31",
-        altText: "Casual T-Shirt",
+        url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+        altText: "Women's Casual T-Shirt",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1532678467119-16c2733850d0?w=500&h=500&fit=crop",
+        altText: "Women's Casual T-Shirt Back View",
       },
     ],
     rating: 4.5,
@@ -834,8 +947,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=32",
-        altText: "Off-Shoulder Top",
+        url: "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&h=500&fit=crop",
+        altText: "Women's Off-Shoulder Top",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&h=500&fit=crop",
+        altText: "Women's Off-Shoulder Top Back View",
       },
     ],
     rating: 4.7,
@@ -858,8 +975,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=33",
-        altText: "Lace-Trimmed Cami Top",
+        url: "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&h=500&fit=crop",
+        altText: "Women's Lace-Trimmed Cami Top",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+        altText: "Women's Cami Top Back View",
       },
     ],
     rating: 4.8,
@@ -882,8 +1003,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=34",
-        altText: "Graphic Print Tee",
+        url: "https://images.unsplash.com/photo-1572495641004-28421ae8d5f5?w=500&h=500&fit=crop",
+        altText: "Women's Graphic Print Tee",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&h=500&fit=crop",
+        altText: "Women's Graphic Tee Back View",
       },
     ],
     rating: 4.6,
@@ -906,8 +1031,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=35",
-        altText: "Ribbed Long-Sleeve Top",
+        url: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=500&fit=crop",
+        altText: "Women's Ribbed Long-Sleeve Top",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1618354691228-2b6c1e8a9d9c?w=500&h=500&fit=crop",
+        altText: "Women's Ribbed Top Back View",
       },
     ],
     rating: 4.7,
@@ -930,8 +1059,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=36",
-        altText: "Ruffle-Sleeve Blouse",
+        url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&h=500&fit=crop",
+        altText: "Women's Ruffle-Sleeve Blouse",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500&h=500&fit=crop",
+        altText: "Women's Ruffle Blouse Back View",
       },
     ],
     rating: 4.5,
@@ -954,8 +1087,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=37",
-        altText: "Classic Button-Up Shirt",
+        url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+        altText: "Women's Classic Button-Up Shirt",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&h=500&fit=crop",
+        altText: "Women's Button-Up Shirt Back View",
       },
     ],
     rating: 4.8,
@@ -978,8 +1115,12 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=38",
-        altText: "V-Neck Wrap Top",
+        url: "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&h=500&fit=crop",
+        altText: "Women's V-Neck Wrap Top",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+        altText: "Women's Wrap Top Back View",
       },
     ],
     rating: 4.7,
@@ -988,3 +1129,4 @@ const products = [
 ];
 
 module.exports = products;
+

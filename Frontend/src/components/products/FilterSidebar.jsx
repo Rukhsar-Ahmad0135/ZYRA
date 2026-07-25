@@ -37,23 +37,44 @@ const FilterSidebar = () => {
     "Navy",
   ];
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const materials = [
-    "Cotton",
-    "Polyester",
-    "Wool",
-    "Silk",
-    "Denim",
-    "Linen",
-    "Viscose",
-    "Fleece",
-  ];
+  const materials = ["Cotton", "Polyester", "Wool", "Silk", "Denim", "Linen", "Viscose", "Fleece"];
   const brands = [
     "Urban Threads",
     "Modern Fit",
     "Street Style",
     "Beach Breeze",
-    "Fashionista",
+    "Urban Chic",
+    "Polo Classics",
+    "Street Vibes",
+    "Heritage Wear",
+    "Winter Basics",
+    "Everyday Comfort",
+    "ActiveWear",
+    "UrbanStyle",
+    "ChillZone",
+    "DenimCo",
+    "CasualLook",
+    "SportX",
+    "ExecutiveStyle",
+    "StreetWear",
+    "LoungeWear",
+    "ElegantStyle",
+    "DenimStyle",
+    "ElegantWear",
+    "ComfyFit",
     "ChicStyle",
+    "BreezyVibes",
+    "SunnyStyle",
+    "ChicKnit",
+    "BohoVibes",
+    "ComfyTees",
+    "Elegance",
+    "DelicateWear",
+    "StreetStyle",
+    "ComfortFit",
+    "FeminineWear",
+    "ClassicStyle",
+    "ChicWrap",
   ];
   const genders = ["Men", "Women"];
   useEffect(() => {
@@ -222,9 +243,7 @@ const FilterSidebar = () => {
       </div>
       {/* price rannge filter */}
       <div className="mb-8">
-        <label className="block text-gray-600 font-medium mb-2">
-          Price Range
-        </label>
+        <label className="block text-gray-600 font-medium mb-2">Price Range</label>
         <input
           type="range"
           name="priceRange"
