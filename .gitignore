@@ -1,0 +1,10 @@
+node_modules
+
+# Environment files — never commit real secrets
+.env
+.env.local
+.env.*.local
+Backend/.env
+Backend/.env.local
+Frontend/.env
+Frontend/.env.local
