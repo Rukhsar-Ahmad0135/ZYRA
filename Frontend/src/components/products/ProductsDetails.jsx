@@ -4,83 +4,65 @@
  * See the LICENSE file for more information.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useCart } from "../cart/useCart";
 import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import {
+  fetchProductById,
+  fetchSimilarProducts,
+} from "../../redux/slices/productSlice";
+import { addToCart as addToCartThunk } from "../../redux/slices/cartSlice";
+import { getOrCreateGuestId } from "../../utils/guestId";
 
 const ProductsDetails = ({ productId }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { user, guestId } = useSelector((state) => state.auth);
-  const { similarProducts, loading: reduxLoading, error: reduxError } = useSelector(
-    (state) => state.products,
-  );
+  const {
+    similarProducts,
+    selectedProduct,
+    loading: reduxLoading,
+    error: reduxError,
+  } = useSelector((state) => state.products);
 
+  const { user, guestId: authGuestId } = useSelector((state) => state.auth);
   const { addToCart } = useCart();
 
   const effectiveProductId = productId || id;
-  const [product, setProduct] = useState(null);
-  const [localLoading, setLocalLoading] = useState(false);
-  const [localError, setLocalError] = useState(null);
 
-  const [mainImage, setMainImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const addToCartTimerRef = useRef(null);
 
-  useEffect(() => {
-    const pid = effectiveProductId;
-    if (!pid) return;
+  const product =
+    selectedProduct?._id === effectiveProductId ? selectedProduct : null;
 
-    setLocalLoading(true);
-    setLocalError(null);
-
-    let mounted = true;
-
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${pid}`)
-      .then((res) => {
-        if (!mounted) return;
-        setProduct(res.data);
-      })
-      .catch((e) => {
-        console.error(e);
-        if (!mounted) return;
-        setLocalError("Unable to load product");
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setLocalLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [effectiveProductId]);
+  const mainImage = useMemo(() => {
+    if (!product?.images?.length) return null;
+    return (
+      product.images[activeImageIndex]?.url || product.images[0]?.url || null
+    );
+  }, [product, activeImageIndex]);
 
   useEffect(() => {
-    if (!product?.images?.length) return;
-    // setMainImage derived from product; avoid extra effect loops by only setting when changed
-    const next = product.images[0]?.url || null;
-    setMainImage((cur) => (cur === next ? cur : next));
-  }, [product]);
-
+    if (!effectiveProductId) return;
+    dispatch(fetchProductById(effectiveProductId));
+    dispatch(fetchSimilarProducts(effectiveProductId));
+  }, [dispatch, effectiveProductId]);
 
   useEffect(
-    () =>
-      () => {
-        if (addToCartTimerRef.current) {
-          clearTimeout(addToCartTimerRef.current);
-        }
-      },
+    () => () => {
+      if (addToCartTimerRef.current) {
+        clearTimeout(addToCartTimerRef.current);
+      }
+    },
     [],
   );
 
@@ -94,12 +76,29 @@ const ProductsDetails = ({ productId }) => {
       return;
     }
 
-    // Cart drawer notification (component-level)
+    // Local UI update (immediate).
     addToCart({
       product,
       size: selectedSize,
       color: selectedColor,
       quantity,
+    });
+
+    // Authoritative server write. CartContext no longer POSTs to avoid
+    // double-writes; this dispatch is the single source of truth.
+    const userId = user?._id || user?.id;
+    const guestId = userId ? undefined : authGuestId || getOrCreateGuestId();
+    dispatch(
+      addToCartThunk({
+        productId: product._id,
+        quantity,
+        size: selectedSize,
+        color: selectedColor,
+        guestId,
+        userId,
+      }),
+    ).catch(() => {
+      // best-effort: keep local UI happy
     });
 
     toast.success(`${product?.name || "Product"} added successfully`, {
@@ -113,31 +112,20 @@ const ProductsDetails = ({ productId }) => {
       setIsAddingToCart(false);
       addToCartTimerRef.current = null;
     }, 3000);
-
-    // If you also rely on redux addToCart thunk, keep it here.
-    // (Your cart slice uses addToCart too; we keep behavior consistent.)
-    dispatch(
-      {
-        type: "cart/addToCart",
-        payload: {
-          productId: effectiveProductId,
-          quantity,
-          size: selectedSize,
-          color: selectedColor,
-          guestId,
-          userId: user?._id,
-        },
-      },
-    );
   };
 
-  const showLoading = localLoading || reduxLoading;
-  if (showLoading) return <p>Loading .....</p>;
+  const showLoading = reduxLoading;
+  if (showLoading && !product)
+    return <p className="text-center py-16 text-gray-500">Loading...</p>;
 
-  const showError = localError || reduxError;
-  if (showError) return <p>Error {showError}</p>;
+  const showError = reduxError;
+  if (showError && !product)
+    return <p className="text-center py-16 text-red-500">Error: {showError}</p>;
 
-  if (!product?._id) return <p>Product not found.</p>;
+  if (!product?._id)
+    return (
+      <p className="text-center py-16 text-gray-500">Product not found.</p>
+    );
 
   const colors = Array.isArray(product.colors) ? product.colors : [];
   const sizes = Array.isArray(product.sizes) ? product.sizes : [];
@@ -156,7 +144,7 @@ const ProductsDetails = ({ productId }) => {
                 className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${
                   mainImage === img.url ? "border-black" : "border-gray-300"
                 }`}
-                onClick={() => setMainImage(img.url)}
+                onClick={() => setActiveImageIndex(idx)}
               />
             ))}
           </div>
@@ -177,7 +165,7 @@ const ProductsDetails = ({ productId }) => {
           </div>
 
           {/* Mobile thumbnail */}
-          <div className="md:hidden flex overscroll-x-scroll space-x-4 mb-4">
+          <div className="md:hidden flex overflow-x-scroll space-x-4 mb-4">
             {(product.images || []).map((img, idx) => (
               <img
                 key={idx}
@@ -186,14 +174,16 @@ const ProductsDetails = ({ productId }) => {
                 className={`w-20 h-20 object-cover rounded-lg cursor-pointer border ${
                   mainImage === img.url ? "border-black" : "border-gray-300"
                 }`}
-                onClick={() => setMainImage(img.url)}
+                onClick={() => setActiveImageIndex(idx)}
               />
             ))}
           </div>
 
           {/* Right details */}
           <div className="md:w-1/2 md:ml-10">
-            <h1 className="text-2xl md:text-3xl font-semibold mb-2">{product.name}</h1>
+            <h1 className="text-2xl md:text-3xl font-semibold mb-2">
+              {product.name}
+            </h1>
 
             <p className="text-lg text-gray-600 mb-1 line-through">
               {product.originalPrice ? ` $${product.originalPrice}` : null}
@@ -212,7 +202,8 @@ const ProductsDetails = ({ productId }) => {
                     style={{
                       backgroundColor: color.toLowerCase(),
                       filter: "brightness(0.8)",
-                      outline: selectedColor === color ? "2px solid #111" : "none",
+                      outline:
+                        selectedColor === color ? "2px solid #111" : "none",
                     }}
                     onClick={() => setSelectedColor(color)}
                     aria-pressed={selectedColor === color}
@@ -222,21 +213,23 @@ const ProductsDetails = ({ productId }) => {
               </div>
             </div>
 
-            <div className="mb-4"></div>
-            <p className="text-gray-700">Size:</p>
-            <div className="flex gap-2 mt-2">
-              {sizes.map((size) => (
-                <button
-                  key={size}
-                  className="px-4 py-2 rounded border"
-                  onClick={() => setSelectedSize(size)}
-                  style={{
-                    outline: selectedSize === size ? "2px solid #111" : "none",
-                  }}
-                >
-                  {size}
-                </button>
-              ))}
+            <div className="mb-4">
+              <p className="text-gray-700">Size:</p>
+              <div className="flex gap-2 mt-2">
+                {sizes.map((size) => (
+                  <button
+                    key={size}
+                    className="px-4 py-2 rounded border"
+                    onClick={() => setSelectedSize(size)}
+                    style={{
+                      outline:
+                        selectedSize === size ? "2px solid #111" : "none",
+                    }}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="mb-6">
@@ -260,7 +253,9 @@ const ProductsDetails = ({ productId }) => {
 
             <button
               className={`bg-black text-white py-2 px-6 rounded w-full mb-4 transition ${
-                isAddingToCart ? "opacity-60 cursor-not-allowed" : "hover:bg-zinc-800"
+                isAddingToCart
+                  ? "opacity-60 cursor-not-allowed"
+                  : "hover:bg-zinc-800"
               }`}
               onClick={handleAddToCart}
               disabled={isAddingToCart}
@@ -287,7 +282,9 @@ const ProductsDetails = ({ productId }) => {
         </div>
 
         <div className="mt-10">
-          <h2 className="text-2xl text-center font-medium mb-4">You May ALso Like</h2>
+          <h2 className="text-2xl text-center font-medium mb-4">
+            You May Also Like
+          </h2>
           <ProductGrid products={similarProducts} />
         </div>
       </div>
@@ -296,4 +293,3 @@ const ProductsDetails = ({ productId }) => {
 };
 
 export default ProductsDetails;
-

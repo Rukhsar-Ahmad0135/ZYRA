@@ -13,7 +13,6 @@ import ProductsDetails from "./components/products/ProductsDetails";
 import OrderConfirmation from "./Pages/OrderConfirmation";
 import OrderDetailsPage from "./Pages/OrderDetailsPage";
 import MyOrderPage from "./Pages/MyOrderPage";
-// import AdminOrderListPage from "./Pages/Admin/AdminOrderListPage";
 import AdminOrderDetailsPage from "./Pages/Admin/AdminOrderDetailsPage";
 import AdminLayout from "./components/Admin/AdminLayout";
 import AdminHomePage from "./Pages/AdminHomePage";
@@ -21,13 +20,17 @@ import UserManagment from "./components/Admin/UserManagment";
 import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement.jsx";
+import ClerkAuthBridge from "./components/auth/ClerkAuthBridge.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import RequireAuth from "./components/auth/RequireAuth";
+import RequireAdmin from "./components/auth/RequireAdmin";
 function App() {
   return (
     <Provider store={store}>
       <CartProvider>
         <BrowserRouter>
+          <ClerkAuthBridge />
           {/* Top-right cart notifications: black background, white text, white close button, auto-dismiss after 3s. */}
           <Toaster
             position="top-right"
@@ -59,9 +62,16 @@ function App() {
           <Routes>
             <Route path="/" element={<UserLayout></UserLayout>}>
               <Route index element={<Home></Home>}></Route>
-              <Route path="login" element={<Login></Login>}></Route>
-              <Route path="register" element={<Register></Register>}></Route>
-              <Route path="profile" element={<Profile></Profile>}></Route>
+              <Route path="login/*" element={<Login></Login>}></Route>
+              <Route path="register/*" element={<Register></Register>}></Route>
+              <Route
+                path="profile"
+                element={
+                  <RequireAuth>
+                    <Profile></Profile>
+                  </RequireAuth>
+                }
+              ></Route>
               <Route
                 path="/collections/:collection"
                 element={<CollectionPage></CollectionPage>}
@@ -72,29 +82,52 @@ function App() {
               ></Route>
               <Route
                 path="checkout"
-                element={<CartCheckout></CartCheckout>}
+                element={
+                  <RequireAuth>
+                    <CartCheckout></CartCheckout>
+                  </RequireAuth>
+                }
               ></Route>
               <Route
                 path="confirmation"
-                element={<OrderConfirmation></OrderConfirmation>}
+                element={
+                  <RequireAuth>
+                    <OrderConfirmation></OrderConfirmation>
+                  </RequireAuth>
+                }
               ></Route>
               <Route
                 path="order/:id"
-                element={<OrderDetailsPage></OrderDetailsPage>}
+                element={
+                  <RequireAuth>
+                    <OrderDetailsPage></OrderDetailsPage>
+                  </RequireAuth>
+                }
               ></Route>
               <Route
                 path="/my-orders"
-                element={<MyOrderPage></MyOrderPage>}
+                element={
+                  <RequireAuth>
+                    <MyOrderPage></MyOrderPage>
+                  </RequireAuth>
+                }
               ></Route>
               {/* User layout  */}
             </Route>
-            <Route path="/admin" element={<AdminLayout />}>
+            <Route
+              path="/admin"
+              element={
+                <RequireAdmin>
+                  <AdminLayout />
+                </RequireAdmin>
+              }
+            >
               <Route index element={<AdminHomePage />} />
               <Route path="orders" element={<OrderManagement />} />
-              {/* <Route path="order-list" element={<AdminOrderListPage />} /> */}
               <Route path="order/:id" element={<AdminOrderDetailsPage />} />
               <Route path="users" element={<UserManagment />} />
               <Route path="products" element={<ProductManagement />} />
+              <Route path="products/new" element={<EditProductPage />} />
               <Route path="products/:id/edit" element={<EditProductPage />} />
             </Route>
             <Route>{/* Admin layout  */}</Route>

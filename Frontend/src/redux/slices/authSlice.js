@@ -6,11 +6,14 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import apiClient from "../../api/client.js";
+import { mergeCart as mergeCartThunk } from "./cartSlice.js";
 
 // NOTE: Clerk is the single source of auth. The token is fetched on-demand
 // via getAuthToken() in api/client.js — we never persist it in localStorage.
+// For local mode (USE_LOCAL_DATA=true), we store the legacy JWT token.
 const USER_KEY = "userInfo";
 const GUEST_KEY = "guestId";
+const LEGACY_TOKEN_KEY = "legacyToken";
 
 const getUserFromStorage = () => {
   try {
@@ -29,6 +32,22 @@ const getGuestId = () => {
   return id;
 };
 
+const getLegacyToken = () => {
+  try {
+    return localStorage.getItem(LEGACY_TOKEN_KEY);
+  } catch {
+    return null;
+  }
+};
+
+const saveLegacyToken = (token) => {
+  localStorage.setItem(LEGACY_TOKEN_KEY, token);
+};
+
+const removeLegacyToken = () => {
+  localStorage.removeItem(LEGACY_TOKEN_KEY);
+};
+
 const initialState = {
   user: getUserFromStorage(),
   guestId: getGuestId(),
@@ -44,11 +63,24 @@ const saveUser = (user) => {
 // local-data mode. Real auth in production is handled by Clerk.
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async (userData, { rejectWithValue }) => {
+  async (userData, { dispatch, getState, rejectWithValue }) => {
     try {
       const response = await apiClient.post("/api/users/login", userData);
-      const { user } = response.data;
+      const { user, token } = response.data;
       saveUser(user);
+      if (token) {
+        saveLegacyToken(token);
+      }
+      // Merge any pre-login guest cart into the user cart, then refresh
+      // the local cart state with the merged result.
+      const guestId = getState().auth?.guestId;
+      if (guestId) {
+        try {
+          await dispatch(mergeCartThunk({ guestId })).unwrap();
+        } catch {
+          // Cart merge is best-effort — don't fail the login.
+        }
+      }
       return user;
     } catch (error) {
       return rejectWithValue(error);
@@ -60,11 +92,24 @@ export const loginUser = createAsyncThunk(
 // local-data mode. Real auth in production is handled by Clerk.
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async (userData, { rejectWithValue }) => {
+  async (userData, { dispatch, getState, rejectWithValue }) => {
     try {
       const response = await apiClient.post("/api/users/register", userData);
-      const { user } = response.data;
+      const { user, token } = response.data;
       saveUser(user);
+      if (token) {
+        saveLegacyToken(token);
+      }
+      // Merge any pre-signup guest cart into the new user cart, then refresh
+      // the local cart state with the merged result.
+      const guestId = getState().auth?.guestId;
+      if (guestId) {
+        try {
+          await dispatch(mergeCartThunk({ guestId })).unwrap();
+        } catch {
+          // Cart merge is best-effort — don't fail the registration.
+        }
+      }
       return user;
     } catch (error) {
       return rejectWithValue(error);
@@ -109,10 +154,18 @@ const authSlice = createSlice({
       state.guestId = `guest_${Date.now()}`;
       localStorage.removeItem(USER_KEY);
       localStorage.setItem(GUEST_KEY, state.guestId);
+      removeLegacyToken();
     },
     generateGuestId: (state) => {
       state.guestId = `guest_${Date.now()}`;
       localStorage.setItem(GUEST_KEY, state.guestId);
+    },
+    // Clear only the signed-in user (used on Clerk sign-out). Unlike `logout`,
+    // this does NOT regenerate the guestId so a returning guest keeps continuity.
+    clearUser: (state) => {
+      state.user = null;
+      localStorage.removeItem(USER_KEY);
+      // Note: We don't remove legacy token here as it might be needed for local mode
     },
   },
   extraReducers: (builder) => {
@@ -152,7 +205,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, generateGuestId } = authSlice.actions;
+export const { logout, generateGuestId, clearUser } = authSlice.actions;
 export default authSlice.reducer;
 
 

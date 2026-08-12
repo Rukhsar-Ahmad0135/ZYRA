@@ -4,7 +4,7 @@
  * See the LICENSE file for more information.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import FilterSidebar from "../components/products/FilterSidebar";
 import ProductGrid from "../components/products/ProductGrid";
@@ -18,13 +18,16 @@ const CollectionPage = () => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((state) => state.products);
-  const queryParams = Object.fromEntries([...searchParams]);
+  const queryParams = useMemo(
+    () => Object.fromEntries(searchParams.entries()),
+    [searchParams.toString()],
+  );
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   useEffect(() => {
     dispatch(fetchProductsByCollection({ collection, ...queryParams }));
-  }, [dispatch, collection, searchParams]);
+  }, [dispatch, collection, queryParams]);
   const toggleSidebar = () => {
     setIsSidebarOpen((currentValue) => !currentValue);
   };
@@ -42,66 +45,6 @@ const CollectionPage = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     const fetchedProducts = [
-  //       {
-  //         id: 1,
-  //         name: "Casual Shirt",
-  //         price: 19.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=3" }],
-  //       },
-  //       {
-  //         id: 2,
-  //         name: "Denim Jeans",
-  //         price: 39.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=4" }],
-  //       },
-  //       {
-  //         id: 3,
-  //         name: "Denim Jeans",
-  //         price: 39.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=5" }],
-  //       },
-  //       {
-  //         id: 4,
-  //         name: "Denim Jeans",
-  //         price: 39.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=6" }],
-  //       },
-  //       {
-  //         id: 5,
-  //         name: "Casual Shirt",
-  //         price: 19.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=7" }],
-  //       },
-  //       {
-  //         id: 6,
-  //         name: "Denim Jeans",
-  //         price: 39.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=8" }],
-  //       },
-  //       {
-  //         id: 7,
-  //         name: "Denim Jeans",
-  //         price: 39.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=9" }],
-  //       },
-  //       {
-  //         id: 8,
-  //         name: "Denim Jeans",
-  //         price: 39.99,
-  //         image: [{ url: "https://picsum.photos/500/500?random=10" }],
-  //       },
-  //     ];
-
-  //     setProducts(fetchedProducts);
-  //     setLoading(false);
-  //   }, 1000);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
@@ -123,27 +66,11 @@ const CollectionPage = () => {
       >
         <FilterSidebar />
       </div>
-      <div className="flex-grow p-4">
+      <div className="grow p-4">
         <h2 className="text-2xl uppercase mb-4">All Collections</h2>
-        {/* sort option */}
         <Sortoption />
-        {/* product grid */}
         <ProductGrid products={products} loading={loading} error={error} />
       </div>
-
-      {/* <main className="flex-1">
-        {loading ? (
-          <div className="py-12 text-center text-gray-500">
-            Loading products...
-          </div>
-        ) : products.length > 0 ? (
-          <ProductGrid products={products} />
-        ) : (
-          <div className="py-12 text-center text-gray-500">
-            No products found.
-          </div>
-        )}
-      </main> */}
     </div>
   );
 };

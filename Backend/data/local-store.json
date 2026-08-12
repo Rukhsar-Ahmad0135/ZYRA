@@ -1,0 +1,2440 @@
+{
+  "meta": {
+    "createdAt": "2026-08-03T04:39:41.030Z",
+    "updatedAt": "2026-08-11T12:53:02.207Z"
+  },
+  "products": [
+    {
+      "name": "Classic Oxford Button-Down Shirt",
+      "description": "This classic Oxford shirt is tailored for a polished yet casual look. Crafted from high-quality cotton, it features a button-down collar and a comfortable, slightly relaxed fit. Perfect for both formal and casual occasions, it comes with long sleeves, a button placket, and a yoke at the back. The shirt is finished with a gently rounded hem and adjustable button cuffs.",
+      "price": 39.99,
+      "discountPrice": 34.99,
+      "countInStock": 20,
+      "sku": "OX-SH-001",
+      "category": "Men",
+      "brand": "Urban Threads",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Red",
+        "Blue",
+        "Yellow"
+      ],
+      "collections": "Business Casual",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "/uploads/products/classic-oxford-front.jpg",
+          "altText": "Classic Oxford Button-Down Shirt front view"
+        },
+        {
+          "url": "/uploads/products/classic-oxford-model.jpg",
+          "altText": "Classic Oxford Button-Down Shirt model view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 12,
+      "_id": "6a701b8c929413763db64f09",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.646Z",
+      "updatedAt": "2026-08-05T08:04:34.058Z",
+      "tags": []
+    },
+    {
+      "name": "Slim-Fit Stretch Shirt",
+      "description": "A versatile slim-fit shirt perfect for business or evening events. Designed with a fitted silhouette, the added stretch provides maximum comfort throughout the day. Features a crisp turn-down collar, button placket, and adjustable cuffs.",
+      "price": 29.99,
+      "discountPrice": 24.99,
+      "countInStock": 35,
+      "sku": "SLIM-SH-002",
+      "category": "Top Wear",
+      "brand": "Modern Fit",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy Blue",
+        "Burgundy"
+      ],
+      "collections": "Formal Wear",
+      "material": "Cotton Blend",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "altText": "Slim-Fit Stretch Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+          "altText": "Slim-Fit Stretch Shirt detail view"
+        }
+      ],
+      "rating": 4.8,
+      "numReviews": 15,
+      "_id": "6a701b8c929413763db64f0a",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.756Z",
+      "updatedAt": "2026-08-03T04:39:40.756Z"
+    },
+    {
+      "name": "Casual Denim Shirt",
+      "description": "This casual denim shirt is made from lightweight cotton denim. It features a regular fit, snap buttons, and a straight hem. With Western-inspired details, this shirt is perfect for layering or wearing solo.",
+      "price": 49.99,
+      "discountPrice": 44.99,
+      "countInStock": 15,
+      "sku": "CAS-DEN-003",
+      "category": "Top Wear",
+      "brand": "Street Style",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Light Blue",
+        "Dark Wash"
+      ],
+      "collections": "Casual Wear",
+      "material": "Denim",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop",
+          "altText": "Casual Denim Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?w=500&h=500&fit=crop",
+          "altText": "Casual Denim Shirt detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 8,
+      "_id": "6a701b8c929413763db64f0b",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.756Z",
+      "updatedAt": "2026-08-03T04:39:40.756Z"
+    },
+    {
+      "name": "Printed Resort Shirt",
+      "description": "Designed for summer, this printed resort shirt is perfect for vacation or weekend getaways. It features a relaxed fit, short sleeves, and a camp collar. The all-over tropical print adds a playful vibe.",
+      "price": 29.99,
+      "discountPrice": 22.99,
+      "countInStock": 25,
+      "sku": "PRNT-RES-004",
+      "category": "Top Wear",
+      "brand": "Beach Breeze",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Tropical Print",
+        "Navy Palms"
+      ],
+      "collections": "Vacation Wear",
+      "material": "Viscose",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "altText": "Printed Resort Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+          "altText": "Printed Resort Shirt detail view"
+        }
+      ],
+      "rating": 4.4,
+      "numReviews": 10,
+      "_id": "6a701b8c929413763db64f0c",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.756Z",
+      "updatedAt": "2026-08-03T04:39:40.756Z"
+    },
+    {
+      "name": "Slim-Fit Easy-Iron Shirt",
+      "description": "A slim-fit, easy-iron shirt in woven cotton fabric with a fitted silhouette. Features a turn-down collar, classic button placket, and a yoke at the back. Long sleeves and adjustable button cuffs with a rounded hem.",
+      "price": 34.99,
+      "discountPrice": 29.99,
+      "countInStock": 30,
+      "sku": "SLIM-EIR-005",
+      "category": "Top Wear",
+      "brand": "Urban Chic",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Gray"
+      ],
+      "collections": "Business Wear",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "altText": "Slim-Fit Easy-Iron Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+          "altText": "Slim-Fit Easy-Iron Shirt detail view"
+        }
+      ],
+      "rating": 5,
+      "numReviews": 14,
+      "_id": "6a701b8c929413763db64f0d",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.756Z",
+      "updatedAt": "2026-08-03T04:39:40.756Z"
+    },
+    {
+      "name": "Polo T-Shirt with Ribbed Collar",
+      "description": "A wardrobe classic, this polo t-shirt features a ribbed collar and cuffs. Made from 100% cotton, it offers breathability and comfort throughout the day. Tailored in a slim fit with a button placket at the neckline.",
+      "price": 24.99,
+      "discountPrice": 19.99,
+      "countInStock": 50,
+      "sku": "POLO-TSH-006",
+      "category": "Top Wear",
+      "brand": "Polo Classics",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Navy",
+        "Red"
+      ],
+      "collections": "Casual Wear",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&h=500&fit=crop",
+          "altText": "Polo T-Shirt with Ribbed Collar front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=500&fit=crop",
+          "altText": "Polo T-Shirt with Ribbed Collar detail view"
+        }
+      ],
+      "rating": 4.3,
+      "numReviews": 22,
+      "_id": "6a701b8c929413763db64f0e",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.756Z",
+      "updatedAt": "2026-08-03T04:39:40.756Z"
+    },
+    {
+      "name": "Oversized Graphic T-Shirt",
+      "description": "An oversized graphic t-shirt that combines comfort with street style. Featuring bold prints across the chest, this relaxed fit tee offers a modern vibe, perfect for pairing with jeans or joggers.",
+      "price": 19.99,
+      "discountPrice": 15.99,
+      "countInStock": 40,
+      "sku": "OVS-GRF-007",
+      "category": "Top Wear",
+      "brand": "Street Vibes",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Gray"
+      ],
+      "collections": "Streetwear",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
+          "altText": "Oversized Graphic T-Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+          "altText": "Oversized Graphic T-Shirt detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 30,
+      "_id": "6a701b8c929413763db64f0f",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.756Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Regular-Fit Henley Shirt",
+      "description": "A modern take on the classic Henley shirt, this regular-fit style features a buttoned placket and ribbed cuffs. Made from a soft cotton blend with a touch of elastane for stretch.",
+      "price": 22.99,
+      "discountPrice": 18.99,
+      "countInStock": 35,
+      "sku": "REG-HEN-008",
+      "category": "Top Wear",
+      "brand": "Heritage Wear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Heather Gray",
+        "Olive",
+        "Black"
+      ],
+      "collections": "Casual Wear",
+      "material": "Cotton Blend",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "altText": "Regular-Fit Henley Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+          "altText": "Regular-Fit Henley Shirt detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 25,
+      "_id": "6a701b8c929413763db64f10",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Long-Sleeve Thermal Tee",
+      "description": "Stay warm with this long-sleeve thermal tee, made from soft cotton with a waffle-knit texture. Ideal for layering in cooler months, the slim-fit design ensures a snug yet comfortable fit.",
+      "price": 27.99,
+      "discountPrice": 22.99,
+      "countInStock": 20,
+      "sku": "LST-THR-009",
+      "category": "Top Wear",
+      "brand": "Winter Basics",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Charcoal",
+        "Dark Green",
+        "Navy"
+      ],
+      "collections": "Winter Essentials",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
+          "altText": "Long-Sleeve Thermal Tee front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+          "altText": "Long-Sleeve Thermal Tee detail view"
+        }
+      ],
+      "rating": 4.4,
+      "numReviews": 18,
+      "_id": "6a701b8c929413763db64f11",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "V-Neck Classic T-Shirt",
+      "description": "A classic V-neck t-shirt for everyday wear. This regular-fit tee is made from breathable cotton and features a clean, simple design with a flattering V-neckline. Lightweight fabric and soft texture make it perfect for casual looks.",
+      "price": 14.99,
+      "discountPrice": 11.99,
+      "countInStock": 60,
+      "sku": "VNECK-CLS-010",
+      "category": "Top Wear",
+      "brand": "Everyday Comfort",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Black",
+        "Navy"
+      ],
+      "collections": "Basics",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
+          "altText": "V-Neck Classic T-Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+          "altText": "V-Neck Classic T-Shirt detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 28,
+      "_id": "6a701b8c929413763db64f12",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Slim Fit Joggers",
+      "description": "Slim-fit joggers with an elasticated drawstring waist. Features ribbed hems and side pockets. Ideal for casual outings or workouts.",
+      "price": 40,
+      "discountPrice": 35,
+      "countInStock": 20,
+      "sku": "BW-001",
+      "category": "Bottom Wear",
+      "brand": "ActiveWear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Gray",
+        "Navy"
+      ],
+      "collections": "Casual Collection",
+      "material": "Cotton Blend",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&h=500&fit=crop",
+          "altText": "Slim Fit Joggers front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&h=500&fit=crop",
+          "altText": "Slim Fit Joggers detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 12,
+      "_id": "6a701b8c929413763db64f13",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Cargo Joggers",
+      "description": "Relaxed-fit cargo joggers featuring multiple pockets for functionality. Drawstring waist and cuffed hems for a modern look.",
+      "price": 45,
+      "discountPrice": 40,
+      "countInStock": 15,
+      "sku": "BW-002",
+      "category": "Bottom Wear",
+      "brand": "UrbanStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Olive",
+        "Black"
+      ],
+      "collections": "Urban Collection",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&h=500&fit=crop",
+          "altText": "Cargo Joggers front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&h=500&fit=crop",
+          "altText": "Cargo Joggers detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 20,
+      "_id": "6a701b8c929413763db64f14",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Tapered Sweatpants",
+      "description": "Tapered sweatpants designed for comfort. Elastic waistband with adjustable drawstring, perfect for lounging or athletic activities.",
+      "price": 35,
+      "discountPrice": 30,
+      "countInStock": 25,
+      "sku": "BW-003",
+      "category": "Bottom Wear",
+      "brand": "ChillZone",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Gray",
+        "Charcoal",
+        "Blue"
+      ],
+      "collections": "Lounge Collection",
+      "material": "Fleece",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop",
+          "altText": "Tapered Sweatpants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=500&h=500&fit=crop",
+          "altText": "Tapered Sweatpants detail view"
+        }
+      ],
+      "rating": 4.3,
+      "numReviews": 18,
+      "_id": "6a701b8c929413763db64f15",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Denim Jeans",
+      "description": "Classic slim-fit denim jeans with a slight stretch for comfort. Features a zip fly and five-pocket styling for a timeless look.",
+      "price": 60,
+      "discountPrice": 50,
+      "countInStock": 30,
+      "sku": "BW-004",
+      "category": "Bottom Wear",
+      "brand": "DenimCo",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Dark Blue",
+        "Light Blue"
+      ],
+      "collections": "Denim Collection",
+      "material": "Denim",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop",
+          "altText": "Denim Jeans front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?w=500&h=500&fit=crop",
+          "altText": "Denim Jeans detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 22,
+      "_id": "6a701b8c929413763db64f16",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Chino Pants",
+      "description": "Slim-fit chino pants made from stretch cotton twill. Features a button closure and front and back pockets. Ideal for both casual and semi-formal wear.",
+      "price": 55,
+      "discountPrice": 48,
+      "countInStock": 40,
+      "sku": "BW-005",
+      "category": "Bottom Wear",
+      "brand": "CasualLook",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Beige",
+        "Navy",
+        "Black"
+      ],
+      "collections": "Smart Casual Collection",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1473968643109-aa3b32f9c9d8?w=500&h=500&fit=crop",
+          "altText": "Chino Pants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=500&h=500&fit=crop",
+          "altText": "Chino Pants detail view"
+        }
+      ],
+      "rating": 4.8,
+      "numReviews": 15,
+      "_id": "6a701b8c929413763db64f17",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Track Pants",
+      "description": "Comfortable track pants with an elasticated waistband and tapered leg. Features side stripes for a sporty look. Ideal for athletic and casual wear.",
+      "price": 40,
+      "discountPrice": 35,
+      "countInStock": 20,
+      "sku": "BW-006",
+      "category": "Bottom Wear",
+      "brand": "SportX",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Red",
+        "Blue"
+      ],
+      "collections": "Activewear Collection",
+      "material": "Polyester",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&h=500&fit=crop",
+          "altText": "Track Pants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&h=500&fit=crop",
+          "altText": "Track Pants detail view"
+        }
+      ],
+      "rating": 4.2,
+      "numReviews": 17,
+      "_id": "6a701b8c929413763db64f18",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Slim Fit Trousers",
+      "description": "Tailored slim-fit trousers with belt loops and a hook-and-eye closure. Suitable for formal occasions or smart-casual wear.",
+      "price": 65,
+      "discountPrice": 55,
+      "countInStock": 15,
+      "sku": "BW-007",
+      "category": "Bottom Wear",
+      "brand": "ExecutiveStyle",
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Gray",
+        "Black"
+      ],
+      "collections": "Office Wear",
+      "material": "Polyester",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Slim Fit Trousers front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&h=500&fit=crop",
+          "altText": "Slim Fit Trousers detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 10,
+      "_id": "6a701b8c929413763db64f19",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Cargo Pants",
+      "description": "Loose-fit cargo pants with multiple utility pockets. Features adjustable ankle cuffs and a drawstring waist for versatility and comfort.",
+      "price": 50,
+      "discountPrice": 45,
+      "countInStock": 25,
+      "sku": "BW-008",
+      "category": "Bottom Wear",
+      "brand": "StreetWear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Olive",
+        "Brown",
+        "Black"
+      ],
+      "collections": "Street Style Collection",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&h=500&fit=crop",
+          "altText": "Cargo Pants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=500&h=500&fit=crop",
+          "altText": "Cargo Pants detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 13,
+      "_id": "6a701b8c929413763db64f1a",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Relaxed Fit Sweatpants",
+      "description": "Relaxed-fit sweatpants made from soft fleece fabric. Features an elastic waist and adjustable drawstring for a custom fit.",
+      "price": 35,
+      "discountPrice": 30,
+      "countInStock": 35,
+      "sku": "BW-009",
+      "category": "Bottom Wear",
+      "brand": "LoungeWear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Gray",
+        "Black",
+        "Navy"
+      ],
+      "collections": "Lounge Collection",
+      "material": "Fleece",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop",
+          "altText": "Relaxed Fit Sweatpants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=500&h=500&fit=crop",
+          "altText": "Relaxed Fit Sweatpants detail view"
+        }
+      ],
+      "rating": 4.3,
+      "numReviews": 14,
+      "_id": "6a701b8c929413763db64f1b",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.757Z",
+      "updatedAt": "2026-08-03T04:39:40.757Z"
+    },
+    {
+      "name": "Formal Dress Pants",
+      "description": "Classic formal dress pants with a slim fit. Made from lightweight, wrinkle-resistant fabric for a polished look at the office or formal events.",
+      "price": 70,
+      "discountPrice": 60,
+      "countInStock": 20,
+      "sku": "BW-010",
+      "category": "Bottom Wear",
+      "brand": "ElegantStyle",
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Navy"
+      ],
+      "collections": "Formal Collection",
+      "material": "Polyester",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Formal Dress Pants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&h=500&fit=crop",
+          "altText": "Formal Dress Pants detail view"
+        }
+      ],
+      "rating": 4.9,
+      "numReviews": 8,
+      "_id": "6a701b8c929413763db64f1c",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "High-Waist Skinny Jeans",
+      "description": "High-waist skinny jeans in stretch denim with a button and zip fly. Features a flattering fit that hugs your curves and enhances your silhouette.",
+      "price": 50,
+      "discountPrice": 45,
+      "countInStock": 30,
+      "sku": "BW-W-001",
+      "category": "Bottom Wear",
+      "brand": "DenimStyle",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Dark Blue",
+        "Black",
+        "Light Blue"
+      ],
+      "collections": "Denim Collection",
+      "material": "Denim",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=500&fit=crop",
+          "altText": "High-Waist Skinny Jeans front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&h=500&fit=crop",
+          "altText": "High-Waist Skinny Jeans detail view"
+        }
+      ],
+      "rating": 4.8,
+      "numReviews": 20,
+      "_id": "6a701b8c929413763db64f1d",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Wide-Leg Trousers",
+      "description": "Flowy, wide-leg trousers with a high waist and side pockets. Perfect for an elegant look that combines comfort and style.",
+      "price": 60,
+      "discountPrice": 55,
+      "countInStock": 25,
+      "sku": "BW-W-002",
+      "category": "Bottom Wear",
+      "brand": "ElegantWear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Beige",
+        "Black",
+        "White"
+      ],
+      "collections": "Formal Collection",
+      "material": "Polyester",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "altText": "Wide-Leg Trousers front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Wide-Leg Trousers detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 15,
+      "_id": "6a701b8c929413763db64f1e",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Stretch Leggings",
+      "description": "Soft, stretch leggings in a high-rise style. Perfect for lounging, working out, or casual wear, with a smooth fit that flatters your body.",
+      "price": 25,
+      "discountPrice": 20,
+      "countInStock": 40,
+      "sku": "BW-W-003",
+      "category": "Bottom Wear",
+      "brand": "ComfyFit",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Gray",
+        "Navy"
+      ],
+      "collections": "Activewear Collection",
+      "material": "Cotton Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=500&fit=crop",
+          "altText": "Stretch Leggings front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop",
+          "altText": "Stretch Leggings detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 30,
+      "_id": "6a701b8c929413763db64f1f",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Pleated Midi Skirt",
+      "description": "Elegant pleated midi skirt with a high waistband and soft fabric that drapes beautifully. Ideal for both formal and casual occasions.",
+      "price": 55,
+      "discountPrice": 50,
+      "countInStock": 20,
+      "sku": "BW-W-004",
+      "category": "Bottom Wear",
+      "brand": "ChicStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Pink",
+        "Navy",
+        "Black"
+      ],
+      "collections": "Spring Collection",
+      "material": "Polyester",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "altText": "Pleated Midi Skirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Pleated Midi Skirt detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 18,
+      "_id": "6a701b8c929413763db64f20",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Flared Palazzo Pants",
+      "description": "High-waist palazzo pants with a loose, flowing fit. Comfortable and stylish, making them perfect for casual outings or beach days.",
+      "price": 45,
+      "discountPrice": 40,
+      "countInStock": 35,
+      "sku": "BW-W-005",
+      "category": "Bottom Wear",
+      "brand": "BreezyVibes",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Beige",
+        "Light Blue"
+      ],
+      "collections": "Summer Collection",
+      "material": "Linen Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "altText": "Flared Palazzo Pants front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Flared Palazzo Pants detail view"
+        }
+      ],
+      "rating": 4.4,
+      "numReviews": 22,
+      "_id": "6a701b8c929413763db64f21",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "High-Rise Joggers",
+      "description": "Comfortable high-rise joggers with an elastic waistband and drawstring for a perfect fit. Great for lounging or working out.",
+      "price": 40,
+      "discountPrice": 35,
+      "countInStock": 30,
+      "sku": "BW-W-006",
+      "category": "Bottom Wear",
+      "brand": "ActiveWear",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Black",
+        "Gray",
+        "Pink"
+      ],
+      "collections": "Loungewear Collection",
+      "material": "Cotton Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&h=500&fit=crop",
+          "altText": "High-Rise Joggers front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=500&fit=crop",
+          "altText": "High-Rise Joggers detail view"
+        }
+      ],
+      "rating": 4.3,
+      "numReviews": 25,
+      "_id": "6a701b8c929413763db64f22",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Paperbag Waist Shorts",
+      "description": "Stylish paperbag waist shorts with a belted waist and wide legs. Perfect for summer outings and keeping cool in style.",
+      "price": 35,
+      "discountPrice": 30,
+      "countInStock": 20,
+      "sku": "BW-W-007",
+      "category": "Bottom Wear",
+      "brand": "SunnyStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "White",
+        "Khaki",
+        "Blue"
+      ],
+      "collections": "Summer Collection",
+      "material": "Cotton",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Paperbag Waist Shorts front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop",
+          "altText": "Paperbag Waist Shorts detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 19,
+      "_id": "6a701b8c929413763db64f23",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Stretch Denim Shorts",
+      "description": "Comfortable stretch denim shorts with a high-waisted fit and raw hem. Perfect for pairing with your favorite tops during warmer months.",
+      "price": 40,
+      "discountPrice": 35,
+      "countInStock": 25,
+      "sku": "BW-W-008",
+      "category": "Bottom Wear",
+      "brand": "DenimStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blue",
+        "Black",
+        "White"
+      ],
+      "collections": "Denim Collection",
+      "material": "Denim",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=500&fit=crop",
+          "altText": "Stretch Denim Shorts front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&h=500&fit=crop",
+          "altText": "Stretch Denim Shorts detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 15,
+      "_id": "6a701b8c929413763db64f24",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Culottes",
+      "description": "Wide-leg culottes with a flattering high waist and cropped length. The perfect blend of comfort and style for any casual occasion.",
+      "price": 50,
+      "discountPrice": 45,
+      "countInStock": 30,
+      "sku": "BW-W-009",
+      "category": "Bottom Wear",
+      "brand": "ChicStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Olive"
+      ],
+      "collections": "Casual Collection",
+      "material": "Polyester",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "altText": "Culottes front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Culottes detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 23,
+      "_id": "6a701b8c929413763db64f25",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Classic Pleated Trousers",
+      "description": "Timeless pleated trousers with a tailored fit. A wardrobe essential for workwear or formal occasions.",
+      "price": 70,
+      "discountPrice": 65,
+      "countInStock": 25,
+      "sku": "BW-W-010",
+      "category": "Bottom Wear",
+      "brand": "ElegantWear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Navy",
+        "Black",
+        "Gray"
+      ],
+      "collections": "Formal Collection",
+      "material": "Wool Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "altText": "Classic Pleated Trousers front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "altText": "Classic Pleated Trousers detail view"
+        }
+      ],
+      "rating": 4.8,
+      "numReviews": 20,
+      "_id": "6a701b8c929413763db64f26",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Knitted Cropped Top",
+      "description": "A stylish knitted cropped top with a flattering fitted silhouette. Perfect for pairing with high-waisted jeans or skirts for a casual look.",
+      "price": 40,
+      "discountPrice": 35,
+      "countInStock": 25,
+      "sku": "TW-W-001",
+      "category": "Top Wear",
+      "brand": "ChicKnit",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Beige",
+        "White"
+      ],
+      "collections": "Knits Collection",
+      "material": "Cotton Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Knitted Cropped Top front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Knitted Cropped Top detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 15,
+      "_id": "6a701b8c929413763db64f27",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Boho Floral Blouse",
+      "description": "Flowy boho blouse with floral patterns, featuring a relaxed fit and balloon sleeves. Ideal for casual summer days.",
+      "price": 50,
+      "discountPrice": 45,
+      "countInStock": 30,
+      "sku": "TW-W-002",
+      "category": "Top Wear",
+      "brand": "BohoVibes",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Pink"
+      ],
+      "collections": "Summer Collection",
+      "material": "Viscose",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Boho Floral Blouse front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Boho Floral Blouse detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 20,
+      "_id": "6a701b8c929413763db64f28",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Casual T-Shirt",
+      "description": "A soft, breathable casual t-shirt with a classic fit. Features a round neckline and short sleeves, perfect for everyday wear.",
+      "price": 25,
+      "discountPrice": 20,
+      "countInStock": 50,
+      "sku": "TW-W-003",
+      "category": "Top Wear",
+      "brand": "ComfyTees",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "White",
+        "Gray"
+      ],
+      "collections": "Essentials",
+      "material": "Cotton",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&h=500&fit=crop",
+          "altText": "Casual T-Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+          "altText": "Casual T-Shirt detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 25,
+      "_id": "6a701b8c929413763db64f29",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Off-Shoulder Top",
+      "description": "An elegant off-shoulder top with ruffled sleeves and a flattering fit. Ideal for adding a touch of femininity to your outfit.",
+      "price": 45,
+      "discountPrice": 40,
+      "countInStock": 35,
+      "sku": "TW-W-004",
+      "category": "Top Wear",
+      "brand": "Elegance",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Red",
+        "White",
+        "Blue"
+      ],
+      "collections": "Evening Collection",
+      "material": "Polyester",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Off-Shoulder Top front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Off-Shoulder Top detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 18,
+      "_id": "6a701b8c929413763db64f2a",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Lace-Trimmed Cami Top",
+      "description": "A delicate cami top with lace trim and adjustable straps. The lightweight fabric makes it perfect for layering or wearing alone during warmer weather.",
+      "price": 35,
+      "discountPrice": 30,
+      "countInStock": 40,
+      "sku": "TW-W-005",
+      "category": "Top Wear",
+      "brand": "DelicateWear",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Black",
+        "White"
+      ],
+      "collections": "Lingerie-Inspired",
+      "material": "Silk Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Lace-Trimmed Cami Top front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Lace-Trimmed Cami Top detail view"
+        }
+      ],
+      "rating": 4.8,
+      "numReviews": 22,
+      "_id": "6a701b8c929413763db64f2b",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Graphic Print Tee",
+      "description": "A trendy graphic print tee with a relaxed fit. Pair it with jeans or skirts for a cool and casual look.",
+      "price": 30,
+      "discountPrice": 25,
+      "countInStock": 45,
+      "sku": "TW-W-006",
+      "category": "Top Wear",
+      "brand": "StreetStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Black"
+      ],
+      "collections": "Urban Collection",
+      "material": "Cotton",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Graphic Print Tee front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Graphic Print Tee detail view"
+        }
+      ],
+      "rating": 4.6,
+      "numReviews": 30,
+      "_id": "6a701b8c929413763db64f2c",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Ribbed Long-Sleeve Top",
+      "description": "A cozy ribbed long-sleeve top that offers comfort and style. Perfect for layering during cooler months.",
+      "price": 55,
+      "discountPrice": 50,
+      "countInStock": 30,
+      "sku": "TW-W-007",
+      "category": "Top Wear",
+      "brand": "ComfortFit",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Gray",
+        "Pink",
+        "Brown"
+      ],
+      "collections": "Fall Collection",
+      "material": "Cotton Blend",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Ribbed Long-Sleeve Top front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Ribbed Long-Sleeve Top detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 26,
+      "_id": "6a701b8c929413763db64f2d",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Ruffle-Sleeve Blouse",
+      "description": "A lightweight ruffle-sleeve blouse with a flattering fit. Perfect for a feminine touch to any outfit.",
+      "price": 45,
+      "discountPrice": 40,
+      "countInStock": 20,
+      "sku": "TW-W-008",
+      "category": "Top Wear",
+      "brand": "FeminineWear",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "White",
+        "Navy",
+        "Lavender"
+      ],
+      "collections": "Summer Collection",
+      "material": "Viscose",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Ruffle-Sleeve Blouse front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Ruffle-Sleeve Blouse detail view"
+        }
+      ],
+      "rating": 4.5,
+      "numReviews": 19,
+      "_id": "6a701b8c929413763db64f2e",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "Classic Button-Up Shirt",
+      "description": "A versatile button-up shirt that can be dressed up or down. Made from soft fabric with a tailored fit, it's perfect for both casual and formal occasions.",
+      "price": 60,
+      "discountPrice": 55,
+      "countInStock": 25,
+      "sku": "TW-W-009",
+      "category": "Top Wear",
+      "brand": "ClassicStyle",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "White",
+        "Light Blue",
+        "Black"
+      ],
+      "collections": "Office Collection",
+      "material": "Cotton",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "Classic Button-Up Shirt front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "Classic Button-Up Shirt detail view"
+        }
+      ],
+      "rating": 4.8,
+      "numReviews": 25,
+      "_id": "6a701b8c929413763db64f2f",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.758Z"
+    },
+    {
+      "name": "V-Neck Wrap Top",
+      "description": "A chic v-neck wrap top with a tie waist. Its elegant style makes it perfect for both casual and semi-formal occasions.",
+      "price": 50,
+      "discountPrice": 45,
+      "countInStock": 30,
+      "sku": "TW-W-010",
+      "category": "Top Wear",
+      "brand": "ChicWrap",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Red",
+        "Black",
+        "White"
+      ],
+      "collections": "Evening Collection",
+      "material": "Polyester",
+      "gender": "Women",
+      "images": [
+        {
+          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "altText": "V-Neck Wrap Top front view"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "altText": "V-Neck Wrap Top detail view"
+        }
+      ],
+      "rating": 4.7,
+      "numReviews": 22,
+      "_id": "6a701b8c929413763db64f30",
+      "user": "6a701b8c929413763db64f08",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": "2026-08-03T04:39:40.758Z",
+      "updatedAt": "2026-08-03T04:39:40.759Z"
+    },
+    {
+      "_id": "6a7b1b163907f637d618a033",
+      "name": "Test Pants",
+      "description": "Test desc",
+      "price": 50,
+      "countInStock": 10,
+      "sku": "TEST-CART-001",
+      "category": "Bottom Wear",
+      "sizes": [
+        "M"
+      ],
+      "colors": [
+        "Black"
+      ],
+      "collections": "General",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "http://localhost:5099/uploads/test.webp",
+          "publicId": "test123"
+        }
+      ],
+      "user": "6a7b1b163907f637d618a032",
+      "createdAt": "2026-08-11T12:52:38.589Z",
+      "updatedAt": "2026-08-11T12:52:38.589Z",
+      "isPublished": true,
+      "isFeatured": false
+    },
+    {
+      "_id": "6a7b1b2e3c120eabf33b1307",
+      "name": "X",
+      "description": "bad",
+      "price": -5,
+      "countInStock": -1,
+      "sku": "BAD-VAL-001",
+      "user": "6a7b1b2e3c120eabf33b1306",
+      "createdAt": "2026-08-11T12:53:02.207Z",
+      "updatedAt": "2026-08-11T12:53:02.207Z",
+      "isPublished": true,
+      "isFeatured": false
+    }
+  ],
+  "users": [
+    {
+      "_id": "6a70f521dfb446839ba0e9c3",
+      "name": "rukhsar",
+      "email": "rukhsar11@example.com",
+      "password": "$2b$10$uzLPzfIDXQ3YDsr1.NWYhuNyfGCL9N/JtBV/wBE106Ot91AIungFa",
+      "role": "admin",
+      "createdAt": "2026-08-03T20:08:01.682Z",
+      "updatedAt": "2026-08-03T20:08:01.682Z"
+    },
+    {
+      "_id": "6a71d8cb257d534574d48da3",
+      "name": "hamza",
+      "email": "hamza@example.gmail.com",
+      "password": "$2b$10$s0SdhcfpjGKP.Ta5IjLuJ.YNYKTDpEOhLq5.dSbUcGlGIjKHQLNzG",
+      "role": "customer",
+      "createdAt": "2026-08-04T12:19:23.541Z",
+      "updatedAt": "2026-08-04T12:19:23.541Z"
+    },
+    {
+      "_id": "6a71da50b20da8c1897a9d22",
+      "name": "Test User",
+      "email": "testuser@example.com",
+      "password": "$2b$10$02yayzRua1rkQKx1EeDUkuh4gfpPYazNRHGsvCaxzwVRU7FviHIv6",
+      "role": "customer",
+      "createdAt": "2026-08-04T12:25:52.553Z",
+      "updatedAt": "2026-08-04T12:25:52.553Z"
+    },
+    {
+      "_id": "6a71da6964b495a35a7b1ae2",
+      "name": "Browser Test User",
+      "email": "browser1785846375706@example.com",
+      "password": "$2b$10$G9pJqdkojCb86yihGsPNVuCg4pBL4gQ.N/83WACINZ7C01s9zlguq",
+      "role": "customer",
+      "createdAt": "2026-08-04T12:26:17.423Z",
+      "updatedAt": "2026-08-04T12:26:17.423Z"
+    },
+    {
+      "_id": "6a71db75dd9fb4a7bbba595e",
+      "name": "Retry Test User",
+      "email": "retry1785846644870@example.com",
+      "password": "$2b$10$dBqSXqxy38OcuNheYV/i8e9wCiO8D7fv87nBr2x79t9VuCdJgpioC",
+      "role": "customer",
+      "createdAt": "2026-08-04T12:30:46.121Z",
+      "updatedAt": "2026-08-04T12:30:46.121Z"
+    },
+    {
+      "_id": "6a71dd096a28c854232d7b58",
+      "name": "sameer",
+      "email": "sameer@example.com",
+      "password": "$2b$10$Zl90XYaJB60k95bF5qzuf.GYQkNLfkHTAMlyhD824PNFnE6L200te",
+      "role": "customer",
+      "createdAt": "2026-08-04T12:37:29.564Z",
+      "updatedAt": "2026-08-04T12:37:29.564Z"
+    },
+    {
+      "_id": "6a76b1c28833d2de233450ca",
+      "name": "QA Tester",
+      "email": "qa_1786163650024@example.com",
+      "password": "$2b$10$Ghj9X.mHUzQXuQvoXk.Z2efizfVhwO7fmziFl2zJmbpic7BnjBX1W",
+      "role": "customer",
+      "createdAt": "2026-08-08T04:34:10.350Z",
+      "updatedAt": "2026-08-08T04:34:10.350Z"
+    },
+    {
+      "_id": "6a76b24488d99e71bfd782c4",
+      "name": "QA Tester",
+      "email": "qa_1786163780276@example.com",
+      "password": "$2b$10$p9xfpFWWVkBApaCLugVtC.2iyEhlH7KGf5o1l1KAy5GSxlw4qSTwm",
+      "role": "customer",
+      "createdAt": "2026-08-08T04:36:20.640Z",
+      "updatedAt": "2026-08-08T04:36:20.640Z"
+    },
+    {
+      "_id": "6a76b856bbe3f55a693dc6b1",
+      "name": "QA Tester",
+      "email": "qa_1786165334371@example.com",
+      "password": "$2b$10$5bzf2Z8lCW6Dg.r1I2IOS.c2oTCtFgmUV3QXtM4ZCYKNuVILIc5K2",
+      "role": "customer",
+      "createdAt": "2026-08-08T05:02:14.832Z",
+      "updatedAt": "2026-08-08T05:02:14.832Z"
+    },
+    {
+      "_id": "6a76e9dd48be2bfa8fb9162f",
+      "name": "QA Tester",
+      "email": "qa_1786178013252@example.com",
+      "password": "$2b$10$q0FWXZjCA4nFNQ7lceGATOvwc94NmR4t1.XfTlphfZg4XrRpC1FKK",
+      "role": "customer",
+      "createdAt": "2026-08-08T08:33:33.489Z",
+      "updatedAt": "2026-08-08T08:33:33.489Z"
+    },
+    {
+      "_id": "6a76eda930c71087cdd638de",
+      "name": "QA Tester",
+      "email": "qa_1786178985490@example.com",
+      "password": "$2b$10$o4QnD8WeBfzekzuIrdUGyu48QFMZ1gXQUSfBNQPOk1uZKBNpUWMUm",
+      "role": "customer",
+      "createdAt": "2026-08-08T08:49:45.761Z",
+      "updatedAt": "2026-08-08T08:49:45.761Z"
+    },
+    {
+      "_id": "6a76ee3914ab68beb9ea5a38",
+      "name": "QA Tester",
+      "email": "qa_1786179129472@example.com",
+      "password": "$2b$10$RduSV/ZQr3K7SPMCQ/HGg.Is1TCUFsGj42IH7LCArMRcBW3mWHL7G",
+      "role": "customer",
+      "createdAt": "2026-08-08T08:52:09.810Z",
+      "updatedAt": "2026-08-08T08:52:09.810Z"
+    },
+    {
+      "_id": "6a76ee804d431d2f8b5a2816",
+      "name": "QA Tester",
+      "email": "qa_1786179200446@example.com",
+      "password": "$2b$10$lbnp31hf.OsR94GEiRwqiOo0vl70BMhfQl0h0D60VLYCfK.8DP6FS",
+      "role": "customer",
+      "createdAt": "2026-08-08T08:53:20.668Z",
+      "updatedAt": "2026-08-08T08:53:20.668Z"
+    },
+    {
+      "_id": "6a7b0f644397e02d3cea53f9",
+      "name": "Alice",
+      "email": "a@b.co",
+      "password": "$2b$10$iw3hlppjrUdU.aTX9Yp8gOT2XJswKCHsheUBA7g4siGh.xC.3tRvm",
+      "role": "customer",
+      "createdAt": "2026-08-11T12:02:44.305Z",
+      "updatedAt": "2026-08-11T12:02:44.305Z"
+    },
+    {
+      "_id": "6a7b0f644397e02d3cea53fa",
+      "name": "Alice",
+      "email": "not-email",
+      "password": "$2b$10$W7EwtNDgcWxcPcAuZBaNfuYFuQhI8scDFraUcmLQNtXGR0u.oEMJi",
+      "role": "customer",
+      "createdAt": "2026-08-11T12:02:44.658Z",
+      "updatedAt": "2026-08-11T12:02:44.659Z"
+    },
+    {
+      "_id": "6a7b0f644397e02d3cea53fb",
+      "name": "Alice Updated",
+      "email": "notanemail",
+      "password": "$2b$10$zUFMw.wi7.Urw5ciTNH3CeicqQyDinXylll9bKmqgmyoXTHETUTOy",
+      "role": "customer",
+      "createdAt": "2026-08-11T12:02:44.877Z",
+      "updatedAt": "2026-08-11T12:02:46.189Z"
+    },
+    {
+      "_id": "6a7b0f644397e02d3cea53fc",
+      "name": "Bob",
+      "email": "dup_1786449763@zyra.test",
+      "password": "$2b$10$mxgJpatyfgz10rnF1G2HN.1rOoruAoohYV8ErW0WlLTiJBxA7M/ra",
+      "role": "customer",
+      "createdAt": "2026-08-11T12:02:45.031Z",
+      "updatedAt": "2026-08-11T12:02:45.031Z"
+    },
+    {
+      "_id": "6a7b1a522cfc08ac1e13dab6",
+      "name": "Test Admin",
+      "email": "testadmin@example.com",
+      "password": "$2b$10$yBxWhAgXUUAXAZEx3TVks./OHq6egykOV1cuq/2LL9v8vc90SuI3a",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:49:22.936Z",
+      "updatedAt": "2026-08-11T12:49:22.936Z"
+    },
+    {
+      "_id": "6a7b1a8effcb2b1e3826b232",
+      "name": "Test Admin 2",
+      "email": "testadmin2@example.com",
+      "password": "$2b$10$7XbjmLlBEzlZwbyllRHfcOtRDugAz3hR9YF1tIjbOLF70TLxzZNSi",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:50:22.904Z",
+      "updatedAt": "2026-08-11T12:50:22.904Z"
+    },
+    {
+      "_id": "6a7b1aa5337484582834014b",
+      "name": "Test Admin 3",
+      "email": "testadmin3@example.com",
+      "password": "$2b$10$qQpwSVVlLrrwVJVSuDYwUONhddOzWAxTXRn93.tivGGzv.vsQ18LC",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:50:45.145Z",
+      "updatedAt": "2026-08-11T12:50:45.145Z"
+    },
+    {
+      "_id": "6a7b1ad19280df2c0afcb522",
+      "name": "Test Admin 4",
+      "email": "testadmin4@example.com",
+      "password": "$2b$10$h748q0Pir0frY12KCmFD4eiUlDTn3L5IHFCvGgoVISg4kSEUYXhrC",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:51:29.997Z",
+      "updatedAt": "2026-08-11T12:51:29.997Z"
+    },
+    {
+      "_id": "6a7b1aec0c62ca03d025fab3",
+      "name": "Test Admin 5",
+      "email": "testadmin5@example.com",
+      "password": "$2b$10$IVhEO6QD1udfKLHr7tYDYeXHeHJGrybiYhC9OKDBJIMn5TXoen7Py",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:51:56.522Z",
+      "updatedAt": "2026-08-11T12:51:56.522Z"
+    },
+    {
+      "_id": "6a7b1b163907f637d618a032",
+      "name": "Test Admin 6",
+      "email": "testadmin6@example.com",
+      "password": "$2b$10$nfGHWB8bPq7tXB2h6B9lHe785glVNNOaPZVomqPHK.kE1sBEFj2Ia",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:52:38.533Z",
+      "updatedAt": "2026-08-11T12:52:38.533Z"
+    },
+    {
+      "_id": "6a7b1b2e3c120eabf33b1306",
+      "name": "Test Admin 7",
+      "email": "testadmin7@example.com",
+      "password": "$2b$10$K9KXHYAInUFEgmwvRe3aW.B9PJWnLDKJtORfWM4es0ZBe8w1NPMHq",
+      "role": "admin",
+      "createdAt": "2026-08-11T12:53:02.150Z",
+      "updatedAt": "2026-08-11T12:53:02.150Z"
+    }
+  ],
+  "carts": [
+    {
+      "_id": "6a701b8e929413763db64f32",
+      "key": "user:6a701b8d929413763db64f31",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "M",
+          "color": "Red",
+          "quantity": 3
+        }
+      ],
+      "totalPrice": 210,
+      "createdAt": "2026-08-03T04:39:42.815Z",
+      "updatedAt": "2026-08-03T04:39:42.849Z",
+      "user": "6a701b8d929413763db64f31"
+    },
+    {
+      "_id": "6a71ce223a1ad942bd61cec0",
+      "key": "guest:guest_1785843038254_883335918b7e68",
+      "guestId": "guest_1785843038254_883335918b7e68",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "M",
+          "color": "Black",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 70,
+      "createdAt": "2026-08-04T11:33:54.863Z",
+      "updatedAt": "2026-08-04T11:33:54.908Z"
+    },
+    {
+      "_id": "6a71dcdfd179ecf2170a9e6f",
+      "key": "guest:guest_1785788526554",
+      "guestId": "guest_1785788526554",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "L",
+          "color": "Navy",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 70,
+      "createdAt": "2026-08-04T12:36:47.356Z",
+      "updatedAt": "2026-08-04T12:36:50.183Z"
+    },
+    {
+      "_id": "6a74449e3e85a7ddda8e0246",
+      "key": "guest:guest_1785937274713",
+      "guestId": "guest_1785937274713",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f0d",
+          "name": "Slim-Fit Easy-Iron Shirt",
+          "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "price": 34.99,
+          "size": "S",
+          "color": "White",
+          "quantity": 1
+        },
+        {
+          "product": "6a701b8c929413763db64f0f",
+          "name": "Oversized Graphic T-Shirt",
+          "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
+          "price": 19.99,
+          "size": "M",
+          "color": "Gray",
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 74.97,
+      "createdAt": "2026-08-06T08:23:58.791Z",
+      "updatedAt": "2026-08-09T08:57:17.327Z"
+    },
+    {
+      "_id": "6a74592ff28fee5a0350a3ad",
+      "key": "guest:guest_1786009241546",
+      "guestId": "guest_1786009241546",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f24",
+          "name": "Stretch Denim Shorts",
+          "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=500&fit=crop",
+          "price": 40,
+          "size": "M",
+          "color": "White",
+          "quantity": 3
+        }
+      ],
+      "totalPrice": 120,
+      "createdAt": "2026-08-06T09:51:43.123Z",
+      "updatedAt": "2026-08-06T09:51:43.139Z"
+    },
+    {
+      "_id": "6a76b24e166fd9c96ca7001e",
+      "key": "guest:qa_guest_1786163787097",
+      "guestId": "qa_guest_1786163787097",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "M",
+          "color": "Black",
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 140,
+      "createdAt": "2026-08-08T04:36:30.154Z",
+      "updatedAt": "2026-08-08T04:36:30.155Z"
+    },
+    {
+      "_id": "6a76e99c6112f9729020afe9",
+      "key": "guest:qa_guest_1786177948039",
+      "guestId": "qa_guest_1786177948039",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "M",
+          "color": "Black",
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 140,
+      "createdAt": "2026-08-08T08:32:28.054Z",
+      "updatedAt": "2026-08-08T08:32:28.054Z"
+    },
+    {
+      "_id": "6a76edb36b229ced0898726d",
+      "key": "guest:qa_guest_1786178992027",
+      "guestId": "qa_guest_1786178992027",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "M",
+          "color": "Black",
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 140,
+      "createdAt": "2026-08-08T08:49:55.086Z",
+      "updatedAt": "2026-08-08T08:49:55.087Z"
+    },
+    {
+      "_id": "6a76ee432fbbb38f54fe30df",
+      "key": "guest:qa_guest_1786179136133",
+      "guestId": "qa_guest_1786179136133",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "size": "M",
+          "color": "Black",
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 140,
+      "createdAt": "2026-08-08T08:52:19.193Z",
+      "updatedAt": "2026-08-08T08:52:19.195Z"
+    }
+  ],
+  "checkouts": [
+    {
+      "_id": "6a71dd2592065342ab2c1275",
+      "userId": "6a71dd096a28c854232d7b58",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 3
+        }
+      ],
+      "shippingAddress": {
+        "address": "zulfqar town kasur near bulley shah law college",
+        "city": "kasur",
+        "postalCode": "55050",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 210,
+      "isPaid": true,
+      "paidAt": "2026-08-04T12:37:57.926Z",
+      "paymentStatus": "paid",
+      "paymentDetails": {
+        "method": "Cash on Delivery"
+      },
+      "isFinalized": true,
+      "finalizedAt": "2026-08-04T12:37:58.120Z",
+      "createdAt": "2026-08-04T12:37:57.821Z",
+      "updatedAt": "2026-08-04T12:37:58.120Z"
+    },
+    {
+      "_id": "6a76b1ca4179354a16510154",
+      "userId": "6a76b1c28833d2de233450ca",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "paymentStatus": "pending",
+      "paymentDetails": null,
+      "isFinalized": true,
+      "finalizedAt": "2026-08-08T04:34:18.481Z",
+      "createdAt": "2026-08-08T04:34:18.449Z",
+      "updatedAt": "2026-08-08T04:34:18.481Z"
+    },
+    {
+      "_id": "6a76b85e79d8dbadab007eeb",
+      "userId": "6a76b856bbe3f55a693dc6b1",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "paymentStatus": "pending",
+      "paymentDetails": null,
+      "isFinalized": true,
+      "finalizedAt": "2026-08-08T05:02:22.223Z",
+      "createdAt": "2026-08-08T05:02:22.172Z",
+      "updatedAt": "2026-08-08T05:02:22.223Z"
+    },
+    {
+      "_id": "6a76e9e52449904a289198ed",
+      "userId": "6a76e9dd48be2bfa8fb9162f",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "paymentStatus": "pending",
+      "paymentDetails": null,
+      "isFinalized": true,
+      "finalizedAt": "2026-08-08T08:33:41.630Z",
+      "createdAt": "2026-08-08T08:33:41.552Z",
+      "updatedAt": "2026-08-08T08:33:41.630Z"
+    },
+    {
+      "_id": "6a76ee804d431d2f8b5a2818",
+      "userId": "6a76ee804d431d2f8b5a2816",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "paymentStatus": "pending",
+      "paymentDetails": null,
+      "isFinalized": true,
+      "finalizedAt": "2026-08-08T08:53:20.984Z",
+      "createdAt": "2026-08-08T08:53:20.958Z",
+      "updatedAt": "2026-08-08T08:53:20.984Z"
+    }
+  ],
+  "orders": [
+    {
+      "_id": "6a71dd2692065342ab2c1276",
+      "userId": "6a71dd096a28c854232d7b58",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 3
+        }
+      ],
+      "shippingAddress": {
+        "address": "zulfqar town kasur near bulley shah law college",
+        "city": "kasur",
+        "postalCode": "55050",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 210,
+      "isPaid": true,
+      "paidAt": "2026-08-04T12:37:57.926Z",
+      "isDelivered": false,
+      "deliveredAt": null,
+      "paymentStatus": "paid",
+      "status": "cancelled",
+      "createdAt": "2026-08-04T12:37:58.120Z",
+      "updatedAt": "2026-08-05T08:01:53.827Z"
+    },
+    {
+      "_id": "6a76b1ca4179354a16510155",
+      "userId": "6a76b1c28833d2de233450ca",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "isDelivered": false,
+      "deliveredAt": null,
+      "paymentStatus": "Pending",
+      "status": "processing",
+      "createdAt": "2026-08-08T04:34:18.481Z",
+      "updatedAt": "2026-08-08T04:34:18.481Z"
+    },
+    {
+      "_id": "6a76b85e79d8dbadab007eec",
+      "userId": "6a76b856bbe3f55a693dc6b1",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "isDelivered": false,
+      "deliveredAt": null,
+      "paymentStatus": "Pending",
+      "status": "processing",
+      "createdAt": "2026-08-08T05:02:22.223Z",
+      "updatedAt": "2026-08-08T05:02:22.223Z"
+    },
+    {
+      "_id": "6a76e9e52449904a289198ee",
+      "userId": "6a76e9dd48be2bfa8fb9162f",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "isDelivered": false,
+      "deliveredAt": null,
+      "paymentStatus": "Pending",
+      "status": "processing",
+      "createdAt": "2026-08-08T08:33:41.630Z",
+      "updatedAt": "2026-08-08T08:33:41.630Z"
+    },
+    {
+      "_id": "6a76ee804d431d2f8b5a2819",
+      "userId": "6a76ee804d431d2f8b5a2816",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 2
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "QA",
+        "lastName": "Tester",
+        "phone": "0300-1234567",
+        "address": "Test Street 1",
+        "city": "Karachi",
+        "postalCode": "75000",
+        "country": "Pakistan"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 140,
+      "isPaid": false,
+      "paidAt": null,
+      "isDelivered": false,
+      "deliveredAt": null,
+      "paymentStatus": "Pending",
+      "status": "processing",
+      "createdAt": "2026-08-08T08:53:20.984Z",
+      "updatedAt": "2026-08-08T08:53:20.984Z"
+    }
+  ],
+  "subscribers": [
+    {
+      "_id": "6a701b8f929413763db64f34",
+      "email": "sub_1785731983243@x.com",
+      "subscribedAt": "2026-08-03T04:39:43.264Z"
+    }
+  ]
+}

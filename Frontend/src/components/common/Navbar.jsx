@@ -6,8 +6,10 @@
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { HiOutlineUser, HiOutlineShoppingBag, HiBars3BottomRight } from "react-icons/hi2";
+import { HiOutlineShoppingBag, HiBars3BottomRight } from "react-icons/hi2";
 import { IoMdClose } from "react-icons/io";
+import { Show, UserButton, useUser } from "@clerk/react";
+import { useSelector } from "react-redux";
 import CartDrawer from "../layout/CartDrawer";
 import Searchbar from "./Searchbar";
 import { useCart } from "../cart/useCart";
@@ -15,6 +17,8 @@ import { useCart } from "../cart/useCart";
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
+  const { user: clerkUser } = useUser();
   const { cartCount } = useCart();
 
   const cartItemCount = cartCount;
@@ -63,16 +67,61 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center space-x-4">
-          <Link
-            to="/admin"
-            className="block bg-black px-2 rounded text-sm text-white hover:bg-gray-800"
+          <Show when="signed-in">
+            {user?.role === "admin" && (
+              <Link
+                to="/admin"
+                className="block bg-black px-2 rounded text-sm text-white hover:bg-gray-800"
+              >
+                Admin
+              </Link>
+            )}
+            <Link
+              to="/profile"
+              className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition hover:border-gray-300 hover:text-black"
+            >
+              <span className="inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-xs font-semibold text-gray-600">
+                {clerkUser?.imageUrl ? (
+                  <img
+                    src={clerkUser.imageUrl}
+                    alt={clerkUser.fullName || clerkUser.username || "Profile"}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  (clerkUser?.firstName || clerkUser?.username || "U")
+                    .slice(0, 1)
+                    .toUpperCase()
+                )}
+              </span>
+              <span className="max-w-35 truncate">
+                {clerkUser?.fullName ||
+                  clerkUser?.username ||
+                  user?.name ||
+                  "Profile"}
+              </span>
+            </Link>
+            <div className="rounded-full border border-gray-200 bg-white p-1 shadow-sm">
+              <UserButton />
+            </div>
+          </Show>
+          <Show when="signed-out">
+            <Link
+              to="/login"
+              className="text-sm font-medium text-gray-700 hover:text-black"
+            >
+              Sign in
+            </Link>
+            <Link
+              to="/register"
+              className="text-sm font-medium text-gray-700 hover:text-black"
+            >
+              Register
+            </Link>
+          </Show>
+          <button
+            onClick={toggleCartDrawer}
+            className="relative hover:text-black"
           >
-            Admin
-          </Link>
-          <Link to="/profile" className="hover:text-black">
-            <HiOutlineUser className="h-6 w-6 text-gray-700"></HiOutlineUser>
-          </Link>
-          <button onClick={toggleCartDrawer} className="relative hover:text-black">
             <HiOutlineShoppingBag className="h-6 w-6 text-gray-700"></HiOutlineShoppingBag>
             {cartItemCount > 0 && (
               <span className="absolute -top-1 bg-zyra text-white text-xs rounded-full px-2 py-0.5">
@@ -89,7 +138,10 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <CartDrawer drawerOpen={drawerOpen} toggleCartDrawer={toggleCartDrawer}></CartDrawer>
+      <CartDrawer
+        drawerOpen={drawerOpen}
+        toggleCartDrawer={toggleCartDrawer}
+      ></CartDrawer>
       {/* Mobile navigation */}
       <div
         className={`fixed top-0 left-0 w-3/4 sm:w-1/2 md:w-1/3 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${navDrawerOpen ? "translate-x-0" : "-translate-x-full"}`}

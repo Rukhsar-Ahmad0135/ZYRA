@@ -14,57 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByCollection } from "../redux/slices/productSlice";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
-// const placeholderProducts = [
-//   {
-//     id: 1,
-//     name: "Casual Shirt",
-//     price: 19.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=3" }],
-//   },
-//   {
-//     id: 2,
-//     name: "Denim Jeans",
-//     price: 39.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=4" }],
-//   },
-//   {
-//     id: 3,
-//     name: "Denim Jeans",
-//     price: 39.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=5" }],
-//   },
-//   {
-//     id: 4,
-//     name: "Denim Jeans",
-//     price: 39.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=6" }],
-//   },
-//   {
-//     id: 5,
-//     name: "Casual Shirt",
-//     price: 19.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=7" }],
-//   },
-//   {
-//     id: 6,
-//     name: "Denim Jeans",
-//     price: 39.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=8" }],
-//   },
-//   {
-//     id: 7,
-//     name: "Denim Jeans",
-//     price: 39.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=9" }],
-//   },
-//   {
-//     id: 8,
-//     name: "Denim Jeans",
-//     price: 39.99,
-//     image: [{ url: "https://picsum.photos/500/500?random=10" }],
-//   },
-// ];
+import apiClient from "../api/client.js";
+import { requestWithRetry } from "../utils/requestWithRetry.js";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -82,8 +33,9 @@ const Home = () => {
     //Fetch best sellers products
     const fetchBestSeller = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/products/best-seller`,
+        const response = await requestWithRetry(
+          () => apiClient.get("/api/products/best-seller"),
+          { retries: 1, delayMs: 500 },
         );
         setBestSellersProduct(response.data);
       } catch (error) {
@@ -102,12 +54,20 @@ const Home = () => {
       {bestSellersProduct ? (
         <ProdcutDetails productId={bestSellersProduct._id}></ProdcutDetails>
       ) : (
-        <p className="text-3xl text-center  font-bold mb-4">Loading best seller Products...</p>
+        <p className="text-3xl text-center  font-bold mb-4">
+          Loading best seller Products...
+        </p>
       )}
 
       <div className="continer mx-auto">
-        <h2 className="text-3xl text-center font-bold mb-4">Top Wears for Women</h2>
-        <ProductGrid products={products} loading={loading} error={error}></ProductGrid>
+        <h2 className="text-3xl text-center font-bold mb-4">
+          Top Wears for Women
+        </h2>
+        <ProductGrid
+          products={products}
+          loading={loading}
+          error={error}
+        ></ProductGrid>
       </div>
       <FeaturedCollection></FeaturedCollection>
       <FeaturesSection></FeaturesSection>

@@ -1,0 +1,50 @@
+
+> backend@1.0.0 dev
+> nodemon Server.js
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): Server.js config\**\* middleware\**\* models\**\* routes\**\* services\**\*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node Server.js`[39m
+◇ injected env (11) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+MongoDB is unavailable. Falling back to local data mode.
+Server is running on http://localhost:9000
+[0mGET /api/products?pageSize=2 [32m200[0m 14.413 ms - 1977[0m
+[0mPOST /api/users/register [32m201[0m 207.091 ms - 369[0m
+[0mPOST /api/users/login [32m200[0m 146.487 ms - 369[0m
+[0mGET /api/users/profile [32m200[0m 31.087 ms - 220[0m
+[0mPOST /api/cart [32m201[0m 8.120 ms - 387[0m
+[0mPOST /api/cart/merge [32m200[0m 15.971 ms - 386[0m
+[0mPOST /api/checkout [32m201[0m 16.795 ms - 684[0m
+[0mPOST /api/checkout/6a76ee804d431d2f8b5a2818/finalize [32m201[0m 23.691 ms - 827[0m
+[0mGET /api/orders/my-orders [32m200[0m 16.640 ms - 829[0m
+[0mGET /api/admin/stats [33m403[0m 12.408 ms - 36[0m
+file:///F:/E%20Commerce%20project/ZYRA/Backend/node_modules/@clerk/backend/dist/chunk-DDFIPK3V.mjs:1723
+    throw new TokenVerificationError({
+          ^
+
+_TokenVerificationError: Unable to find a signing key in JWKS that matches the kid='undefined' of the provided session token. Please make sure that the __session cookie or the HTTP authorization header contain a Clerk-generated session JWT. The following kid is available: ins_3HUuA7mFuCq8tsEMdLjBYm0QgQr
+    at loadClerkJWKFromRemote (file:///F:/E%20Commerce%20project/ZYRA/Backend/node_modules/@clerk/backend/dist/chunk-DDFIPK3V.mjs:1723:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async verifyToken (file:///F:/E%20Commerce%20project/ZYRA/Backend/node_modules/@clerk/backend/dist/chunk-DDFIPK3V.mjs:6532:13)
+    at async file:///F:/E%20Commerce%20project/ZYRA/Backend/node_modules/@clerk/backend/dist/chunk-P263NW7Z.mjs:4:30 {
+  reason: 'jwk-kid-mismatch',
+  action: 'Go to your Dashboard and validate your secret and public keys are correct. Contact support@clerk.com if the issue persists.'
+}
+
+Node.js v24.19.0
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 94
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node Server.js`[39m
+◇ injected env (11) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+MongoDB is unavailable. Falling back to local data mode.
+Server is running on http://localhost:9000
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] starting `node Server.js`[39m
+◇ injected env (11) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+MongoDB is unavailable. Falling back to local data mode.
+Server is running on http://localhost:9000
+^C^C

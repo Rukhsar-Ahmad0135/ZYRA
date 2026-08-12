@@ -3,51 +3,71 @@
  *
  * See the LICENSE file for more information.
  */
-
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchAdminOrderById,
+  updateOrderStatus,
+  resetOrderDetails,
+} from "../../redux/slices/adminOrderSlice";
+import { toast } from "sonner";
 
 const AdminOrderDetailsPage = () => {
   const { id } = useParams();
-  const initialOrder = useMemo(
-    () => ({
-      _id: id,
-      createdAt: new Date(),
-      isPaid: false,
-      isDelivered: false,
-      paymentMethod: "Cash on Delivery",
-      shippingAddress: { city: "New York", country: "USA" },
-      user: { name: "John Doe" },
-      orderItems: [
-        {
-          productId: "1",
-          name: "Stylish Jacket",
-          price: 29.99,
-          quantity: 1,
-          image: "https://picsum.photos/500/500?random=1",
-        },
-        {
-          productId: "2",
-          name: "Shirt",
-          price: 20.99,
-          quantity: 2,
-          image: "https://picsum.photos/500/500?random=2",
-        },
-      ],
-      totalPrice: 71.97,
-    }),
-    [id],
-  );
+  const dispatch = useDispatch();
+  const { orderDetails, loading, error } = useSelector((state) => state.adminOrders);
+  const [updating, setUpdating] = useState(false);
 
-  const [order, setOrder] = useState(initialOrder);
+  useEffect(() => {
+    dispatch(fetchAdminOrderById(id));
+    return () => dispatch(resetOrderDetails());
+  }, [dispatch, id]);
 
-  const markAsPaid = () => {
-    setOrder((prevOrder) => ({ ...prevOrder, isPaid: true }));
+  const handleUpdate = async (payload, successMsg) => {
+    setUpdating(true);
+    try {
+      await dispatch(updateOrderStatus({ id, ...payload })).unwrap();
+      toast.success(successMsg);
+    } catch (err) {
+      toast.error(err?.message || "Update failed");
+    } finally {
+      setUpdating(false);
+    }
   };
 
-  const markAsDelivered = () => {
-    setOrder((prevOrder) => ({ ...prevOrder, isDelivered: true }));
+  const markAsPaid = () =>
+    handleUpdate({ paymentStatus: "Paid" }, "Order marked as paid");
+  const markAsDelivered = () =>
+    handleUpdate({ isDelivered: true }, "Order marked as delivered");
+
+  const handleStatusChange = (e) => {
+    handleUpdate({ orderStatus: e.target.value }, "Order status updated");
   };
+
+  const handlePaymentStatusChange = (e) => {
+    handleUpdate({ paymentStatus: e.target.value }, "Payment status updated");
+  };
+
+
+  if (loading && !orderDetails) {
+    return <div className="text-center py-16 text-gray-500">Loading order...</div>;
+  }
+
+  if (error && !orderDetails) {
+    return (
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+        <Link to="/admin/orders" className="text-blue-500 hover:underline mt-4 block">
+          Back to All Orders
+        </Link>
+      </div>
+    );
+  }
+
+  if (!orderDetails) return null;
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -58,42 +78,52 @@ const AdminOrderDetailsPage = () => {
         <div className="flex flex-col sm:flex-row justify-between mb-8">
           <div>
             <h3 className="text-lg md:text-xl font-semibold">
-              Order ID: #{order._id}
+              Order ID: #{orderDetails._id}
             </h3>
             <p className="text-gray-600">
-              {new Date(order.createdAt).toLocaleDateString()}
+              {orderDetails.createdAt
+                ? new Date(orderDetails.createdAt).toLocaleDateString()
+                : "N/A"}
             </p>
           </div>
           <div className="flex flex-col items-start sm:items-end mt-4 sm:mt-0">
             <span
-              className={`${order.isPaid ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"} px-3 py-1 rounded-full text-sm font-medium mb-2`}
+              className={`${orderDetails.isPaid ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"} px-3 py-1 rounded-full text-sm font-medium mb-2`}
             >
-              {order.isPaid ? "Paid" : "Not Paid"}
+              {orderDetails.isPaid ? "Paid" : "Not Paid"}
             </span>
             <span
-              className={`${order.isDelivered ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"} px-3 py-1 rounded-full text-sm font-medium`}
+              className={`${orderDetails.isDelivered ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"} px-3 py-1 rounded-full text-sm font-medium`}
             >
-              {order.isDelivered ? "Delivered" : "Not Delivered"}
+              {orderDetails.isDelivered ? "Delivered" : "Not Delivered"}
             </span>
           </div>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
           <div>
             <h4 className="text-lg font-semibold mb-2">Customer</h4>
-            <p>{order.user.name}</p>
+            <p>{orderDetails.user?.name || orderDetails.user?.email || "N/A"}</p>
+            {orderDetails.user?.email && (
+              <p className="text-sm text-gray-500">{orderDetails.user.email}</p>
+            )}
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-2">Payment Info</h4>
-            <p>Method: {order.paymentMethod}</p>
+            <p>Method: {orderDetails.paymentMethod}</p>
+            <p>Status: {orderDetails.paymentStatus}</p>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-2">Shipping Info</h4>
-            <p>
-              Address:{" "}
-              {`${order.shippingAddress.city}, ${order.shippingAddress.country}`}
-            </p>
+            {orderDetails.shippingAddress && (
+              <p>
+                {orderDetails.shippingAddress.address}, {orderDetails.shippingAddress.city},{" "}
+                {orderDetails.shippingAddress.postalCode}, {orderDetails.shippingAddress.country}
+              </p>
+            )}
           </div>
         </div>
+
         <div className="overflow-x-auto">
           <h4 className="text-lg font-semibold mb-4">Products</h4>
           <table className="min-w-full text-gray-600 mb-4">
@@ -106,8 +136,8 @@ const AdminOrderDetailsPage = () => {
               </tr>
             </thead>
             <tbody>
-              {order.orderItems.map((item) => (
-                <tr key={item.productId} className="border-b">
+              {orderDetails.orderItems?.map((item, idx) => (
+                <tr key={item._id || idx} className="border-b">
                   <td className="px-4 py-2 flex items-center">
                     <img
                       src={item.image}
@@ -115,7 +145,7 @@ const AdminOrderDetailsPage = () => {
                       className="w-12 h-12 object-cover rounded-lg mr-4"
                     />
                     <Link
-                      to={`/product/${item.productId}`}
+                      to={`/products/${item.productId}`}
                       className="text-blue-500 hover:underline"
                     >
                       {item.name}
@@ -131,21 +161,57 @@ const AdminOrderDetailsPage = () => {
             </tbody>
           </table>
         </div>
+
+        <div className="flex justify-between items-center mb-4">
+          <div className="text-lg font-semibold">
+            Total: ${orderDetails.totalPrice?.toFixed(2)}
+          </div>
+          <div>
+            <label className="text-sm text-gray-600 mr-2">Order Status:</label>
+            <select
+              value={orderDetails.orderStatus || "Pending"}
+              onChange={handleStatusChange}
+              disabled={updating}
+              className="p-1 border rounded mr-4"
+            >
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Packed">Packed</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+            <label className="text-sm text-gray-600 mr-2">Payment:</label>
+            <select
+              value={orderDetails.paymentStatus || "Pending"}
+              onChange={handlePaymentStatusChange}
+              disabled={updating}
+              className="p-1 border rounded"
+            >
+              <option value="Pending">Pending</option>
+              <option value="Paid">Paid</option>
+            </select>
+
+          </div>
+        </div>
+
         <div className="flex justify-end space-x-4">
-          {!order.isPaid && (
+          {!orderDetails.isPaid && (
             <button
               onClick={markAsPaid}
-              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+              disabled={updating}
+              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 disabled:opacity-50"
             >
-              Mark as Paid
+              {updating ? "Updating..." : "Mark as Paid"}
             </button>
           )}
-          {!order.isDelivered && (
+          {!orderDetails.isDelivered && (
             <button
               onClick={markAsDelivered}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              disabled={updating}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50"
             >
-              Mark as Delivered
+              {updating ? "Updating..." : "Mark as Delivered"}
             </button>
           )}
         </div>

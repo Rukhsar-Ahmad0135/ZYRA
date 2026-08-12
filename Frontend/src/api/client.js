@@ -18,14 +18,44 @@ const apiClient = axios.create({
   withCredentials: true, // send httpOnly cookies
 });
 
-// Request interceptor — attach Clerk Bearer token (the only auth source)
+// Helper to get legacy token from localStorage
+const getLegacyToken = () => {
+  try {
+    return localStorage.getItem("legacyToken");
+  } catch {
+    return null;
+  }
+};
+
+// Request interceptor — attach auth token
+// Priority: 1. Clerk token (production), 2. Legacy JWT token (local mode)
 apiClient.interceptors.request.use(
   async (config) => {
-    const token = await getAuthToken();
-    if (token) {
-      config.headers = config.headers || {};
-      config.headers.Authorization = `Bearer ${token}`;
+    // For FormData uploads, let the browser set the multipart boundary in
+    // Content-Type. Setting it manually here breaks multer and other
+    // multipart parsers.
+    if (config.data instanceof FormData) {
+      if (config.headers) {
+        delete config.headers["Content-Type"];
+        delete config.headers["content-type"];
+      }
     }
+
+    // Try Clerk token first (production mode)
+    const clerkToken = await getAuthToken();
+    if (clerkToken) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${clerkToken}`;
+      return config;
+    }
+
+    // Fallback to legacy token for local mode
+    const legacyToken = getLegacyToken();
+    if (legacyToken) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${legacyToken}`;
+    }
+
     return config;
   },
   (error) => Promise.reject(error)
@@ -45,6 +75,7 @@ apiClient.interceptors.response.use(
       // full-page navigation can fight Clerk's own routing. Components that
       // need a fresh session should re-read `useAuth()`.
       localStorage.removeItem("userInfo");
+      localStorage.removeItem("legacyToken");
     }
 
     return Promise.reject({

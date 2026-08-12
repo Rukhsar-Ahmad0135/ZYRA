@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 const ProductGrid = ({ products, loading, error }) => {
   const safeProducts = Array.isArray(products) ? products : [];
 
-  if (loading) {
-    return <p className="text-center text-lg font-semibold">Loading products...</p>;
+  if (loading && safeProducts.length === 0) {
+    return (
+      <p className="text-center text-lg font-semibold">Loading products...</p>
+    );
   }
   if (error) {
     return <p className="text-center text-lg font-semibold">Error{error}</p>;
@@ -17,7 +19,11 @@ const ProductGrid = ({ products, loading, error }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {safeProducts.map((product, index) => (
-        <Link key={index} to={`/products/${product._id || product.id}`} className="block">
+        <Link
+          key={index}
+          to={`/products/${product._id || product.id}`}
+          className="block"
+        >
           <div className="bg-white p-4 rounded-lg">
             <div className="w-full h-96 mb-4">
               <img
@@ -27,7 +33,9 @@ const ProductGrid = ({ products, loading, error }) => {
               />
             </div>
             <h3 className="text-sm mb-2">{product.name}</h3>
-            <p className="text-gray-500 font-medium text-sm tracking-tighter">${product.price}</p>
+            <p className="text-gray-500 font-medium text-sm tracking-tighter">
+              ${product.price}
+            </p>
           </div>
         </Link>
       ))}

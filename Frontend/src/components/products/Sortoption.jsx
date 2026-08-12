@@ -8,8 +8,10 @@ const Sortoption = () => {
   const [searchParams, setSearchParams] = useSearchParams("");
   const handleSortChange = (e) => {
     const sortBy = e.target.value;
-    searchParams.set("sort", sortBy);
-    setSearchParams(searchParams);
+    const nextParams = new URLSearchParams(searchParams);
+    if (sortBy) nextParams.set("sortBy", sortBy);
+    else nextParams.delete("sortBy");
+    setSearchParams(nextParams);
   };
   return (
     <div className="mb-4 flex items-center justify-end">
@@ -17,7 +19,7 @@ const Sortoption = () => {
         name=""
         id="sort"
         onChange={handleSortChange}
-        value={searchParams.get("sort") || ""}
+        value={searchParams.get("sortBy") || ""}
         className="border py-2 rounded-md focus:outline-none"
       >
         <option value="">Default</option>

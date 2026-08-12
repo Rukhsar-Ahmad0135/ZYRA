@@ -2,7 +2,7 @@
  * Copyright (c) - All Rights Reserved.
  *
  * See the LICENSE file for more information.
-//  */
+ */
 // import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   };
   return (
     <div
-      className={`fixed top-0 right-0 w-3/4 sm:w-1/2 md:-[30rem] h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+      className={`fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-120 h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
     >
       {/*close button*/}
       <div className="flex justify-end p-4">
@@ -32,10 +32,14 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
           <IoMdClose className="h-6 w-6 text-gray-600"></IoMdClose>
         </button>
       </div>
-      <div className="flex-grow p-4 overflow-y-auto">
+      <div className="grow p-4 overflow-y-auto">
         <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
         {items && items.length > 0 ? (
-          <CartContents cart={{ products: items }} userId={userId} guestId={guestId} />
+          <CartContents
+            cart={{ products: items }}
+            userId={userId}
+            guestId={guestId}
+          />
         ) : (
           <p className="text-gray-500">Your cart is empty.</p>
         )}

@@ -5,6 +5,8 @@
  */
 // import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useClerk } from "@clerk/react";
 import {
   FaUser,
   FaBoxOpen,
@@ -14,12 +16,16 @@ import {
   // FaBars,
   // FaTimes,
 } from "react-icons/fa";
+import { logout } from "../../redux/slices/authSlice";
 
 const AdminSidebar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { signOut } = useClerk();
 
-  const handleLogout = () => {
-    // Logout logic here
+  const handleLogout = async () => {
+    dispatch(logout());
+    await signOut();
     navigate("/");
   };
 

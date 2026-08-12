@@ -1,60 +1,52 @@
 /*
  * Copyright (c) - All Rights Reserved.
- * 
- * See the license file for more information.
+ *
+ * See the LICENSE file for more information.
  */
 
 import express from "express";
 import Order from "../models/order.js";
 import { protect } from "../middleware/authMiddleware.js";
+import { validate, validateObjectId } from "../middleware/validate.js";
 
 const router = express.Router();
 
-//@route GET /api/orders/my-order
-// @desc Get logged in user's orders
-// @acccess public
-
-// Declare static route first to avoid any accidental matching issues
-router.get("/my-orders", protect, async (req, res) => {
-    try {
-        //find orders for the authenticated  user
-        const orders = await Order.find({ user: req.user._id }).sort({ createdAt: -1 });//srot by most recent orders
-        res.json(orders);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server Error" });
-    }
+// @route   GET /api/orders/my-orders
+// @desc    Get logged-in user's orders
+// @access  Private
+router.get("/my-orders", protect, async (req, res, next) => {
+  try {
+    const orders = await Order.find({ user: req.user._id }).sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    next(error);
+  }
 });
 
-//@route GET /api/orders/:id
-// @desc vGET order details by ID
-// @acccess public
+// @route   GET /api/orders/:id
+// @desc    Get order details by ID (ownership validated)
+// @access  Private
+router.get("/:id", protect, validateObjectId("id"), validate, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const order = await Order.findById(id).populate("user", "name email");
 
-router.get("/:id", protect, async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        // Prevent CastError when "id" is not a valid ObjectId
-        // (e.g., frontend accidentally calls /api/orders/id)
-        if (!id) {
-            return res.status(400).json({ message: "Order id is required" });
-        }
-
-        // Mongoose allows 12-byte hex strings (ObjectId length: 24 hex chars)
-        if (!/^[a-fA-F0-9]{24}$/.test(id)) {
-            return res.status(400).json({ message: `Invalid order id: ${id}` });
-        }
-
-        const order = await Order.findById(id).populate("user", "name email");
-        if (!order) {
-            return res.status(404).json({ message: "Order not found" });
-        }
-        // Return the full order details
-        res.json(order);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server Error" });
+    if (!order) {
+      res.status(404);
+      throw new Error("Order not found");
     }
+
+    // Ownership validation: user can only access their own orders (admin can access all)
+    if (order.user._id.toString() !== req.user._id.toString() && req.user.role !== "admin") {
+      res.status(403);
+      throw new Error("Not authorized to view this order");
+    }
+
+    res.json(order);
+  } catch (error) {
+    next(error);
+  }
 });
+
 export default router;
 
