@@ -186,7 +186,10 @@ const filterProducts = (productsList, query = {}) => {
   let result = [...productsList];
 
   if (query.collection && normalizeText(query.collection) !== "all") {
-    result = result.filter((product) => normalizeText(product.collections) === normalizeText(query.collection));
+    result = result.filter((product) => {
+      const collections = Array.isArray(product.collections) ? product.collections : [product.collections];
+      return collections.some((item) => normalizeText(item) === normalizeText(query.collection));
+    });
   }
   if (query.category && normalizeText(query.category) !== "all") {
     result = result.filter((product) => normalizeText(product.category).includes(normalizeText(query.category)));

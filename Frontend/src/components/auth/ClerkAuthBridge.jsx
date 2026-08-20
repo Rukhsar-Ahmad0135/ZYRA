@@ -24,16 +24,20 @@ const ClerkAuthBridge = () => {
     return () => setAuthTokenGetter(null);
   }, [getToken, isLoaded, isSignedIn]);
 
-  useEffect(() => {
+useEffect(() => {
     if (!isLoaded) {
       return;
     }
 
     if (!isSignedIn) {
-      syncedUserIdRef.current = null;
-      // Clear the Redux user store so no stale profile is shown, but keep the
-      // guestId stable (don't regenerate it) so repeat guest browsing is smooth.
-      dispatch(clearUser());
+      // Only clear the Redux user if we previously had an active Clerk
+      // session. Without this guard, every cold start in local mode would
+      // wipe the legacy auth state, causing protected routes to show
+      // "Loading profile..." forever.
+      if (syncedUserIdRef.current !== null) {
+        syncedUserIdRef.current = null;
+        dispatch(clearUser());
+      }
       return;
     }
 
@@ -51,6 +55,12 @@ const ClerkAuthBridge = () => {
 
     syncedUserIdRef.current = userId;
 
+    // In local mode, the apiClient interceptor will use the Clerk token
+    // (set via setAuthTokenGetter) for authenticated requests. No need to
+    // manually sync Clerk user here — the backend's requireLocalUser will
+    // handle Clerk token verification via CLERK_SECRET_KEY.
+    // The fetchProfile() call below will use the Clerk token automatically.
+
     dispatch(fetchProfile())
       .unwrap()
       .then(() => {
@@ -62,7 +72,7 @@ const ClerkAuthBridge = () => {
         return dispatch(fetchCart({ userId }));
       })
       .catch(() => {
-        // Profile or cart sync can fail (e.g. backend down); don't block the UI.
+        // Profile or cart sync can fail (e.g., backend down); don't block the UI.
       });
   }, [dispatch, isLoaded, isSignedIn, userId]);
 

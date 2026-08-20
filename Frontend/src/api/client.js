@@ -28,7 +28,7 @@ const getLegacyToken = () => {
 };
 
 // Request interceptor — attach auth token
-// Priority: 1. Clerk token (production), 2. Legacy JWT token (local mode)
+// Priority: 1. Clerk token (production and local mode if available), 2. Legacy JWT token (local mode fallback)
 apiClient.interceptors.request.use(
   async (config) => {
     // For FormData uploads, let the browser set the multipart boundary in
@@ -41,7 +41,7 @@ apiClient.interceptors.request.use(
       }
     }
 
-    // Try Clerk token first (production mode)
+    // Try Clerk token first in all modes (production and local)
     const clerkToken = await getAuthToken();
     if (clerkToken) {
       config.headers = config.headers || {};
@@ -50,10 +50,13 @@ apiClient.interceptors.request.use(
     }
 
     // Fallback to legacy token for local mode
-    const legacyToken = getLegacyToken();
-    if (legacyToken) {
-      config.headers = config.headers || {};
-      config.headers.Authorization = `Bearer ${legacyToken}`;
+    const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+    if (isLocalMode) {
+      const legacyToken = getLegacyToken();
+      if (legacyToken) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${legacyToken}`;
+      }
     }
 
     return config;
@@ -70,12 +73,18 @@ apiClient.interceptors.response.use(
       error.response?.data?.message || error.message || "Request failed";
 
     if (status === 401) {
-      // Token invalid/expired — clear any leftover legacy auth state.
-      // Do not force a hard reload here: Clerk owns session state, and a
-      // full-page navigation can fight Clerk's own routing. Components that
-      // need a fresh session should re-read `useAuth()`.
-      localStorage.removeItem("userInfo");
-      localStorage.removeItem("legacyToken");
+      const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+
+      if (!isLocalMode) {
+        // Production mode: clear any leftover legacy auth state.
+        // Do not force a hard reload here: Clerk owns session state, and a
+        // full-page navigation can fight Clerk's own routing. Components that
+        // need a fresh session should re-read `useAuth()`.
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("legacyToken");
+      }
+      // In local mode, keep the legacy auth state — the 401 might be
+      // transient (e.g., token expired but user can re-login).
     }
 
     return Promise.reject({

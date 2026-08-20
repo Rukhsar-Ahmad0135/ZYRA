@@ -6,17 +6,23 @@
 // import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@clerk/react";
 import CartContents from "../cart/CartContents";
 import { useCart } from "../cart/useCart";
 import { useSelector } from "react-redux";
 const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   const navigate = useNavigate();
   const { user, guestId } = useSelector((state) => state.auth);
+  const { isLoaded, isSignedIn } = useAuth();
+  const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
   const { items } = useCart();
   const userId = user ? user.id : null;
   const handleCheckout = () => {
     toggleCartDrawer();
-    if (!user) {
+    // In Clerk mode: check isSignedIn instead of Redux user state
+    // In local mode: check Redux user state
+    const isAuthenticated = isLocalMode ? !!user : isSignedIn;
+    if (!isAuthenticated) {
       navigate("/login?redirect=/checkout");
     } else {
       navigate("/checkout");
@@ -24,7 +30,7 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   };
   return (
     <div
-      className={`fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-120 h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+      className={`fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-120 h-full bg-white shadow-lg transform transition-transform duration-300 flex flex-col z-50 ${drawerOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"}`}
     >
       {/*close button*/}
       <div className="flex justify-end p-4">

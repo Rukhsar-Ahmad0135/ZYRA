@@ -124,7 +124,7 @@ const syncLocalClerkUser = (clerkId, email, name) => {
   });
 };
 
-const requireLocalUser = (req, res) => {
+const requireLocalUser = async (req, res) => {
   const tokenName = process.env.JWT_COOKIE_NAME || "zyra_token";
   let token = req.cookies?.[tokenName] || null;
 
@@ -147,7 +147,7 @@ const requireLocalUser = (req, res) => {
   // Try Clerk token FIRST (works for both cookie and header tokens)
   if (looksLikeClerkToken && process.env.CLERK_SECRET_KEY) {
     try {
-      const clerkClaims = verifyToken(token, {
+      const clerkClaims = await verifyToken(token, {
         secretKey: process.env.CLERK_SECRET_KEY,
       });
       if (clerkClaims?.sub) {
@@ -446,7 +446,7 @@ router.post("/cart", express.json(), (req, res, next) => {
       cart.products.push({
         product: productId,
         name: product.name,
-        image: product.images[0]?.url,
+        image: product.images?.[0]?.url,
         price: product.price,
         size,
         color,

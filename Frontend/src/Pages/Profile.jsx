@@ -5,6 +5,7 @@
  */
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { logout } from "../redux/slices/authSlice";
 import MyOrderPage from "./MyOrderPage";
 import { useClerk, useUser, UserProfile } from "@clerk/react";
@@ -16,13 +17,26 @@ const Profile = () => {
   const { user: clerkUser, isLoaded } = useUser();
   const { user } = useSelector((state) => state.auth);
 
+  const [clerkTimedOut, setClerkTimedOut] = useState(false);
+
+  useEffect(() => {
+    if (isLoaded) return;
+    const timer = setTimeout(() => {
+      setClerkTimedOut(true);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [isLoaded]);
+
   const handleLogout = async () => {
     dispatch(logout());
     await signOut();
     navigate("/login");
   };
 
-  if (!isLoaded) {
+  // In local mode, bypass the Clerk loading gate entirely.
+  const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+
+  if (!isLoaded && !isLocalMode && !clerkTimedOut) {
     return (
       <div className="flex min-h-screen items-center justify-center text-sm text-gray-500">
         Loading profile...

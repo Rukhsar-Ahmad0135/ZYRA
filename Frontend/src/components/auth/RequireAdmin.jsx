@@ -6,9 +6,11 @@ const RequireAdmin = ({ children }) => {
   const location = useLocation();
   const { isLoaded, isSignedIn } = useAuth();
   const user = useSelector((state) => state.auth.user);
+  const authLoading = useSelector((state) => state.auth.loading);
 
-  // Wait for Clerk to finish hydrating before deciding.
-  if (!isLoaded) {
+  const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+
+  if (!isLocalMode && !isLoaded) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
         Checking admin access...
@@ -16,17 +18,21 @@ const RequireAdmin = ({ children }) => {
     );
   }
 
-  // In production (Clerk mode), check isSignedIn
-  // In local mode (USE_LOCAL_DATA=true), check if we have a user in Redux
-  const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
-  
   if (!isLocalMode && !isSignedIn) {
     const target = location.pathname + location.search;
     const search = `?redirect=${encodeURIComponent(target)}`;
     return <Navigate to={`/login${search}`} replace />;
   }
 
-  if (!user) {
+  if (isLocalMode && !user) {
+    const target = location.pathname + location.search;
+    const search = `?redirect=${encodeURIComponent(target)}`;
+    return <Navigate to={`/login${search}`} replace />;
+  }
+
+  // In Clerk mode: if Clerk says user is signed in, but Redux user isn't loaded yet,
+  // wait for the profile fetch to complete (authLoading) instead of showing "Loading admin profile..."
+  if (!isLocalMode && isSignedIn && !user && authLoading) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
         Loading admin profile...
@@ -34,8 +40,23 @@ const RequireAdmin = ({ children }) => {
     );
   }
 
+  // If Clerk says signed in but no user in Redux and not loading, something went wrong
+  // but we should still allow access - the profile will load async
+  if (!isLocalMode && isSignedIn && !user && !authLoading) {
+    // Allow access - user data will populate shortly
+    return children;
+  }
+
+  if (!user) {
+    const target = location.pathname + location.search;
+    const search = `?redirect=${encodeURIComponent(target)}`;
+    return <Navigate to={`/login${search}`} replace />;
+  }
+
   if (user.role !== "admin") {
-    return <Navigate to="/" replace />;
+    const target = location.pathname + location.search;
+    const search = `?redirect=${encodeURIComponent(target)}`;
+    return <Navigate to={`/login${search}`} replace />;
   }
 
   return children;

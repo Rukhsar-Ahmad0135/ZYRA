@@ -1,0 +1,13 @@
+◇ injected env (12) from .env // tip: ⌘ override existing { override: true }
+CORS allowedOrigins: [ 'http://localhost:5173', 'http://localhost:5174' ]
+CLIENT_URL from env: http://localhost:5173,http://localhost:5174
+USE_LOCAL_DATA=true - starting without MongoDB and using local fallback storage.
+USE_LOCAL_DATA=true: mounting local fallback routes only.
+Server is running on http://localhost:9000
+Mode: LOCAL FALLBACK (no MongoDB)
+CORS check - origin: undefined allowed: false
+[0mGET / [32m200[0m 58.597 ms - 24[0m
+CORS check - origin: undefined allowed: false
+[0mGET /api/products?limit=2 [32m200[0m 83.452 ms - 1483[0m
+CORS check - origin: undefined allowed: false
+[0mGET / [32m200[0m 0.618 ms - 24[0m

@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-03T04:39:41.030Z",
-    "updatedAt": "2026-08-11T12:53:02.207Z"
+    "updatedAt": "2026-08-20T17:56:57.136Z"
   },
   "products": [
     {
@@ -30,12 +30,12 @@
       "gender": "Men",
       "images": [
         {
-          "url": "/uploads/products/classic-oxford-front.jpg",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785923723/Classic_Oxford_Button-Down_Shirt_1_mxrkbs.jpg",
           "altText": "Classic Oxford Button-Down Shirt front view"
         },
         {
-          "url": "/uploads/products/classic-oxford-model.jpg",
-          "altText": "Classic Oxford Button-Down Shirt model view"
+          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+          "altText": "Classic Oxford Button-Down Shirt detail view"
         }
       ],
       "rating": 4.5,
@@ -1667,55 +1667,14 @@
       "isFeatured": false,
       "createdAt": "2026-08-03T04:39:40.758Z",
       "updatedAt": "2026-08-03T04:39:40.759Z"
-    },
-    {
-      "_id": "6a7b1b163907f637d618a033",
-      "name": "Test Pants",
-      "description": "Test desc",
-      "price": 50,
-      "countInStock": 10,
-      "sku": "TEST-CART-001",
-      "category": "Bottom Wear",
-      "sizes": [
-        "M"
-      ],
-      "colors": [
-        "Black"
-      ],
-      "collections": "General",
-      "gender": "Men",
-      "images": [
-        {
-          "url": "http://localhost:5099/uploads/test.webp",
-          "publicId": "test123"
-        }
-      ],
-      "user": "6a7b1b163907f637d618a032",
-      "createdAt": "2026-08-11T12:52:38.589Z",
-      "updatedAt": "2026-08-11T12:52:38.589Z",
-      "isPublished": true,
-      "isFeatured": false
-    },
-    {
-      "_id": "6a7b1b2e3c120eabf33b1307",
-      "name": "X",
-      "description": "bad",
-      "price": -5,
-      "countInStock": -1,
-      "sku": "BAD-VAL-001",
-      "user": "6a7b1b2e3c120eabf33b1306",
-      "createdAt": "2026-08-11T12:53:02.207Z",
-      "updatedAt": "2026-08-11T12:53:02.207Z",
-      "isPublished": true,
-      "isFeatured": false
     }
   ],
   "users": [
     {
       "_id": "6a70f521dfb446839ba0e9c3",
-      "name": "rukhsar",
-      "email": "rukhsar11@example.com",
-      "password": "$2b$10$uzLPzfIDXQ3YDsr1.NWYhuNyfGCL9N/JtBV/wBE106Ot91AIungFa",
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2b$10$Oi68uFy69kXqD56J8HO.Res3EL5IkLljQBqoDY56qCesZBkxUFuj.",
       "role": "admin",
       "createdAt": "2026-08-03T20:08:01.682Z",
       "updatedAt": "2026-08-03T20:08:01.682Z"
@@ -1926,6 +1885,223 @@
       "role": "admin",
       "createdAt": "2026-08-11T12:53:02.150Z",
       "updatedAt": "2026-08-11T12:53:02.150Z"
+    },
+    {
+      "_id": "6a7db63896791224e1f4c1f1",
+      "name": "QA User",
+      "email": "qa_user_1786623538414@example.com",
+      "password": "$2b$10$DbKzbb.tbKju7WCMHzBmR.jw.XsKf.rDWXdbGML5FRzKnGriTZ7Mq",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:19:04.836Z",
+      "updatedAt": "2026-08-13T12:19:04.836Z"
+    },
+    {
+      "_id": "6a7db7bb96791224e1f4c1f2",
+      "name": "QA User",
+      "email": "qa_user_1786623931616@example.com",
+      "password": "$2b$10$eVgGMtO4sOnfLcA9VSxxPu13O5Ey0V9izqUCLZ6jlOCZ0bDlJ8.Oa",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:25:31.911Z",
+      "updatedAt": "2026-08-13T12:25:31.911Z"
+    },
+    {
+      "_id": "6a7db84396791224e1f4c1f3",
+      "name": "QA User",
+      "email": "qa_user_1786624067768@example.com",
+      "password": "$2b$10$8.rydyrEV542usG.k0sQx.4IsJQos4AeXT.8A/RQyF6.OBOoJBguu",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:27:48.074Z",
+      "updatedAt": "2026-08-13T12:27:48.074Z"
+    },
+    {
+      "_id": "6a7db8c996791224e1f4c1f4",
+      "name": "Inspect User",
+      "email": "inspect_1786624201704@example.com",
+      "password": "$2b$10$T1Da37OUvQXpbDdapVuuWecIoi9cSqatx.X9aSeJ6yv4NbE2PoVEq",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:30:01.850Z",
+      "updatedAt": "2026-08-13T12:30:01.850Z"
+    },
+    {
+      "_id": "6a7dba4796791224e1f4c1f5",
+      "name": "QA User",
+      "email": "qa_user_1786624581723@example.com",
+      "password": "$2b$10$0xdvJpZQ5eKVQL/1id8UCO6STIIMH8CfUgqCsuOdeOrvFzS7l0A5m",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:36:23.323Z",
+      "updatedAt": "2026-08-13T12:36:23.323Z"
+    },
+    {
+      "_id": "6a7dbae196791224e1f4c1f6",
+      "name": "Inspect User",
+      "email": "inspect2_1786624737131@example.com",
+      "password": "$2b$10$tnSXJ8Xm7eNQRxjrHbSHz.4wPHAeyABVCWsLn3rZ.3M7HRtYD5EHi",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:38:57.308Z",
+      "updatedAt": "2026-08-13T12:38:57.308Z"
+    },
+    {
+      "_id": "6a7dbb0a96791224e1f4c1f7",
+      "name": "Inspect User",
+      "email": "inspect2_1786624777177@example.com",
+      "password": "$2b$10$EV6rC63MYGupy48q8cSIr.YEuH1tr5tMOc4VRjOOc82DH9CPz8Dnu",
+      "role": "customer",
+      "createdAt": "2026-08-13T12:39:38.746Z",
+      "updatedAt": "2026-08-13T12:39:38.746Z"
+    },
+    {
+      "_id": "6a7dc8e133bf4c7176ea6dc8",
+      "name": "QA User",
+      "email": "qa_user_1786628321008@example.com",
+      "password": "$2b$10$4VAKkrNXdk7md6BzJ.sPG.llPL8UFt2/cKpNrZ4uPlo6cLJrQlfcu",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:38:41.571Z",
+      "updatedAt": "2026-08-13T13:38:41.571Z"
+    },
+    {
+      "_id": "6a7dc99733bf4c7176ea6dc9",
+      "name": "Inspect",
+      "email": "inspect_1786628503691@example.com",
+      "password": "$2b$10$b6SBO53NDhyKjN2s10UQyuoclgqlusBqPCV2Orox2NNeV3CfYCJhy",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:41:43.951Z",
+      "updatedAt": "2026-08-13T13:41:43.951Z"
+    },
+    {
+      "_id": "6a7dca9d33bf4c7176ea6dca",
+      "name": "Inspect",
+      "email": "inspect_1786628765255@example.com",
+      "password": "$2b$10$ccKNpNRcB9cxayfUTrgt9Ob99zMTSXhihLkMYdpEmVa2Ue2/1ubO2",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:46:05.402Z",
+      "updatedAt": "2026-08-13T13:46:05.402Z"
+    },
+    {
+      "_id": "6a7dcb2633bf4c7176ea6dcb",
+      "name": "Inspect",
+      "email": "inspect_1786628902916@example.com",
+      "password": "$2b$10$57.Nbba8FJODwUJdT0dE2ubDaXYQDIZXLV7jYKvENddte4Wm5VRmi",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:48:23.075Z",
+      "updatedAt": "2026-08-13T13:48:23.075Z"
+    },
+    {
+      "_id": "6a7dcb4d33bf4c7176ea6dcc",
+      "name": "Inspect",
+      "email": "inspect_1786628941212@example.com",
+      "password": "$2b$10$0CDMB/ctK4oRbWCGoLT5wu1WXQRcKz6DZ8Twz5XTS4iUu5sRXYb2u",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:49:01.368Z",
+      "updatedAt": "2026-08-13T13:49:01.368Z"
+    },
+    {
+      "_id": "6a7dcb7133bf4c7176ea6dcd",
+      "name": "QA User",
+      "email": "qa_user_1786628977094@example.com",
+      "password": "$2b$10$f1JdjD4lxqDHGC9cb.2kcuhDt.q3ZdcwOIUFYOfYlRQaJYerrbA16",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:49:37.251Z",
+      "updatedAt": "2026-08-13T13:49:37.251Z"
+    },
+    {
+      "_id": "6a7dcc2133bf4c7176ea6dce",
+      "name": "Final QA",
+      "email": "final_1786629153128@example.com",
+      "password": "$2b$10$0yBxmYCUu55xF6AYX8DK0uOTb4NjgiSOUsf1uaCxmfYQQpaYPVu/a",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:52:33.315Z",
+      "updatedAt": "2026-08-13T13:52:33.315Z"
+    },
+    {
+      "_id": "6a7dcc7533bf4c7176ea6dcf",
+      "name": "Final QA",
+      "email": "final_1786629237285@example.com",
+      "password": "$2b$10$AbADysVt93d7aOpbqs/MbepP9zYeGUvdmI/5Imgf99qB2yfRf7Uv.",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:53:57.449Z",
+      "updatedAt": "2026-08-13T13:53:57.449Z"
+    },
+    {
+      "_id": "6a7dcca533bf4c7176ea6dd1",
+      "name": "Final QA",
+      "email": "final_1786629285262@example.com",
+      "password": "$2b$10$gK5AJRKGH0qUeVMmZXB1UO5sDWJOEHhGcocekDgCr2a.KjTPaMDni",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:54:45.421Z",
+      "updatedAt": "2026-08-13T13:54:45.421Z"
+    },
+    {
+      "_id": "6a7dcd52f0bb00bedd80a2c8",
+      "name": "Final QA",
+      "email": "final_1786629458008@example.com",
+      "password": "$2b$10$ujSZ4XK7ONCfJWqpNChWiuBLdblu.T4nWZDeZpEwiiaqNVc/Np7rq",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:57:38.215Z",
+      "updatedAt": "2026-08-13T13:57:38.215Z"
+    },
+    {
+      "_id": "6a7dcd89f0bb00bedd80a2ca",
+      "name": "State QA",
+      "email": "state_1786629513521@example.com",
+      "password": "$2b$10$nsnYLdNJTbOqRU99kP5U6ePVXGfJIHT55u1cEHrafDluFYV9mPBgO",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:58:33.754Z",
+      "updatedAt": "2026-08-13T13:58:33.754Z"
+    },
+    {
+      "_id": "6a7dcdb6f0bb00bedd80a2cb",
+      "name": "State QA",
+      "email": "state_1786629558558@example.com",
+      "password": "$2b$10$XfFhL7mJtj1xBbnrWx8yseOyFZNr/q4yp2F3HWMclD1ZxOJ5AkeK2",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:59:18.712Z",
+      "updatedAt": "2026-08-13T13:59:18.712Z"
+    },
+    {
+      "_id": "6a7dcddbf0bb00bedd80a2cc",
+      "name": "State QA",
+      "email": "state_1786629595859@example.com",
+      "password": "$2b$10$4so2ZSZH2ncf.GIwlEdbmuFCh2ejLfq7OnJ8rlQvtIHTxF1r4EaXu",
+      "role": "customer",
+      "createdAt": "2026-08-13T13:59:56.009Z",
+      "updatedAt": "2026-08-13T13:59:56.009Z"
+    },
+    {
+      "_id": "6a7dce3af0bb00bedd80a2cd",
+      "name": "Final QA",
+      "email": "final_1786629690795@example.com",
+      "password": "$2b$10$OyODUHhMixnmu4Q9zh2D3eMoCuxZkRivR5NK9bjMEHlZcO/tmOm1a",
+      "role": "customer",
+      "createdAt": "2026-08-13T14:01:30.961Z",
+      "updatedAt": "2026-08-13T14:01:30.961Z"
+    },
+    {
+      "_id": "6a7df403870e626c384f5733",
+      "name": "QA User",
+      "email": "qa_user_1786639360496@example.com",
+      "password": "$2b$10$LSt7p.qHlFBdbSZxfGiiyu4q3Xs98SPIOw7LQBfyLnshr9LwgeHsy",
+      "role": "customer",
+      "createdAt": "2026-08-13T16:42:44.019Z",
+      "updatedAt": "2026-08-13T16:42:44.019Z"
+    },
+    {
+      "_id": "6a852eb2b6e8efb31771ea22",
+      "name": "QA User",
+      "email": "qa_user_54245@test.com",
+      "password": "$2b$10$folujnhpmZv0tQml3ktOROsRTSMZVyuXeLViUcUwUSSBbmgPc6Hkq",
+      "role": "customer",
+      "createdAt": "2026-08-19T04:18:58.738Z",
+      "updatedAt": "2026-08-19T04:18:58.738Z"
+    },
+    {
+      "_id": "6a873f031389dca9b1f09a59",
+      "clerkId": "user_3HUz6v3EsNXnH0FRucOODswrllf",
+      "name": "Clerk User",
+      "email": "clerk-user_3huz6v3esnxnh0frucoodswrllf@clerk.local",
+      "password": "$2b$10$jezZdVPMCmsZcLn8dEQdW.vm6IBa1xf63tdtQrTptuoSL/SstOhym",
+      "role": "customer",
+      "createdAt": "2026-08-20T17:53:07.444Z",
+      "updatedAt": "2026-08-20T17:53:07.444Z"
     }
   ],
   "carts": [
@@ -1949,165 +2125,31 @@
       "user": "6a701b8d929413763db64f31"
     },
     {
-      "_id": "6a71ce223a1ad942bd61cec0",
-      "key": "guest:guest_1785843038254_883335918b7e68",
-      "guestId": "guest_1785843038254_883335918b7e68",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f1c",
-          "name": "Formal Dress Pants",
-          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
-          "price": 70,
-          "size": "M",
-          "color": "Black",
-          "quantity": 1
-        }
-      ],
-      "totalPrice": 70,
-      "createdAt": "2026-08-04T11:33:54.863Z",
-      "updatedAt": "2026-08-04T11:33:54.908Z"
+      "_id": "6a7dcd55f0bb00bedd80a2c9",
+      "key": "user:6a7dcd52f0bb00bedd80a2c8",
+      "user": "6a7dcd52f0bb00bedd80a2c8",
+      "products": [],
+      "totalPrice": 0,
+      "createdAt": "2026-08-13T13:57:41.219Z",
+      "updatedAt": "2026-08-19T06:01:08.730Z"
     },
     {
-      "_id": "6a71dcdfd179ecf2170a9e6f",
-      "key": "guest:guest_1785788526554",
-      "guestId": "guest_1785788526554",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f1c",
-          "name": "Formal Dress Pants",
-          "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop",
-          "price": 70,
-          "size": "L",
-          "color": "Navy",
-          "quantity": 1
-        }
-      ],
-      "totalPrice": 70,
-      "createdAt": "2026-08-04T12:36:47.356Z",
-      "updatedAt": "2026-08-04T12:36:50.183Z"
+      "_id": "6a7dce3df0bb00bedd80a2ce",
+      "key": "user:6a7dce3af0bb00bedd80a2cd",
+      "user": "6a7dce3af0bb00bedd80a2cd",
+      "products": [],
+      "totalPrice": 0,
+      "createdAt": "2026-08-13T14:01:33.526Z",
+      "updatedAt": "2026-08-19T06:01:08.732Z"
     },
     {
-      "_id": "6a74449e3e85a7ddda8e0246",
-      "key": "guest:guest_1785937274713",
-      "guestId": "guest_1785937274713",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f0d",
-          "name": "Slim-Fit Easy-Iron Shirt",
-          "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
-          "price": 34.99,
-          "size": "S",
-          "color": "White",
-          "quantity": 1
-        },
-        {
-          "product": "6a701b8c929413763db64f0f",
-          "name": "Oversized Graphic T-Shirt",
-          "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
-          "price": 19.99,
-          "size": "M",
-          "color": "Gray",
-          "quantity": 2
-        }
-      ],
-      "totalPrice": 74.97,
-      "createdAt": "2026-08-06T08:23:58.791Z",
-      "updatedAt": "2026-08-09T08:57:17.327Z"
-    },
-    {
-      "_id": "6a74592ff28fee5a0350a3ad",
-      "key": "guest:guest_1786009241546",
-      "guestId": "guest_1786009241546",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f24",
-          "name": "Stretch Denim Shorts",
-          "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=500&fit=crop",
-          "price": 40,
-          "size": "M",
-          "color": "White",
-          "quantity": 3
-        }
-      ],
-      "totalPrice": 120,
-      "createdAt": "2026-08-06T09:51:43.123Z",
-      "updatedAt": "2026-08-06T09:51:43.139Z"
-    },
-    {
-      "_id": "6a76b24e166fd9c96ca7001e",
-      "key": "guest:qa_guest_1786163787097",
-      "guestId": "qa_guest_1786163787097",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f1c",
-          "name": "Formal Dress Pants",
-          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "price": 70,
-          "size": "M",
-          "color": "Black",
-          "quantity": 2
-        }
-      ],
-      "totalPrice": 140,
-      "createdAt": "2026-08-08T04:36:30.154Z",
-      "updatedAt": "2026-08-08T04:36:30.155Z"
-    },
-    {
-      "_id": "6a76e99c6112f9729020afe9",
-      "key": "guest:qa_guest_1786177948039",
-      "guestId": "qa_guest_1786177948039",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f1c",
-          "name": "Formal Dress Pants",
-          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "price": 70,
-          "size": "M",
-          "color": "Black",
-          "quantity": 2
-        }
-      ],
-      "totalPrice": 140,
-      "createdAt": "2026-08-08T08:32:28.054Z",
-      "updatedAt": "2026-08-08T08:32:28.054Z"
-    },
-    {
-      "_id": "6a76edb36b229ced0898726d",
-      "key": "guest:qa_guest_1786178992027",
-      "guestId": "qa_guest_1786178992027",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f1c",
-          "name": "Formal Dress Pants",
-          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "price": 70,
-          "size": "M",
-          "color": "Black",
-          "quantity": 2
-        }
-      ],
-      "totalPrice": 140,
-      "createdAt": "2026-08-08T08:49:55.086Z",
-      "updatedAt": "2026-08-08T08:49:55.087Z"
-    },
-    {
-      "_id": "6a76ee432fbbb38f54fe30df",
-      "key": "guest:qa_guest_1786179136133",
-      "guestId": "qa_guest_1786179136133",
-      "products": [
-        {
-          "product": "6a701b8c929413763db64f1c",
-          "name": "Formal Dress Pants",
-          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "price": 70,
-          "size": "M",
-          "color": "Black",
-          "quantity": 2
-        }
-      ],
-      "totalPrice": 140,
-      "createdAt": "2026-08-08T08:52:19.193Z",
-      "updatedAt": "2026-08-08T08:52:19.195Z"
+      "_id": "6a852ea0b6e8efb31771ea21",
+      "key": "user:6a852eb2b6e8efb31771ea22",
+      "products": [],
+      "totalPrice": 0,
+      "createdAt": "2026-08-19T04:18:40.484Z",
+      "updatedAt": "2026-08-19T06:01:08.732Z",
+      "user": "6a852eb2b6e8efb31771ea22"
     }
   ],
   "checkouts": [
@@ -2269,6 +2311,37 @@
       "finalizedAt": "2026-08-08T08:53:20.984Z",
       "createdAt": "2026-08-08T08:53:20.958Z",
       "updatedAt": "2026-08-08T08:53:20.984Z"
+    },
+    {
+      "_id": "6a873f671389dca9b1f09a5a",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "Rukhsar",
+        "lastName": "Ahmad",
+        "phone": "42323",
+        "address": "dfasdfa",
+        "city": "asdfas",
+        "postalCode": "sdfas",
+        "country": "asdf"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 70,
+      "isPaid": false,
+      "paidAt": null,
+      "paymentStatus": "pending",
+      "paymentDetails": null,
+      "isFinalized": true,
+      "finalizedAt": "2026-08-20T17:54:47.505Z",
+      "createdAt": "2026-08-20T17:54:47.465Z",
+      "updatedAt": "2026-08-20T17:54:47.505Z"
     }
   ],
   "orders": [
@@ -2297,9 +2370,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "paid",
-      "status": "cancelled",
+      "status": "shipped",
       "createdAt": "2026-08-04T12:37:58.120Z",
-      "updatedAt": "2026-08-05T08:01:53.827Z"
+      "updatedAt": "2026-08-19T04:20:51.590Z"
     },
     {
       "_id": "6a76b1ca4179354a16510155",
@@ -2428,6 +2501,37 @@
       "status": "processing",
       "createdAt": "2026-08-08T08:53:20.984Z",
       "updatedAt": "2026-08-08T08:53:20.984Z"
+    },
+    {
+      "_id": "6a873f671389dca9b1f09a5b",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f1c",
+          "name": "Formal Dress Pants",
+          "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "price": 70,
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "Rukhsar",
+        "lastName": "Ahmad",
+        "phone": "42323",
+        "address": "dfasdfa",
+        "city": "asdfas",
+        "postalCode": "sdfas",
+        "country": "asdf"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 70,
+      "isPaid": false,
+      "paidAt": null,
+      "isDelivered": false,
+      "deliveredAt": null,
+      "paymentStatus": "Pending",
+      "status": "processing",
+      "createdAt": "2026-08-20T17:54:47.505Z",
+      "updatedAt": "2026-08-20T17:54:47.505Z"
     }
   ],
   "subscribers": [
