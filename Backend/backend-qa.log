@@ -1,6 +1,0 @@
-◇ injected env (12) from .env // tip: ⌘ override existing { override: true }
-CORS allowedOrigins: [ 'http://localhost:5173', 'http://localhost:5174' ]
-CLIENT_URL from env: http://localhost:5173,http://localhost:5174
-USE_LOCAL_DATA=true: mounting local fallback routes only.
-Server is running on http://localhost:9000
-Mode: LOCAL FALLBACK (no MongoDB)

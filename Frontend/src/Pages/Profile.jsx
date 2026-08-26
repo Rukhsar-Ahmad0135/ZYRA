@@ -30,7 +30,7 @@ const Profile = () => {
   const handleLogout = async () => {
     dispatch(logout());
     await signOut();
-    navigate("/login");
+    navigate("/");
   };
 
   // In local mode, bypass the Clerk loading gate entirely.

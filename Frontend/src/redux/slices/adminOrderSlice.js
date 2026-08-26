@@ -49,20 +49,17 @@ const CANONICAL_ORDER_STATUSES = [
 export const updateOrderStatus = createAsyncThunk(
   "adminOrders/updateOrderStatus",
   async (
-    { id, status, orderStatus, paymentStatus, isPaid, isDelivered },
+    { id, orderStatus, paymentStatus, isPaid, isDelivered },
     { rejectWithValue }
   ) => {
     try {
-      // If a canonical status was passed via `status`, route it to `orderStatus`.
-      const canonical =
-        orderStatus ||
-        CANONICAL_ORDER_STATUSES.find(
-          (s) => s.toLowerCase() === String(status || "").toLowerCase()
-        );
+      // If a canonical status was passed via `orderStatus`, use it directly
+      const canonical = CANONICAL_ORDER_STATUSES.find(
+        (s) => s.toLowerCase() === String(orderStatus || "").toLowerCase()
+      );
 
       const payload = {};
       if (canonical) payload.orderStatus = canonical;
-      else if (status) payload.status = status;
       if (paymentStatus !== undefined) payload.paymentStatus = paymentStatus;
       if (isPaid !== undefined) payload.isPaid = isPaid;
       if (isDelivered !== undefined) payload.isDelivered = isDelivered;

@@ -5,6 +5,7 @@ import UserLayout from "./components/layout/UserLayout";
 import Home from "./Pages/Home";
 import { CartProvider } from "./components/cart/CartContext.jsx";
 import Login from "./Pages/Login";
+import LocalLogin from "./Pages/LocalLogin";
 import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
 import CollectionPage from "./Pages/CollectionPage";
@@ -63,6 +64,7 @@ function App() {
             <Route path="/" element={<UserLayout></UserLayout>}>
               <Route index element={<Home></Home>}></Route>
               <Route path="login/*" element={<Login></Login>}></Route>
+              <Route path="local-login/*" element={<LocalLogin></LocalLogin>}></Route>
               <Route path="register/*" element={<Register></Register>}></Route>
               <Route
                 path="profile"

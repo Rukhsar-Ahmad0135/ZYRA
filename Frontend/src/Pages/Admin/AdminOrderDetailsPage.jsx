@@ -13,6 +13,15 @@ import {
 } from "../../redux/slices/adminOrderSlice";
 import { toast } from "sonner";
 
+const CANONICAL_ORDER_STATUSES = [
+  "Pending",
+  "Confirmed",
+  "Packed",
+  "Shipped",
+  "Delivered",
+  "Cancelled",
+];
+
 const AdminOrderDetailsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -37,7 +46,7 @@ const AdminOrderDetailsPage = () => {
   };
 
   const markAsPaid = () =>
-    handleUpdate({ paymentStatus: "Paid" }, "Order marked as paid");
+    handleUpdate({ paymentStatus: "paid", isPaid: true }, "Order marked as paid");
   const markAsDelivered = () =>
     handleUpdate({ isDelivered: true }, "Order marked as delivered");
 
@@ -46,7 +55,7 @@ const AdminOrderDetailsPage = () => {
   };
 
   const handlePaymentStatusChange = (e) => {
-    handleUpdate({ paymentStatus: e.target.value }, "Payment status updated");
+    handleUpdate({ paymentStatus: e.target.value.toLowerCase() }, "Payment status updated");
   };
 
 
@@ -111,7 +120,7 @@ const AdminOrderDetailsPage = () => {
           <div>
             <h4 className="text-lg font-semibold mb-2">Payment Info</h4>
             <p>Method: {orderDetails.paymentMethod}</p>
-            <p>Status: {orderDetails.paymentStatus}</p>
+            <p>Status: {orderDetails.paymentStatus || "pending"}</p>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-2">Shipping Info</h4>
@@ -169,27 +178,24 @@ const AdminOrderDetailsPage = () => {
           <div>
             <label className="text-sm text-gray-600 mr-2">Order Status:</label>
             <select
-              value={orderDetails.orderStatus || "Pending"}
+              value={orderDetails.orderStatus || orderDetails.status || "pending"}
               onChange={handleStatusChange}
               disabled={updating}
               className="p-1 border rounded mr-4"
             >
-              <option value="Pending">Pending</option>
-              <option value="Confirmed">Confirmed</option>
-              <option value="Packed">Packed</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Cancelled">Cancelled</option>
+              {CANONICAL_ORDER_STATUSES.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
             </select>
             <label className="text-sm text-gray-600 mr-2">Payment:</label>
             <select
-              value={orderDetails.paymentStatus || "Pending"}
+              value={orderDetails.paymentStatus || "pending"}
               onChange={handlePaymentStatusChange}
               disabled={updating}
               className="p-1 border rounded"
             >
-              <option value="Pending">Pending</option>
-              <option value="Paid">Paid</option>
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
             </select>
 
           </div>

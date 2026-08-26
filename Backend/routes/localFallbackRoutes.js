@@ -188,10 +188,10 @@ const requireLocalUser = async (req, res) => {
   }
 };
 
-const requireLocalAdmin = (req, res) => {
-  const user = requireLocalUser(req, res);
+const requireLocalAdmin = async (req, res) => {
+  const user = await requireLocalUser(req, res);
   if (!user) return null;
-  if (user.role !== "admin") {
+  if (!["admin", "superadmin"].includes(user.role)) {
     adminError(res);
     return null;
   }
@@ -232,8 +232,21 @@ const responseCart = (cart) => ({
   updatedAt: cart.updatedAt,
 });
 
+const CANONICAL_ORDER_STATUSES = [
+  "Pending",
+  "Confirmed",
+  "Packed",
+  "Shipped",
+  "Delivered",
+  "Cancelled",
+];
+
 const responseOrder = (order, store) => {
   const user = findUserById(store, order.userId);
+  // Map lowercase status to canonical capitalized version
+  const canonicalStatus = CANONICAL_ORDER_STATUSES.find(
+    (s) => s.toLowerCase() === String(order.status || "").toLowerCase()
+  ) || order.status;
   return {
     _id: order._id,
     id: order._id,
@@ -248,6 +261,7 @@ const responseOrder = (order, store) => {
     deliveredAt: order.deliveredAt,
     paymentStatus: order.paymentStatus,
     status: order.status,
+    orderStatus: canonicalStatus,
     createdAt: order.createdAt,
     updatedAt: order.updatedAt,
   };
@@ -387,16 +401,16 @@ router.post(
   }
 );
 
-router.get("/users/profile", (req, res, next) => {
+router.get("/users/profile", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
   res.json(user);
 });
 
-router.put("/users/profile", express.json(), (req, res, next) => {
+router.put("/users/profile", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
 
   const updated = withStore((store) => {
@@ -511,9 +525,9 @@ router.delete("/cart", express.json(), (req, res, next) => {
   return res.json(result);
 });
 
-router.post("/cart/merge", express.json(), (req, res, next) => {
+router.post("/cart/merge", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const authUser = requireLocalUser(req, res);
+  const authUser = await requireLocalUser(req, res);
   if (!authUser) return;
   const { guestId } = req.body;
   const result = withStore((store) => {
@@ -540,9 +554,9 @@ router.post("/cart/merge", express.json(), (req, res, next) => {
   res.json(responseCart(result));
 });
 
-router.post("/checkout", express.json(), (req, res, next) => {
+router.post("/checkout", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
   const { checkoutItems, shippingAddress, paymentMethod, totalPrice } = req.body;
   if (!checkoutItems?.length) return res.status(400).json({ message: "No items in checkout" });
@@ -578,9 +592,9 @@ router.post("/checkout", express.json(), (req, res, next) => {
   res.status(201).json(checkout);
 });
 
-router.put("/checkout/:id/pay", express.json(), (req, res, next) => {
+router.put("/checkout/:id/pay", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
   const { paymentStatus, paymentDetails } = req.body;
   const checkout = withStore((store) => {
@@ -601,9 +615,9 @@ router.put("/checkout/:id/pay", express.json(), (req, res, next) => {
   res.json(checkout);
 });
 
-router.post("/checkout/:id/finalize", express.json(), (req, res, next) => {
+router.post("/checkout/:id/finalize", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
   const result = withStore((store) => {
     const checkout = ensureCheckout(store, req.params.id);
@@ -653,18 +667,18 @@ router.post("/checkout/:id/finalize", express.json(), (req, res, next) => {
   res.status(201).json(responseOrder(result, getLocalStore()));
 });
 
-router.get("/orders/my-orders", (req, res, next) => {
+router.get("/orders/my-orders", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
   const store = getLocalStore();
   const orders = store.orders.filter((order) => order.userId === user._id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((order) => responseOrder(order, store));
   res.json(orders);
 });
 
-router.get("/orders/:id", (req, res, next) => {
+router.get("/orders/:id", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalUser(req, res);
+  const user = await requireLocalUser(req, res);
   if (!user) return;
   const store = getLocalStore();
   const order = ensureOrder(store, req.params.id);
@@ -673,9 +687,9 @@ router.get("/orders/:id", (req, res, next) => {
   res.json(responseOrder(order, store));
 });
 
-router.get("/admin/users", (req, res, next) => {
+router.get("/admin/users", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const store = getLocalStore();
   const search = normalizeText(req.query.search);
@@ -686,9 +700,9 @@ router.get("/admin/users", (req, res, next) => {
   res.json({ users: paginated.items, page: paginated.page, pages: paginated.pages, total: paginated.total });
 });
 
-router.post("/admin/users", express.json(), (req, res, next) => {
+router.post("/admin/users", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const { name, email, password, role } = req.body;
   if (!name || !email || !password) return res.status(400).json({ message: "Name, email and password are required" });
@@ -702,9 +716,9 @@ router.post("/admin/users", express.json(), (req, res, next) => {
   res.status(201).json({ message: "User created successfully", user: responseUser(created) });
 });
 
-router.put("/admin/users/:id", express.json(), (req, res, next) => {
+router.put("/admin/users/:id", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const updated = withStore((store) => {
     const entry = findUserById(store, req.params.id);
@@ -720,9 +734,9 @@ router.put("/admin/users/:id", express.json(), (req, res, next) => {
   res.json({ message: "User updated successfully", user: responseUser(updated) });
 });
 
-router.delete("/admin/users/:id", (req, res, next) => {
+router.delete("/admin/users/:id", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const result = withStore((store) => {
     const index = store.users.findIndex((entry) => entry._id === req.params.id);
@@ -736,9 +750,9 @@ router.delete("/admin/users/:id", (req, res, next) => {
   res.json({ message: "User deleted successfully" });
 });
 
-router.get("/admin/products", (req, res, next) => {
+router.get("/admin/products", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const store = getLocalStore();
   const search = normalizeText(req.query.search);
@@ -749,9 +763,9 @@ router.get("/admin/products", (req, res, next) => {
   res.json({ products: paginated.items, page: paginated.page, pages: paginated.pages, total: paginated.total });
 });
 
-router.post("/admin/products", express.json(), (req, res, next) => {
+router.post("/admin/products", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const product = withStore((store) => {
     const entry = {
@@ -769,9 +783,9 @@ router.post("/admin/products", express.json(), (req, res, next) => {
   res.status(201).json(responseProduct(product));
 });
 
-router.put("/admin/products/:id", express.json(), (req, res, next) => {
+router.put("/admin/products/:id", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const updated = withStore((store) => {
     const entry = store.products.find((item) => item._id === req.params.id);
@@ -783,9 +797,9 @@ router.put("/admin/products/:id", express.json(), (req, res, next) => {
   res.json(responseProduct(updated));
 });
 
-router.delete("/admin/products/:id", (req, res, next) => {
+router.delete("/admin/products/:id", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const removed = withStore((store) => {
     const index = store.products.findIndex((item) => item._id === req.params.id);
@@ -797,9 +811,9 @@ router.delete("/admin/products/:id", (req, res, next) => {
   res.json({ message: "Product deleted successfully" });
 });
 
-router.get("/admin/orders", (req, res, next) => {
+router.get("/admin/orders", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const store = getLocalStore();
   const status = normalizeText(req.query.status);
@@ -810,9 +824,9 @@ router.get("/admin/orders", (req, res, next) => {
   res.json({ orders: paginated.items, page: paginated.page, pages: paginated.pages, total: paginated.total });
 });
 
-router.get("/admin/orders/:id", (req, res, next) => {
+router.get("/admin/orders/:id", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const store = getLocalStore();
   const order = ensureOrder(store, req.params.id);
@@ -820,14 +834,20 @@ router.get("/admin/orders/:id", (req, res, next) => {
   res.json(responseOrder(order, store));
 });
 
-router.put("/admin/orders/:id", express.json(), (req, res, next) => {
+router.put("/admin/orders/:id", express.json(), async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const updated = withStore((store) => {
     const order = ensureOrder(store, req.params.id);
     if (!order) return null;
-    if (req.body.status) order.status = String(req.body.status).toLowerCase();
+    
+    // Handle order status - accept both orderStatus (canonical) and status
+    const newStatus = req.body.orderStatus || req.body.status;
+    if (newStatus) {
+      order.status = String(newStatus).toLowerCase();
+    }
+    
     if (req.body.isPaid !== undefined) {
       order.isPaid = Boolean(req.body.isPaid);
       order.paymentStatus = order.isPaid ? "paid" : "pending";
@@ -845,9 +865,9 @@ router.put("/admin/orders/:id", express.json(), (req, res, next) => {
   res.json(responseOrder(updated, getLocalStore()));
 });
 
-router.delete("/admin/orders/:id", (req, res, next) => {
+router.delete("/admin/orders/:id", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const removed = withStore((store) => {
     const index = store.orders.findIndex((order) => order._id === req.params.id);
@@ -859,9 +879,9 @@ router.delete("/admin/orders/:id", (req, res, next) => {
   res.json({ message: "Order removed" });
 });
 
-router.get("/admin/stats", (req, res, next) => {
+router.get("/admin/stats", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   const store = getLocalStore();
   const revenue = store.orders.reduce((sum, order) => sum + Number(order.totalPrice || 0), 0);

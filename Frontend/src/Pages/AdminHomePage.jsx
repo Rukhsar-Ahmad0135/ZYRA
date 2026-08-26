@@ -4,13 +4,14 @@
  * See the LICENSE file for more information.
  */
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apiClient from "../api/client.js";
 
 const AdminHomePage = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -18,13 +19,19 @@ const AdminHomePage = () => {
         const response = await apiClient.get("/api/admin/stats");
         setStats(response.data);
       } catch (err) {
+        const status = err?.status || err?.response?.status;
+        if (status === 403 || status === 401) {
+          // Token invalid/expired - redirect to local login with redirect back to admin
+          navigate("/local-login?redirect=/admin", { replace: true });
+          return;
+        }
         setError(err?.message || "Failed to load dashboard stats");
       } finally {
         setLoading(false);
       }
     };
     fetchStats();
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return <div className="text-center py-16 text-gray-500">Loading dashboard...</div>;

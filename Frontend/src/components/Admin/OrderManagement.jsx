@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { fetchAdminOrders, updateOrderStatus, deleteOrder } from "../../redux/slices/adminOrderSlice";
 import { toast } from "sonner";
 
-const STATUS_OPTIONS = [
+const CANONICAL_ORDER_STATUSES = [
   "Pending",
   "Confirmed",
   "Packed",
@@ -34,7 +34,7 @@ const OrderManagement = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await dispatch(updateOrderStatus({ id, status: newStatus })).unwrap();
+      await dispatch(updateOrderStatus({ id, orderStatus: newStatus })).unwrap();
       toast.success("Order status updated");
       dispatch(fetchAdminOrders({ page: currentPage, pageSize: 10, status: statusFilter }));
     } catch (err) {
@@ -71,7 +71,7 @@ const OrderManagement = () => {
           className="p-2 border rounded"
         >
           <option value="">All Statuses</option>
-          {STATUS_OPTIONS.map((s) => (
+          {CANONICAL_ORDER_STATUSES.map((s) => (
             <option key={s} value={s}>{s}</option>
           ))}
         </select>
@@ -115,11 +115,11 @@ const OrderManagement = () => {
                       <td className="p-4">${order.totalPrice?.toFixed(2)}</td>
                       <td className="p-4">
                         <select
-                          value={order.status || "processing"}
+                          value={order.orderStatus || order.status || "pending"}
                           onChange={(e) => handleStatusChange(order._id, e.target.value)}
                           className="p-1 border rounded"
                         >
-                          {STATUS_OPTIONS.map((s) => (
+                          {CANONICAL_ORDER_STATUSES.map((s) => (
                             <option key={s} value={s}>{s}</option>
                           ))}
                         </select>

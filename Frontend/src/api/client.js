@@ -64,7 +64,7 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor — normalize errors and handle 401 (session expiry)
+// Response interceptor — normalize errors and handle 401/403 (session expiry)
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -77,15 +77,15 @@ apiClient.interceptors.response.use(
 
       if (!isLocalMode) {
         // Production mode: clear any leftover legacy auth state.
-        // Do not force a hard reload here: Clerk owns session state, and a
-        // full-page navigation can fight Clerk's own routing. Components that
-        // need a fresh session should re-read `useAuth()`.
         localStorage.removeItem("userInfo");
         localStorage.removeItem("legacyToken");
       }
       // In local mode, keep the legacy auth state — the 401 might be
       // transient (e.g., token expired but user can re-login).
     }
+
+    // Don't auto-clear on 403 - let components handle it (e.g., redirect to login)
+    // 403 on admin routes might mean token expired but user still logged in
 
     return Promise.reject({
       status,

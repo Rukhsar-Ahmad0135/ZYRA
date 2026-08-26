@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-03T04:39:41.030Z",
-    "updatedAt": "2026-08-22T03:54:33.035Z"
+    "updatedAt": "2026-08-26T22:06:43.987Z"
   },
   "products": [
     {
@@ -1677,7 +1677,7 @@
       "password": "$2b$10$Oi68uFy69kXqD56J8HO.Res3EL5IkLljQBqoDY56qCesZBkxUFuj.",
       "role": "admin",
       "createdAt": "2026-08-03T20:08:01.682Z",
-      "updatedAt": "2026-08-03T20:08:01.682Z"
+      "updatedAt": "2026-08-26T20:45:32.959Z"
     },
     {
       "_id": "6a71d8cb257d534574d48da3",
@@ -2102,6 +2102,26 @@
       "role": "customer",
       "createdAt": "2026-08-20T17:53:07.444Z",
       "updatedAt": "2026-08-20T17:53:07.444Z"
+    },
+    {
+      "isAdminApproved": true,
+      "name": "Super Admin",
+      "password": "$2b$10$36qTDWlWI6DHHR/qi9YY5.rX2cWYCqOj2e1qCDieou37/Exxd5e2i",
+      "role": "superadmin",
+      "updatedAt": "2026-08-26T18:55:11.2577596+05:00",
+      "createdAt": "2026-08-26T18:55:11.2371414+05:00",
+      "_id": "6a8b18f19eb56f0ea789610a",
+      "email": "superadmin@zyra.com"
+    },
+    {
+      "_id": "6a8f24e64dfcf85b12d0f649",
+      "name": "rukhsar",
+      "email": "rukhsar11@example.com",
+      "password": "$2b$10$i4uo6kUb20oX5.C7eiNg9.eSEQhRLQyfkCNCfmZhEIbm5OmJGmyDu",
+      "role": "admin",
+      "isAdminApproved": true,
+      "createdAt": "2026-08-26T17:39:51.008Z",
+      "updatedAt": "2026-08-26T17:39:51.011Z"
     }
   ],
   "carts": [
@@ -2150,6 +2170,44 @@
       "createdAt": "2026-08-19T04:18:40.484Z",
       "updatedAt": "2026-08-19T06:01:08.732Z",
       "user": "6a852eb2b6e8efb31771ea22"
+    },
+    {
+      "_id": "6a8f5a6aa6efd83fd3652d2e",
+      "key": "user:6a8bd042e2aac1d94704ca98",
+      "user": "6a8bd042e2aac1d94704ca98",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f1d",
+          "name": "High-Waist Skinny Jeans",
+          "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=500&fit=crop",
+          "price": 50,
+          "size": "S",
+          "color": "Black",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 50,
+      "createdAt": "2026-08-26T21:28:10.036Z",
+      "updatedAt": "2026-08-26T21:28:10.037Z"
+    },
+    {
+      "_id": "6a8f6373a6efd83fd3652d2f",
+      "key": "user:6a8f24e64dfcf85b12d0f649",
+      "user": "6a8f24e64dfcf85b12d0f649",
+      "products": [
+        {
+          "product": "6a701b8c929413763db64f0d",
+          "name": "Slim-Fit Easy-Iron Shirt",
+          "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "price": 34.99,
+          "size": "M",
+          "color": "Gray",
+          "quantity": 3
+        }
+      ],
+      "totalPrice": 104.97,
+      "createdAt": "2026-08-26T22:06:43.982Z",
+      "updatedAt": "2026-08-26T22:06:43.987Z"
     }
   ],
   "checkouts": [
@@ -2366,13 +2424,13 @@
       "paymentMethod": "Cash on Delivery",
       "totalPrice": 210,
       "isPaid": true,
-      "paidAt": "2026-08-04T12:37:57.926Z",
-      "isDelivered": false,
-      "deliveredAt": null,
+      "paidAt": "2026-08-26T21:00:35.369Z",
+      "isDelivered": true,
+      "deliveredAt": "2026-08-26T21:00:57.423Z",
       "paymentStatus": "paid",
-      "status": "shipped",
+      "status": "confirmed",
       "createdAt": "2026-08-04T12:37:58.120Z",
-      "updatedAt": "2026-08-19T04:20:51.590Z"
+      "updatedAt": "2026-08-26T21:14:25.885Z"
     },
     {
       "_id": "6a76b1ca4179354a16510155",
@@ -2402,9 +2460,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "Pending",
-      "status": "processing",
+      "status": "cancelled",
       "createdAt": "2026-08-08T04:34:18.481Z",
-      "updatedAt": "2026-08-08T04:34:18.481Z"
+      "updatedAt": "2026-08-26T22:05:37.120Z"
     },
     {
       "_id": "6a76b85e79d8dbadab007eec",
@@ -2466,9 +2524,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "Pending",
-      "status": "processing",
+      "status": "delivered",
       "createdAt": "2026-08-08T08:33:41.630Z",
-      "updatedAt": "2026-08-08T08:33:41.630Z"
+      "updatedAt": "2026-08-26T21:07:31.787Z"
     },
     {
       "_id": "6a76ee804d431d2f8b5a2819",
@@ -2498,9 +2556,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "Pending",
-      "status": "processing",
+      "status": "shipped",
       "createdAt": "2026-08-08T08:53:20.984Z",
-      "updatedAt": "2026-08-08T08:53:20.984Z"
+      "updatedAt": "2026-08-26T22:05:55.695Z"
     },
     {
       "_id": "6a873f671389dca9b1f09a5b",
@@ -2529,9 +2587,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "Pending",
-      "status": "processing",
+      "status": "shipped",
       "createdAt": "2026-08-20T17:54:47.505Z",
-      "updatedAt": "2026-08-20T17:54:47.505Z"
+      "updatedAt": "2026-08-26T22:05:59.468Z"
     }
   ],
   "subscribers": [

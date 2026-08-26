@@ -31,7 +31,7 @@ const RequireAuth = ({ children }) => {
       setHasRedirected(true);
       const target = location.pathname + location.search;
       const search = `?redirect=${encodeURIComponent(target)}`;
-      return <Navigate to={`/login${search}`} replace />;
+      return <Navigate to={`/local-login${search}`} replace />;
     }
     // Already redirected and still no user/profile, keep showing loading
     return (
