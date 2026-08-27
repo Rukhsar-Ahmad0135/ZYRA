@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useAuth } from "@clerk/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, clearUser } from "../../redux/slices/authSlice";
 import { mergeCart, fetchCart } from "../../redux/slices/cartSlice";
 import { setAuthTokenGetter } from "../../utils/clerkToken.js";
@@ -9,11 +9,32 @@ import { getOrCreateGuestId } from "../../utils/guestId.js";
 const ClerkAuthBridge = () => {
   const dispatch = useDispatch();
   const { isLoaded, isSignedIn, userId, getToken } = useAuth();
+  const { user } = useSelector((state) => state.auth);
   const syncedUserIdRef = useRef(null);
   const guestIdRef = useRef(null);
 
+  const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+
+  // Set up auth token getter - runs on mount and when dependencies change
+  // In local mode, prefer Clerk token when signed in; fall back to legacy token
+  // In production mode, use Clerk token
   useEffect(() => {
     setAuthTokenGetter(async () => {
+      // In local mode: prefer Clerk token when signed in, fall back to legacy token
+      if (isLocalMode) {
+        if (isSignedIn && isLoaded) {
+          try {
+            return await getToken();
+          } catch {
+            // Clerk token unavailable, fall through to legacy
+          }
+        }
+        // Fall back to legacy token from localStorage
+        const legacyToken = localStorage.getItem("legacyToken");
+        return legacyToken || null;
+      }
+
+      // In production mode, use Clerk token
       if (!isLoaded || !isSignedIn) {
         return null;
       }
@@ -22,9 +43,10 @@ const ClerkAuthBridge = () => {
     });
 
     return () => setAuthTokenGetter(null);
-  }, [getToken, isLoaded, isSignedIn]);
+  }, [getToken, isLoaded, isSignedIn, isLocalMode]);
 
-useEffect(() => {
+  // Sync user state with Clerk
+  useEffect(() => {
     if (!isLoaded) {
       return;
     }

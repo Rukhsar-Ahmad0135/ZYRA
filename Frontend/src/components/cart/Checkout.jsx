@@ -3,9 +3,9 @@
  *
  * See the LICENSE file for more information.
  */
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCart } from "./useCart";
 import {
   createCheckoutSession,
@@ -14,7 +14,6 @@ import {
 import { fetchCart } from "../../redux/slices/cartSlice";
 
 import { toast } from "sonner";
-import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ const Checkout = () => {
   const { items, totalPrice, clearCart } = useCart();
   const { user, guestId } = useSelector((state) => state.auth);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [showAdminWarning, setShowAdminWarning] = useState(false);
   const [shippingAddress, setShippingAddress] = useState({
     firstName: "",
     lastName: "",
@@ -46,8 +46,47 @@ const Checkout = () => {
     [items],
   );
 
+  // Check if user is admin
+  const isAdmin = user?.role === "admin" || user?.role === "superadmin";
+
+  // Check if user is logged in (not guest)
+  const isLoggedIn = !!user;
+
+  // Show admin warning when admin tries to checkout
+  useEffect(() => {
+    if (isAdmin) {
+      setShowAdminWarning(true);
+    }
+  }, [isAdmin]);
+
+  const handleAdminLogout = () => {
+    // Dispatch logout to clear user state
+    dispatch({ type: "auth/logout" });
+    // Redirect to admin login page
+    navigate("/admin");
+  };
+
+  const handleCloseAdminWarning = () => {
+    setShowAdminWarning(false);
+    // Redirect to home page
+    navigate("/");
+  };
+
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
+
+    // Prevent admin from placing order
+    if (isAdmin) {
+      setShowAdminWarning(true);
+      return;
+    }
+
+    // Redirect guest users to login
+    if (!isLoggedIn) {
+      toast.error("Please login or register to checkout");
+      navigate("/login?redirect=/checkout");
+      return;
+    }
 
     if (!items.length) {
       return;
@@ -115,6 +154,39 @@ const Checkout = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter">
+      {/* Admin Warning Modal */}
+      {showAdminWarning && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+                <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">Admin Checkout Not Allowed</h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              You are currently logged in as an admin. Please logout as admin and login/register as a customer to place an order.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleAdminLogout}
+                className="flex-1 bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition"
+              >
+                Logout as Admin
+              </button>
+              <button
+                onClick={handleCloseAdminWarning}
+                className="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 transition"
+              >
+                Go to Home
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* left section */}
       <div className="bg-white rounded-lg p-6">
         <h2 className="text-2xl uppercase mb-6">Checkout</h2>
@@ -240,14 +312,18 @@ const Checkout = () => {
           <div className="mt-6">
             <button
               type="submit"
-              disabled={isPlacingOrder || isCartEmpty}
+              disabled={isPlacingOrder || isCartEmpty || isAdmin || !isLoggedIn}
               className="w-full bg-black text-white py-3 rounded disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isPlacingOrder
                 ? "Placing Order..."
                 : isCartEmpty
-                  ? "Cart is Empty"
-                  : "Place Cash on Delivery Order"}
+                ? "Cart is Empty"
+                : isAdmin
+                ? "Logout as Admin First"
+                : !isLoggedIn
+                ? "Login to Checkout"
+                : "Place Cash on Delivery Order"}
             </button>
           </div>
         </form>

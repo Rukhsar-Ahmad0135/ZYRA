@@ -104,9 +104,9 @@ export const CartProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduxCart?.products]);
 
-  // cartCount = total quantity (sum across all line items)
+  // cartCount = number of unique line items (not total quantity)
   const cartCount = useMemo(
-    () => items.reduce((n, it) => n + (Number(it.quantity) || 0), 0),
+    () => items.length,
     [items],
   );
 

@@ -9,8 +9,9 @@ import { useEffect, useState } from "react";
 import { logout } from "../redux/slices/authSlice";
 import MyOrderPage from "./MyOrderPage";
 import { useClerk, useUser, UserProfile } from "@clerk/react";
+import RequireAuth from "../components/auth/RequireAuth";
 
-const Profile = () => {
+const ProfileContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signOut } = useClerk();
@@ -112,5 +113,11 @@ const Profile = () => {
     </div>
   );
 };
+
+const Profile = () => (
+  <RequireAuth>
+    <ProfileContent />
+  </RequireAuth>
+);
 
 export default Profile;

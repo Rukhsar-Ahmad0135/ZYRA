@@ -51,21 +51,25 @@ const RequireAuth = ({ children }) => {
     );
   }
 
-  // In Clerk mode (production): if Clerk says user is signed in, but Redux user isn't loaded yet,
-  // wait for the profile fetch to complete (authLoading) instead of showing "Loading profile..."
-  if (!isLocalMode && isSignedIn && !user && authLoading) {
-    return (
-      <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
-        Loading profile...
-      </div>
-    );
+  // In Clerk mode (production): if Clerk says user is signed in, allow access
+  // The Redux user will be populated asynchronously via fetchProfile in ClerkAuthBridge
+  if (!isLocalMode && isSignedIn) {
+    return children;
   }
 
-  // In Clerk mode: signed in but no user in Redux and not loading — allow access
-  // (user data will populate shortly via async fetchProfile)
-  if (!isLocalMode && isSignedIn && !user && !authLoading) {
-    // Allow access - user data will populate shortly
-    return children;
+  // In Clerk mode: not signed in
+  if (!isLocalMode && !isSignedIn) {
+    if (!hasRedirected) {
+      setHasRedirected(true);
+      const target = location.pathname + location.search;
+      const search = `?redirect=${encodeURIComponent(target)}`;
+      return <Navigate to={`/login${search}`} replace />;
+    }
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
+        Redirecting to login...
+      </div>
+    );
   }
 
   // If none of the above matched but we have a user, render children

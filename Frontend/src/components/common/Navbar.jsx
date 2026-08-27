@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import CartDrawer from "../layout/CartDrawer";
 import Searchbar from "./Searchbar";
 import { useCart } from "../cart/useCart";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -20,8 +21,16 @@ const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
   const { user: clerkUser } = useUser();
   const { cartCount } = useCart();
+  const dispatch = useDispatch();
 
   const cartItemCount = cartCount;
+
+  const isAdmin = user?.role === "admin" || user?.role === "superadmin";
+
+  const handleAdminLogout = () => {
+    dispatch({ type: "auth/logout" });
+    window.location.href = "/admin";
+  };
 
   const toggleNavDrawer = () => {
     setNavDrawerOpen(!navDrawerOpen);
@@ -68,13 +77,21 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4">
           <Show when="signed-in">
-            {user?.role === "admin" && (
-              <Link
-                to="/admin"
-                className="block bg-black px-2 rounded text-sm text-white hover:bg-gray-800"
-              >
-                Admin
-              </Link>
+            {isAdmin && (
+              <div className="flex items-center space-x-2">
+                <Link
+                  to="/admin"
+                  className="block bg-black px-2 rounded text-sm text-white hover:bg-gray-800"
+                >
+                  Admin
+                </Link>
+                <button
+                  onClick={handleAdminLogout}
+                  className="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition"
+                >
+                  Admin Logout
+                </button>
+              </div>
             )}
             <Link
               to="/profile"

@@ -18,7 +18,7 @@ const apiClient = axios.create({
   withCredentials: true, // send httpOnly cookies
 });
 
-// Helper to get legacy token from localStorage
+// Helper to get legacy token from localStorage (synchronous)
 const getLegacyToken = () => {
   try {
     return localStorage.getItem("legacyToken");
@@ -28,7 +28,8 @@ const getLegacyToken = () => {
 };
 
 // Request interceptor — attach auth token
-// Priority: 1. Clerk token (production and local mode if available), 2. Legacy JWT token (local mode fallback)
+// Priority in local mode: 1. localStorage legacyToken (immediate), 2. Clerk token (async)
+// Priority in production: 1. Clerk token
 apiClient.interceptors.request.use(
   async (config) => {
     // For FormData uploads, let the browser set the multipart boundary in
@@ -41,7 +42,19 @@ apiClient.interceptors.request.use(
       }
     }
 
-    // Try Clerk token first in all modes (production and local)
+    const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+
+    // In local mode: check localStorage FIRST (synchronous, no race condition)
+    if (isLocalMode) {
+      const legacyToken = getLegacyToken();
+      if (legacyToken) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${legacyToken}`;
+        return config;
+      }
+    }
+
+    // Try Clerk token (production mode, or local mode if no legacy token yet)
     const clerkToken = await getAuthToken();
     if (clerkToken) {
       config.headers = config.headers || {};
@@ -49,8 +62,7 @@ apiClient.interceptors.request.use(
       return config;
     }
 
-    // Fallback to legacy token for local mode
-    const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
+    // Final fallback for local mode (if Clerk token getter not ready yet)
     if (isLocalMode) {
       const legacyToken = getLegacyToken();
       if (legacyToken) {

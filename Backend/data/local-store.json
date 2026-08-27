@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-03T04:39:41.030Z",
-    "updatedAt": "2026-08-26T22:06:43.987Z"
+    "updatedAt": "2026-08-27T14:26:13.432Z"
   },
   "products": [
     {
@@ -2400,6 +2400,38 @@
       "finalizedAt": "2026-08-20T17:54:47.505Z",
       "createdAt": "2026-08-20T17:54:47.465Z",
       "updatedAt": "2026-08-20T17:54:47.505Z"
+    },
+    {
+      "_id": "6a9048101ccd2d9689b54f9f",
+      "userId": "6a873f031389dca9b1f09a59",
+      "checkoutItems": [
+        {
+          "productId": "6a701b8c929413763db64f0d",
+          "name": "Slim-Fit Easy-Iron Shirt",
+          "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "price": 34.99,
+          "quantity": 3
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "Rukhsar",
+        "lastName": "Ahmad",
+        "phone": "03208433088",
+        "address": "lahore gulber 3",
+        "city": "lahore",
+        "postalCode": "55053",
+        "country": "pakistan "
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 104.97,
+      "isPaid": false,
+      "paidAt": null,
+      "paymentStatus": "pending",
+      "paymentDetails": null,
+      "isFinalized": true,
+      "finalizedAt": "2026-08-27T14:22:08.934Z",
+      "createdAt": "2026-08-27T14:22:08.900Z",
+      "updatedAt": "2026-08-27T14:22:08.934Z"
     }
   ],
   "orders": [
@@ -2590,6 +2622,38 @@
       "status": "shipped",
       "createdAt": "2026-08-20T17:54:47.505Z",
       "updatedAt": "2026-08-26T22:05:59.468Z"
+    },
+    {
+      "_id": "6a9048101ccd2d9689b54fa0",
+      "userId": "6a873f031389dca9b1f09a59",
+      "orderItems": [
+        {
+          "productId": "6a701b8c929413763db64f0d",
+          "name": "Slim-Fit Easy-Iron Shirt",
+          "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "price": 34.99,
+          "quantity": 3
+        }
+      ],
+      "shippingAddress": {
+        "firstName": "Rukhsar",
+        "lastName": "Ahmad",
+        "phone": "03208433088",
+        "address": "lahore gulber 3",
+        "city": "lahore",
+        "postalCode": "55053",
+        "country": "pakistan "
+      },
+      "paymentMethod": "Cash on Delivery",
+      "totalPrice": 104.97,
+      "isPaid": true,
+      "paidAt": "2026-08-27T14:25:33.640Z",
+      "isDelivered": true,
+      "deliveredAt": "2026-08-27T14:26:01.184Z",
+      "paymentStatus": "paid",
+      "status": "delivered",
+      "createdAt": "2026-08-27T14:22:08.934Z",
+      "updatedAt": "2026-08-27T14:26:01.184Z"
     }
   ],
   "subscribers": [
