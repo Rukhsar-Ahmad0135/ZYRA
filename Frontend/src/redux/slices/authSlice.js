@@ -167,6 +167,18 @@ const authSlice = createSlice({
       localStorage.removeItem(USER_KEY);
       // Note: We don't remove legacy token here as it might be needed for local mode
     },
+    // Directly set user data without an API call. Used when we already have
+    // updated data from the server and need to persist it locally.
+    setUser: (state, action) => {
+      state.user = action.payload;
+      localStorage.setItem(USER_KEY, JSON.stringify(action.payload));
+    },
+    // Update specific fields on the user object without an API call.
+    updateUserFields: (state, action) => {
+      const updated = { ...state.user, ...action.payload };
+      state.user = updated;
+      localStorage.setItem(USER_KEY, JSON.stringify(updated));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -205,7 +217,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, generateGuestId, clearUser } = authSlice.actions;
+export const { logout, generateGuestId, clearUser, setUser, updateUserFields } = authSlice.actions;
 export default authSlice.reducer;
 
 

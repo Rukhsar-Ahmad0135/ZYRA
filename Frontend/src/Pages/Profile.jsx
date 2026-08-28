@@ -6,7 +6,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { logout } from "../redux/slices/authSlice";
+import { logout, setUser } from "../redux/slices/authSlice";
 import { updateProfile } from "../redux/slices/authSlice";
 import MyOrderPage from "./MyOrderPage";
 import { useClerk, useUser } from "@clerk/react";
@@ -166,6 +166,9 @@ const ProfileContent = () => {
       const response = await apiClient.put("/api/users/profile", {
         addresses: addresses.filter((addr) => addr._id !== addressId),
       });
+      // Update Redux state and localStorage so deletion persists after refresh
+      const updatedUser = { ...user, addresses: response.data.addresses || [] };
+      dispatch(setUser(updatedUser));
       setAddresses(response.data.addresses || []);
     } catch (error) {
       console.error("Failed to delete address:", error);
@@ -190,13 +193,20 @@ const ProfileContent = () => {
     };
 
     try {
+      const updatedAddresses = editingAddress
+        ? addresses.map((addr) => (addr._id === editingAddress._id ? addressToSave : addr))
+        : [...addresses, addressToSave];
+
       const response = await apiClient.put("/api/users/profile", {
-        addresses: editingAddress
-          ? addresses.map((addr) => (addr._id === editingAddress._id ? addressToSave : addr))
-          : [...addresses, addressToSave],
+        addresses: updatedAddresses,
       });
 
-      setAddresses(response.data.addresses || []);
+      // Update localStorage and Redux state so data persists after refresh
+      const updatedUser = { ...user, addresses: updatedAddresses };
+      localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+      dispatch(setUser(updatedUser));
+
+      setAddresses(updatedAddresses);
       setShowAddressForm(false);
       setEditingAddress(null);
       setFormData({
@@ -228,20 +238,18 @@ const ProfileContent = () => {
       });
 
       // Update local state with response data
+      const updatedUser = {
+        ...user,
+        name: response.data.name || settingsFormData.fullName,
+        phone: response.data.phone || settingsFormData.phoneNumber,
+      };
+
+      // Persist to localStorage and Redux so it survives refresh
+      localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+      dispatch(updateProfile(updatedUser));
+
       setSaveMessage({ type: "success", text: "Profile updated successfully!" });
 
-      // Refresh user data
-      if (response.data) {
-        // If the API returns updated user data, update our local state
-        if (response.data.name) {
-          // We can't directly update Clerk user data, but we can update local user state
-        }
-        if (response.data.addresses) {
-          setAddresses(response.data.addresses);
-        }
-      }
-
-      // Clear success message after 3 seconds
       setTimeout(() => {
         setSaveMessage({ type: "", text: "" });
       }, 3000);

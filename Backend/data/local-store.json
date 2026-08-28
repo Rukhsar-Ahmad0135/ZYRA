@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-03T04:39:41.030Z",
-    "updatedAt": "2026-08-28T14:31:14.075Z"
+    "updatedAt": "2026-08-28T16:59:32.684Z"
   },
   "products": [
     {
@@ -1595,6 +1595,58 @@
       "isFeatured": false,
       "createdAt": "2026-08-03T04:39:40.758Z",
       "updatedAt": "2026-08-03T04:39:40.759Z"
+    },
+    {
+      "_id": "6a91be740d04ad1779068aa5",
+      "name": "Men baggy jeans",
+      "description": "Men's stylish baggy fit jeans designed for a relaxed and comfortable look. Made from durable cotton denim with a loose fit through the legs, making them perfect for casual everyday wear and streetwear outfits.",
+      "price": 77,
+      "discountPrice": 3,
+      "countInStock": 5,
+      "sku": "ZYRA-MBJ-001",
+      "category": "Bottom Wear",
+      "brand": "ZYRA",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Black",
+        "Blue",
+        "charkolgrey"
+      ],
+      "collections": "New Arrivals",
+      "material": "Cotton",
+      "gender": "Men",
+      "images": [
+        {
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787936367/ZYRA/f4vcjzcfifu2rvsnbjao.jpg",
+          "publicId": "ZYRA/f4vcjzcfifu2rvsnbjao",
+          "altText": "Men baggy jeans"
+        },
+        {
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787936367/ZYRA/grifwh8h7deu5kuopz55.jpg",
+          "publicId": "ZYRA/grifwh8h7deu5kuopz55",
+          "altText": "Men baggy jeans"
+        }
+      ],
+      "isFeatured": true,
+      "isPublished": true,
+      "tags": [
+        "men's jeans",
+        "baggy jeans",
+        "loose fit jeans",
+        "denim",
+        "casual wear",
+        "streetwear",
+        "men's fashion",
+        "relaxed fit"
+      ],
+      "user": "6a8f24e64dfcf85b12d0f649",
+      "createdAt": "2026-08-28T16:59:32.684Z",
+      "updatedAt": "2026-08-28T16:59:32.684Z"
     }
   ],
   "users": [

@@ -8,11 +8,17 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import streamifier from "streamifier";
 
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+let _configured = false;
+
+function ensureCloudinaryConfig() {
+  if (_configured) return;
+  cloudinary.v2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+  _configured = true;
+}
 
 const ALLOWED_MIME_TYPES = [
   "image/jpeg",
@@ -70,6 +76,7 @@ export const uploadMany = multer({
  * Uses the configured product folder from environment.
  */
 export const uploadToCloudinary = (fileBuffer, folder) => {
+  ensureCloudinaryConfig();
   const uploadFolder = folder || process.env.CLOUDINARY_PRODUCT_FOLDER || "ZYRA";
   return new Promise((resolve, reject) => {
     const stream = cloudinary.v2.uploader.upload_stream(
@@ -89,6 +96,7 @@ export const uploadToCloudinary = (fileBuffer, folder) => {
  */
 export const deleteFromCloudinary = async (publicId) => {
   if (!publicId || typeof publicId !== "string") return;
+  ensureCloudinaryConfig();
   try {
     const result = await cloudinary.v2.uploader.destroy(publicId);
     if (result?.result !== "ok" && result?.result !== "not found") {
@@ -120,8 +128,6 @@ export const cleanupRemovedImages = async (previousImages, nextImages) => {
     .map((img) => (typeof img === "string" ? null : img?.publicId || null))
     .filter((id) => id && !keep.has(id));
   for (const id of removed) {
-    // fire-and-forget; deleteFromCloudinary swallows its own errors
     await deleteFromCloudinary(id);
   }
 };
-

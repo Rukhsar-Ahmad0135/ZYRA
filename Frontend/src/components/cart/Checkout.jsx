@@ -14,6 +14,7 @@ import {
 import { fetchCart } from "../../redux/slices/cartSlice";
 
 import { toast } from "sonner";
+import apiClient from "../../api/client.js";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -22,15 +23,16 @@ const Checkout = () => {
   const { user, guestId } = useSelector((state) => state.auth);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [showAdminWarning, setShowAdminWarning] = useState(false);
-  const [shippingAddress, setShippingAddress] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    city: "",
-    postalCode: "",
-    country: "",
-    phone: "",
-  });
+const [shippingAddress, setShippingAddress] = useState({
+      firstName: "",
+      lastName: "",
+      address: "",
+      city: "",
+      postalCode: "",
+      country: "",
+      phone: "",
+    });
+    const [saveAddressForFuture, setSaveAddressForFuture] = useState(false);
 
   const orderItems = useMemo(
     () =>
@@ -141,6 +143,37 @@ const Checkout = () => {
 
       // 4) Clear local cart
       clearCart();
+
+      // 5) Optionally save this address to the user's profile for future use
+      if (saveAddressForFuture && user) {
+        try {
+          const token = localStorage.getItem("userToken");
+          const userId = user._id || user.id;
+          if (userId) {
+            // Fetch current profile to merge addresses
+            const profileRes = await apiClient.get("/api/users/profile");
+            const existingAddresses = profileRes.data?.addresses || [];
+            const newAddress = {
+              _id: `addr_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+              firstName: shippingPayload.firstName,
+              lastName: shippingPayload.lastName,
+              phone: shippingPayload.phone,
+              address: shippingPayload.address,
+              city: shippingPayload.city,
+              postalCode: shippingPayload.postalCode,
+              country: shippingPayload.country,
+              isDefault: existingAddresses.length === 0,
+            };
+            await apiClient.put("/api/users/profile", {
+              addresses: [...existingAddresses, newAddress],
+            });
+          }
+        } catch (addrErr) {
+          // best-effort — don't fail the order
+          console.warn("Failed to save address to profile:", addrErr);
+        }
+      }
+
       navigate("/confirmation", { state: { order: finalOrder } });
       toast.success("Order placed successfully");
     } catch (err) {
@@ -300,6 +333,17 @@ const Checkout = () => {
               className="w-full p-2 border rounded"
               required
             />
+          </div>
+          <div className="mb-4">
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={saveAddressForFuture}
+                onChange={(e) => setSaveAddressForFuture(e.target.checked)}
+                className="w-4 h-4 text-zyra-primary border-stone-300 rounded focus:ring-zyra-primary"
+              />
+              <span className="text-sm text-stone-700">Save this address for future orders</span>
+            </label>
           </div>
           <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-amber-800">
