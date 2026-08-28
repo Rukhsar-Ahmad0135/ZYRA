@@ -1,38 +1,52 @@
 //import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster } from "sonner";
+import { Suspense, lazy } from "react";
 import UserLayout from "./components/layout/UserLayout";
-import Home from "./Pages/Home";
 import { CartProvider } from "./components/cart/CartContext.jsx";
-import Login from "./Pages/Login";
-import LocalLogin from "./Pages/LocalLogin";
-import Register from "./Pages/Register";
-import Profile from "./Pages/Profile";
-import CollectionPage from "./Pages/CollectionPage";
-import CartCheckout from "./components/cart/Checkout";
-import ProductsDetails from "./components/products/ProductsDetails";
-import OrderConfirmation from "./Pages/OrderConfirmation";
-import OrderDetailsPage from "./Pages/OrderDetailsPage";
-import MyOrderPage from "./Pages/MyOrderPage";
-import AdminOrderDetailsPage from "./Pages/Admin/AdminOrderDetailsPage";
-import AdminLayout from "./components/Admin/AdminLayout";
-import AdminHomePage from "./Pages/AdminHomePage";
-import UserManagment from "./components/Admin/UserManagment";
-import ProductManagement from "./components/Admin/ProductManagement";
-import EditProductPage from "./components/Admin/EditProductPage";
-import OrderManagement from "./components/Admin/OrderManagement.jsx";
-import ClerkAuthBridge from "./components/auth/ClerkAuthBridge.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import ClerkAuthBridge from "./components/auth/ClerkAuthBridge.jsx";
 import RequireAuth from "./components/auth/RequireAuth";
 import RequireAdmin from "./components/auth/RequireAdmin";
+
+// Lazy load heavy pages for better performance
+const Home = lazy(() => import("./Pages/Home"));
+const Login = lazy(() => import("./Pages/Login"));
+const LocalLogin = lazy(() => import("./Pages/LocalLogin"));
+const Register = lazy(() => import("./Pages/Register"));
+const Profile = lazy(() => import("./Pages/Profile"));
+const CollectionPage = lazy(() => import("./Pages/CollectionPage"));
+const CartCheckout = lazy(() => import("./components/cart/Checkout"));
+const ProductsDetails = lazy(() => import("./components/products/ProductsDetails"));
+const OrderConfirmation = lazy(() => import("./Pages/OrderConfirmation"));
+const OrderDetailsPage = lazy(() => import("./Pages/OrderDetailsPage"));
+const MyOrderPage = lazy(() => import("./Pages/MyOrderPage"));
+const AdminOrderDetailsPage = lazy(() => import("./Pages/Admin/AdminOrderDetailsPage"));
+const AdminLayout = lazy(() => import("./components/Admin/AdminLayout"));
+const AdminHomePage = lazy(() => import("./Pages/AdminHomePage"));
+const UserManagment = lazy(() => import("./components/Admin/UserManagment"));
+const ProductManagement = lazy(() => import("./components/Admin/ProductManagement"));
+const EditProductPage = lazy(() => import("./components/Admin/EditProductPage"));
+const OrderManagement = lazy(() => import("./components/Admin/OrderManagement.jsx"));
+const NotFound = lazy(() => import("./Pages/NotFound"));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-stone-50">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-zyra-primary border-t-transparent rounded-full animate-spin"></div>
+      <p className="text-stone-600">Loading...</p>
+    </div>
+  </div>
+);
+
 function App() {
   return (
     <Provider store={store}>
       <CartProvider>
         <BrowserRouter>
           <ClerkAuthBridge />
-          {/* Top-right cart notifications: black background, white text, white close button, auto-dismiss after 3s. */}
           <Toaster
             position="top-right"
             richColors={false}
@@ -57,83 +71,82 @@ function App() {
               },
             }}
           />
-          {/* home
-      product
-      cart */}
-          <Routes>
-            <Route path="/" element={<UserLayout></UserLayout>}>
-              <Route index element={<Home></Home>}></Route>
-              <Route path="login/*" element={<Login></Login>}></Route>
-              <Route path="local-login/*" element={<LocalLogin></LocalLogin>}></Route>
-              <Route path="register/*" element={<Register></Register>}></Route>
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<UserLayout />}>
+                <Route index element={<Home />} />
+                <Route path="login/*" element={<Login />} />
+                <Route path="local-login/*" element={<LocalLogin />} />
+                <Route path="register/*" element={<Register />} />
+                <Route
+                  path="profile"
+                  element={
+                    <RequireAuth>
+                      <Profile />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/collections/:collection"
+                  element={<CollectionPage />}
+                />
+                <Route
+                  path="products/:id"
+                  element={<ProductsDetails />}
+                />
+                <Route
+                  path="checkout"
+                  element={
+                    <RequireAuth>
+                      <CartCheckout />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="confirmation"
+                  element={
+                    <RequireAuth>
+                      <OrderConfirmation />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="order/:id"
+                  element={
+                    <RequireAuth>
+                      <OrderDetailsPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/my-orders"
+                  element={
+                    <RequireAuth>
+                      <MyOrderPage />
+                    </RequireAuth>
+                  }
+                />
+              </Route>
               <Route
-                path="profile"
+                path="/admin"
                 element={
-                  <RequireAuth>
-                    <Profile></Profile>
-                  </RequireAuth>
+                  <RequireAdmin>
+                    <AdminLayout />
+                  </RequireAdmin>
                 }
-              ></Route>
-              <Route
-                path="/collections/:collection"
-                element={<CollectionPage></CollectionPage>}
-              ></Route>
-              <Route
-                path="products/:id"
-                element={<ProductsDetails></ProductsDetails>}
-              ></Route>
-              <Route
-                path="checkout"
-                element={
-                  <RequireAuth>
-                    <CartCheckout></CartCheckout>
-                  </RequireAuth>
-                }
-              ></Route>
-              <Route
-                path="confirmation"
-                element={
-                  <RequireAuth>
-                    <OrderConfirmation></OrderConfirmation>
-                  </RequireAuth>
-                }
-              ></Route>
-              <Route
-                path="order/:id"
-                element={
-                  <RequireAuth>
-                    <OrderDetailsPage></OrderDetailsPage>
-                  </RequireAuth>
-                }
-              ></Route>
-              <Route
-                path="/my-orders"
-                element={
-                  <RequireAuth>
-                    <MyOrderPage></MyOrderPage>
-                  </RequireAuth>
-                }
-              ></Route>
-              {/* User layout  */}
-            </Route>
-            <Route
-              path="/admin"
-              element={
-                <RequireAdmin>
-                  <AdminLayout />
-                </RequireAdmin>
-              }
-            >
-              <Route index element={<AdminHomePage />} />
-              <Route path="orders" element={<OrderManagement />} />
-              <Route path="order/:id" element={<AdminOrderDetailsPage />} />
-              <Route path="users" element={<UserManagment />} />
-              <Route path="products" element={<ProductManagement />} />
-              <Route path="products/new" element={<EditProductPage />} />
-              <Route path="products/:id/edit" element={<EditProductPage />} />
-            </Route>
-            <Route>{/* Admin layout  */}</Route>
-          </Routes>
+              >
+                <Route index element={<AdminHomePage />} />
+                <Route path="orders" element={<OrderManagement />} />
+                <Route path="order/:id" element={<AdminOrderDetailsPage />} />
+                <Route path="users" element={<UserManagment />} />
+                <Route path="products" element={<ProductManagement />} />
+                <Route path="products/new" element={<EditProductPage />} />
+                <Route path="products/:id/edit" element={<EditProductPage />} />
+              </Route>
+              {/* 404 Catch-all - must be last */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </CartProvider>
     </Provider>

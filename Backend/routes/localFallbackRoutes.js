@@ -34,6 +34,7 @@ import {
   passwordValidator,
   roleValidator,
 } from "../middleware/validate.js";
+import { uploadToCloudinary } from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 const uploadsDir = path.resolve(process.cwd(), "uploads");
@@ -48,7 +49,7 @@ const localUpload = multer({
   storage: multer.memoryStorage(),
   limits: {
     fileSize: 5 * 1024 * 1024,
-    files: 1,
+    files: 10,
   },
   fileFilter: (req, file, cb) => {
     if (allowedMimeTypes.has(file.mimetype)) {
@@ -204,6 +205,8 @@ const responseUser = (user) => ({
   name: user.name,
   email: user.email,
   role: user.role,
+  phone: user.phone,
+  addresses: user.addresses || [],
 });
 
 const responseProduct = (product) => toPlainProduct(product);
@@ -419,6 +422,9 @@ router.put("/users/profile", express.json(), async (req, res, next) => {
     if (req.body.name) storedUser.name = req.body.name;
     if (req.body.email) storedUser.email = String(req.body.email).trim().toLowerCase();
     if (req.body.password) storedUser.password = bcrypt.hashSync(req.body.password, 10);
+    // Address fields
+    if (req.body.phone) storedUser.phone = req.body.phone;
+    if (Array.isArray(req.body.addresses)) storedUser.addresses = req.body.addresses;
     storedUser.updatedAt = now();
     return storedUser;
   });
@@ -924,17 +930,12 @@ router.post("/admin/products/upload", (req, res, next) => {
       return res.status(400).json({ message: "No images uploaded" });
     }
     try {
-      await fs.promises.mkdir(uploadsDir, { recursive: true });
       const images = [];
       for (const file of files) {
-        const extension = allowedMimeTypes.get(file.mimetype) || "";
-        const filename = `${Date.now()}-${crypto.randomUUID()}${extension}`;
-        const destination = path.join(uploadsDir, filename);
-        await fs.promises.writeFile(destination, file.buffer);
-        const baseUrl = `${req.protocol}://${req.get("host")}`;
+        const result = await uploadToCloudinary(file.buffer);
         images.push({
-          url: `${baseUrl}/uploads/${filename}`,
-          publicId: filename,
+          url: result.secure_url,
+          publicId: result.public_id,
         });
       }
       res.status(201).json({ images });

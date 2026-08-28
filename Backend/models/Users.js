@@ -1,6 +1,20 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
+const addressSchema = new mongoose.Schema(
+    {
+        firstName: { type: String, trim: true },
+        lastName: { type: String, trim: true },
+        phone: { type: String, trim: true },
+        address: { type: String, trim: true },
+        city: { type: String, trim: true },
+        postalCode: { type: String, trim: true },
+        country: { type: String, trim: true },
+        isDefault: { type: Boolean, default: false },
+    },
+    { _id: true, timestamps: true }
+);
+
 const userSchema = new mongoose.Schema(
     {
         clerkId: {
@@ -22,8 +36,6 @@ const userSchema = new mongoose.Schema(
             unique: true,
             trim: true,
             lowercase: true,
-            // Slightly more permissive than RFC-5321: still rejects
-            // obvious garbage but accepts the realistic local-part shapes.
             match: [
                 /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
                 "Please fill a valid email address",
@@ -36,7 +48,6 @@ const userSchema = new mongoose.Schema(
             select: false,
             validate: {
                 validator: (value) => {
-                    // Enforce complexity: at least one lowercase, uppercase, number
                     return /[a-z]/.test(value) && /[A-Z]/.test(value) && /\d/.test(value);
                 },
                 message: "Password must contain at least one lowercase letter, one uppercase letter, and one number",
@@ -49,6 +60,11 @@ const userSchema = new mongoose.Schema(
                 message: "Role must be either 'customer' or 'admin'",
             },
             default: "customer",
+        },
+        addresses: [addressSchema],
+        phone: {
+            type: String,
+            trim: true,
         },
     },
     { timestamps: true }
@@ -70,4 +86,3 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 
 const User = mongoose.model("User", userSchema);
 export default User;
-

@@ -25,11 +25,20 @@ router.post(
     try {
       const files = Array.isArray(req.files) ? req.files : [];
       if (files.length === 0) {
-        res.status(400);
-        throw new Error("No images uploaded");
+        return res.status(400).json({ message: "No images uploaded" });
       }
 
-      const folder = process.env.CLOUDINARY_PRODUCT_FOLDER || "zyra/products";
+      // Validate file types and sizes
+      for (const file of req.files) {
+        if (!["image/jpeg", "image/png", "image/webp", "image/gif", "image/avif"].includes(file.mimetype)) {
+          return res.status(400).json({ message: `Invalid file type: ${file.originalname}. Only JPEG, PNG, WEBP, GIF, AVIF allowed.` });
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          return res.status(400).json({ message: `File too large: ${file.originalname}. Max size is 5MB.` });
+        }
+      }
+
+      const folder = process.env.CLOUDINARY_PRODUCT_FOLDER || "ZYRA";
       const results = [];
       for (const file of files) {
         const result = await uploadToCloudinary(file.buffer, folder);
@@ -40,10 +49,7 @@ router.post(
       }
       res.status(201).json({ images: results });
     } catch (error) {
-      if (error.message && error.message.includes("Invalid file type")) {
-        res.status(400);
-      }
-      next(error);
+      return next(error);
     }
   }
 );

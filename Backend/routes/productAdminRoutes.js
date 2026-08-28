@@ -210,6 +210,10 @@ router.put(
         }
       }
 
+      // Capture previous images BEFORE mutating the document so we can
+      // clean up any Cloudinary assets that were removed during this edit.
+      const previousImages = product.images || [];
+
       // Normalize incoming images (same shape as the create handler).
       const normalizedImages = Array.isArray(images)
         ? images

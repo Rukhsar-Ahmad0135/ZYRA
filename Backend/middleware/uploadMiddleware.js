@@ -23,6 +23,7 @@ const ALLOWED_MIME_TYPES = [
 ];
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILES_PER_REQUEST = 10;
 
 // Store file in memory so we can stream to Cloudinary
 const storage = multer.memoryStorage();
@@ -48,7 +49,6 @@ export const upload = multer({
  * Allows up to `MAX_FILES_PER_REQUEST` files (default 10) in a single
  * `multipart/form-data` request, under the field name `images`.
  */
-export const MAX_FILES_PER_REQUEST = 10;
 export const uploadMany = multer({
   storage,
   limits: { fileSize: MAX_FILE_SIZE, files: MAX_FILES_PER_REQUEST },
@@ -67,11 +67,13 @@ export const uploadMany = multer({
 
 /**
  * Streams an in-memory buffer to Cloudinary and resolves with the upload result.
+ * Uses the configured product folder from environment.
  */
-export const uploadToCloudinary = (fileBuffer, folder = "zyra") => {
+export const uploadToCloudinary = (fileBuffer, folder) => {
+  const uploadFolder = folder || process.env.CLOUDINARY_PRODUCT_FOLDER || "ZYRA";
   return new Promise((resolve, reject) => {
     const stream = cloudinary.v2.uploader.upload_stream(
-      { folder, resource_type: "image" },
+      { folder: uploadFolder, resource_type: "image" },
       (error, result) => {
         if (result) resolve(result);
         else reject(error);

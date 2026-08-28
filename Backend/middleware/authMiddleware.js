@@ -77,7 +77,8 @@ const syncClerkUser = async (claims) => {
       user.email = email;
       needsSave = true;
     }
-    if (!user.name && name) {
+    // Always sync name from Clerk - update if Clerk has a name
+    if (name && user.name !== name) {
       user.name = name;
       needsSave = true;
     }
