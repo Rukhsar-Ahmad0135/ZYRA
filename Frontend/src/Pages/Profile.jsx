@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { logout } from "../redux/slices/authSlice";
+import { updateProfile } from "../redux/slices/authSlice";
 import MyOrderPage from "./MyOrderPage";
 import { useClerk, useUser } from "@clerk/react";
 import RequireAuth from "../components/auth/RequireAuth";
@@ -103,8 +104,11 @@ const ProfileContent = () => {
 
     if (!isLocalMode && clerkUser?.id) {
       fetchAddresses();
+    } else if (isLocalMode && user?.addresses) {
+      // In local mode, use addresses from Redux store (already loaded from local-store.json)
+      setAddresses(user.addresses);
     }
-  }, [isLocalMode, clerkUser?.id]);
+  }, [isLocalMode, clerkUser?.id, user?.addresses]);
 
   const getInitials = (name) => {
     if (!name) return "?";

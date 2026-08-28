@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-03T04:39:41.030Z",
-    "updatedAt": "2026-08-28T11:49:28.969Z"
+    "updatedAt": "2026-08-28T14:24:47.085Z"
   },
   "products": [
     {
@@ -152,12 +152,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922088/Printed_Resort_Shirt_d6ttpy.jpg",
           "altText": "Printed Resort Shirt front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
-          "altText": "Printed Resort Shirt detail view"
         }
       ],
       "rating": 4.4,
@@ -235,12 +231,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922082/Polo_T-Shirt_with_Ribbed_Collar_noj8cb.jpg",
           "altText": "Polo T-Shirt with Ribbed Collar front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=500&fit=crop",
-          "altText": "Polo T-Shirt with Ribbed Collar detail view"
         }
       ],
       "rating": 4.3,
@@ -276,12 +268,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922075/Oversized_Graphic_T-Shirt_c4croc.jpg",
           "altText": "Oversized Graphic T-Shirt front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
-          "altText": "Oversized Graphic T-Shirt detail view"
         }
       ],
       "rating": 4.6,
@@ -318,11 +306,11 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922057/Regular-Fit_Henley_Shirt_yyzrqx.jpg",
           "altText": "Regular-Fit Henley Shirt front view"
         },
         {
-          "url": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922058/Regular-Fit_Henley_Shirt_1_oqtxkm.jpg",
           "altText": "Regular-Fit Henley Shirt detail view"
         }
       ],
@@ -361,12 +349,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922069/Long-Sleeve_Thermal_Tee_qbxxhf.jpg",
           "altText": "Long-Sleeve Thermal Tee front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
-          "altText": "Long-Sleeve Thermal Tee detail view"
         }
       ],
       "rating": 4.4,
@@ -569,12 +553,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922018/Denim_Jeans_d4zivv.jpg",
           "altText": "Denim Jeans front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?w=500&h=500&fit=crop",
-          "altText": "Denim Jeans detail view"
         }
       ],
       "rating": 4.6,
@@ -777,12 +757,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922058/Relaxed_Fit_Sweatpants_pfbvre.jpg",
           "altText": "Relaxed Fit Sweatpants front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=500&h=500&fit=crop",
-          "altText": "Relaxed Fit Sweatpants detail view"
         }
       ],
       "rating": 4.3,
@@ -817,12 +793,8 @@
       "gender": "Men",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922024/Formal_Dress_Pants_dyzsfh.jpg",
           "altText": "Formal Dress Pants front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&h=500&fit=crop",
-          "altText": "Formal Dress Pants detail view"
         }
       ],
       "rating": 4.9,
@@ -860,12 +832,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787926304/High-Waist_Skinny_Jeans_kmzgkf.jpg",
           "altText": "High-Waist Skinny Jeans front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&h=500&fit=crop",
-          "altText": "High-Waist Skinny Jeans detail view"
         }
       ],
       "rating": 4.8,
@@ -985,12 +953,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922081/Pleated_Midi_Skirt_c6pv75.jpg",
           "altText": "Pleated Midi Skirt front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "altText": "Pleated Midi Skirt detail view"
         }
       ],
       "rating": 4.6,
@@ -1027,11 +991,11 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922023/Flared_Palazzo_Pants_ydkwtj.jpg",
           "altText": "Flared Palazzo Pants front view"
         },
         {
-          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922024/Flared_Palazzo_Pants_1_hl3wfu.jpg",
           "altText": "Flared Palazzo Pants detail view"
         }
       ],
@@ -1069,12 +1033,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922059/High-Rise_Joggers_wy3hib.jpg",
           "altText": "High-Rise Joggers front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=500&fit=crop",
-          "altText": "High-Rise Joggers detail view"
         }
       ],
       "rating": 4.3,
@@ -1110,12 +1070,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922078/Paperbag_Waist_Shorts_qsbokl.jpg",
           "altText": "Paperbag Waist Shorts front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop",
-          "altText": "Paperbag Waist Shorts detail view"
         }
       ],
       "rating": 4.5,
@@ -1194,12 +1150,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787921825/Culottes_k0lfgv.jpg",
           "altText": "Culottes front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "altText": "Culottes detail view"
         }
       ],
       "rating": 4.6,
@@ -1236,12 +1188,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787921825/Classic_Pleated_Trousers_i5ncbj.jpg",
           "altText": "Classic Pleated Trousers front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop",
-          "altText": "Classic Pleated Trousers detail view"
         }
       ],
       "rating": 4.8,
@@ -1276,12 +1224,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922066/Knitted_Cropped_Top_az7sus.jpg",
           "altText": "Knitted Cropped Top front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
-          "altText": "Knitted Cropped Top detail view"
         }
       ],
       "rating": 4.6,
@@ -1400,12 +1344,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922072/Off-Shoulder_Top_g7cruz.jpg",
           "altText": "Off-Shoulder Top front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
-          "altText": "Off-Shoulder Top detail view"
         }
       ],
       "rating": 4.7,
@@ -1440,11 +1380,11 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922067/Lace-Trimmed_Cami_Top_1_kawcud.jpg",
           "altText": "Lace-Trimmed Cami Top front view"
         },
         {
-          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922066/Lace-Trimmed_Cami_Top_trwkcd.jpg",
           "altText": "Lace-Trimmed Cami Top detail view"
         }
       ],
@@ -1481,12 +1421,8 @@
       "gender": "Women",
       "images": [
         {
-          "url": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=500&h=500&fit=crop",
+          "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922017/Graphic_Print_Tee_keksbs.jpg",
           "altText": "Graphic Print Tee front view"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=500&fit=crop",
-          "altText": "Graphic Print Tee detail view"
         }
       ],
       "rating": 4.6,

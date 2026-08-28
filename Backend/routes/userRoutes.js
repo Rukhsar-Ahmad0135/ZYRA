@@ -38,6 +38,8 @@ const toPublicUser = (user) => ({
   name: user.name,
   email: user.email,
   role: user.role,
+  phone: user.phone,
+  addresses: user.addresses || [],
   createdAt: user.createdAt,
   updatedAt: user.updatedAt,
 });
@@ -145,6 +147,12 @@ router.put(
           throw new Error("Email already in use");
         }
         user.email = req.body.email;
+      }
+      if (typeof req.body.phone === "string") {
+        user.phone = req.body.phone;
+      }
+      if (Array.isArray(req.body.addresses)) {
+        user.addresses = req.body.addresses;
       }
       if (typeof req.body.password === "string" && req.body.password.length > 0) {
         // Assigning to a selected-off field via Mongoose still works
