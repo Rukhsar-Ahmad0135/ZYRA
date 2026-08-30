@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CartContext } from "./cartContext";
 import { getOrCreateGuestId } from "../../utils/guestId";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCart } from "../../redux/slices/cartSlice.js";
+import { fetchCart, removeFromCart, updateCartItemQuantity } from "../../redux/slices/cartSlice.js";
 
 const STORAGE_KEY = "zyra_cart_v1";
 
@@ -146,16 +146,25 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeItem = ({ productId, size, color }) => {
+  const removeItem = async ({ productId, size, color }) => {
     setItems((prev) =>
       prev.filter(
         (p) =>
           !(p.productId === productId && p.size === size && p.color === color),
       ),
     );
+
+    const userId = user?._id || user?.id;
+    try {
+      await dispatch(
+        removeFromCart({ productId, size, color, guestId: authGuestId, userId }),
+      ).unwrap();
+    } catch {
+      // best-effort: local UI already updated
+    }
   };
 
-  const updateQuantity = ({ productId, size, color, quantity }) => {
+  const updateQuantity = async ({ productId, size, color, quantity }) => {
     const q = Number(quantity);
     if (!Number.isFinite(q) || q <= 0) {
       removeItem({ productId, size, color });
@@ -169,6 +178,22 @@ export const CartProvider = ({ children }) => {
           : p,
       ),
     );
+
+    const userId = user?._id || user?.id;
+    try {
+      await dispatch(
+        updateCartItemQuantity({
+          productId,
+          quantity: q,
+          size,
+          color,
+          guestId: authGuestId,
+          userId,
+        }),
+      ).unwrap();
+    } catch {
+      // best-effort: local UI already updated
+    }
   };
 
   const clearCart = () => {

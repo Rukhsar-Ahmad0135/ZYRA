@@ -439,7 +439,7 @@ router.get("/cart", (req, res, next) => {
   const { userId, guestId } = req.query;
   const store = getLocalStore();
   const cart = findCartByIdentity(store, userId, guestId);
-  if (!cart) return res.status(404).json({ message: "Cart not found" });
+  if (!cart) return res.json({ products: [], totalPrice: 0 });
   res.json(responseCart(cart));
 });
 
@@ -516,7 +516,9 @@ router.delete("/cart", express.json(), (req, res, next) => {
     const cart = findCartByIdentity(storeState, userId, guestId);
     if (!cart) return "cart-not-found";
 
-    const index = cart.products.findIndex((item) => item.product === productId);
+    const index = cart.products.findIndex(
+      (item) => item.product === productId && item.size === size && item.color === color
+    );
     if (index < 0) return "product-not-found";
 
 
@@ -911,6 +913,8 @@ router.post("/subscribers", express.json(), (req, res, next) => {
   if (!isLocalMode()) return next();
   const email = String(req.body.email || "").trim().toLowerCase();
   if (!email) return res.status(400).json({ message: "Email is required" });
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) return res.status(400).json({ message: "Invalid email format" });
   const exists = withStore((store) => store.subscribers.some((entry) => entry.email === email));
   if (exists) return res.status(400).json({ message: "Email is already subscribed" });
   withStore((store) => store.subscribers.push({ _id: generateId(), email, subscribedAt: now() }));

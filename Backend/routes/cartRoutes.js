@@ -188,13 +188,16 @@ router.put(
 // @desc Remove a product from the cart
 // @access Public
 router.delete("/", async (req, res, next) => {
-  const { userId, guestId, productId } = req.body;
+  const { userId, guestId, productId, size, color } = req.body;
 
   try {
     const cart = await getCart(userId, guestId);
     if (cart) {
       const productIndex = cart.products.findIndex(
-        (p) => p.product.toString() === productId
+        (p) =>
+          p.product.toString() === productId &&
+          p.size === size &&
+          p.color === color
       );
 
       if (productIndex > -1) {
