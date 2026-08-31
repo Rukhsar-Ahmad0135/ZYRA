@@ -1,35 +1,34 @@
 /*
  * Copyright (c) - All Rights Reserved.
- * 
+ *
  * See the LICENSE file for more information.
  */
 
-const express = require("express");
+import express from "express";
+import Subscriber from "../models/Subscriber.js";
+import { validate, emailValidator } from "../middleware/validate.js";
+
 const router = express.Router();
-const Subscriber = require("../models/Subscriber");
 
-//@route POST /api/subscribers
-//@desc Handle newsletter subscription
-//@access public
-
-router.post("/", async (req, res) => {
+// @route   POST /api/subscribers
+// @desc    Handle newsletter subscription
+// @access  Public
+router.post("/", [emailValidator()], validate, async (req, res, next) => {
+  try {
     const { email } = req.body;
-    if (!email) {
-        return res.status(400).json({ message: "Email is required" });
+
+    const existing = await Subscriber.findOne({ email });
+    if (existing) {
+      res.status(400);
+      throw new Error("Email is already subscribed");
     }
-    try {
-        //check if the email is already subscribed
-        let subscriber = await Subscriber.findOne({ email });
-        if (subscriber) {
-            return res.status(400).json({ message: "Email is already subscribed" });
-        }
-        // create new subscriber
-        subscriber = new Subscriber({ email });
-        await subscriber.save();
-        res.status(201).json({ message: "Successfully subscribe to the newletter" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server Error" });
-    }
+
+    await Subscriber.create({ email });
+    res.status(201).json({ message: "Successfully subscribed to the newsletter" });
+  } catch (error) {
+    next(error);
+  }
 });
-module.exports = router;
+
+export default router;
+

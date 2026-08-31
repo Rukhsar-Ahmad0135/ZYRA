@@ -1,0 +1,13 @@
+{
+  "watch": ["Server.js", "config", "middleware", "models", "routes", "services"],
+  "ext": "js,mjs,json",
+  "ignore": [
+    "data/*.json",
+    "data/local-store.json",
+    "uploads/**",
+    "scripts/**",
+    "node_modules/**"
+  ],
+  "legacyWatch": false
+}
+

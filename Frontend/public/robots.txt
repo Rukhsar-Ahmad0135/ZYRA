@@ -1,0 +1,27 @@
+# ZYRA Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://zyra.com/sitemap.xml
+
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /order/
+Disallow: /my-orders/
+Disallow: /login/
+Disallow: /register/
+Disallow: /local-login/
+Disallow: /api/
+Disallow: /cart/
+Disallow: /cart/merge
+Disallow: /cart/merge/
+Disallow: /cart/add
+Disallow: /cart/remove
+Disallow: /cart/update
+
+# Crawl-delay
+Crawl-delay: 10

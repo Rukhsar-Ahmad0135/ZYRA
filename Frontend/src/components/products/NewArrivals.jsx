@@ -7,7 +7,8 @@ import React, { useEffect } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import apiClient from "../../api/client.js";
+import { requestWithRetry } from "../../utils/requestWithRetry.js";
 const NewArrivals = () => {
   const scrollRef = React.useRef(null);
   // Scroll helpers (used for showing can/cannot scroll state)
@@ -18,20 +19,9 @@ const NewArrivals = () => {
   useEffect(() => {
     const fetchNewArrivals = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_BACKEND_URL;
-        if (!baseUrl || typeof baseUrl !== "string") {
-          console.error(
-            "Missing or invalid VITE_BACKEND_URL. Set it in Frontend/.env (example: VITE_BACKEND_URL=http://localhost:5000/)."
-          );
-          return;
-        }
-
-        const normalizedBaseUrl = baseUrl.endsWith("/")
-          ? baseUrl.slice(0, -1)
-          : baseUrl;
-
-        const response = await axios.get(
-          `${normalizedBaseUrl}/api/products/new-arrivals`
+        const response = await requestWithRetry(
+          () => apiClient.get("/api/products/new-arrivals"),
+          { retries: 1, delayMs: 500 },
         );
         setNewArrivals(response.data);
       } catch (error) {
@@ -41,98 +31,6 @@ const NewArrivals = () => {
 
     fetchNewArrivals();
   }, []);
-  // // eslint-disable-next-line no-unused-vars
-  // const newArrivals = [
-  //   {
-  //     _id: "1",
-  //     name: "Stylish Jacket",
-  //     price: 79.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=1",
-  //         altText: "Stylish Jacket",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "2",
-  //     name: "Stylish Shirt",
-  //     price: 29.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=2",
-  //         altText: "Stylish Shirt",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "3",
-  //     name: "Stylish Pants",
-  //     price: 49.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=3",
-  //         altText: "Stylish Pants",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "4",
-  //     name: "Skirt",
-  //     price: 39.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=4",
-  //         altText: "Skirt",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "5",
-  //     name: "Coat",
-  //     price: 45.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=5",
-  //         altText: "Coat",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "6",
-  //     name: "Long Coat",
-  //     price: 32.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=6",
-  //         altText: "Long Coat",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "7",
-  //     name: "Baggy Pants",
-  //     price: 19.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=7",
-  //         altText: "Baggy Pants",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "8",
-  //     name: "Boxey shirt",
-  //     price: 14.99,
-  //     Image: [
-  //       {
-  //         url: "https://picsum.photos/500/500?random=8",
-  //         altText: "Boxey shirt",
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const [isDragging, setIsDragging] = React.useState(false);
   const startXRef = React.useRef(0);
 
@@ -232,15 +130,8 @@ const NewArrivals = () => {
             className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] relative"
           >
             <img
-              src={
-                // backend model uses `images: [{ url, altText }]`
-                products.images?.[0]?.url || products.Image?.[0]?.url
-              }
-              alt={
-                products.images?.[0]?.altText ||
-                products.Image?.[0]?.altText ||
-                products.name
-              }
+              src={products.images?.[0]?.url}
+              alt={products.images?.[0]?.altText || products.name}
               className="w-full h-[500px] object-cover rounded-lg"
               draggable="false"
               loading="lazy"

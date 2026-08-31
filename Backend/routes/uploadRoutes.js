@@ -1,57 +1,35 @@
 /*
  * Copyright (c) - All Rights Reserved.
- * 
+ *
  * See the LICENSE file for more information.
  */
 
-const express = require("express");
-const multer = require("multer");
-const cloudinary = require("cloudinary").v2;
-const streamifier = require("streamifier");
-
-require("dotenv").config();
+import express from "express";
+import { protect } from "../middleware/authMiddleware.js";
+import { upload, uploadToCloudinary } from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
-//Cloudinary configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-// muter set
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+// @route   POST /api/upload
+// @desc    Upload a single image to Cloudinary (authenticated users only)
+// @access  Private
+router.post("/", protect, upload.single("image"), async (req, res, next) => {
+  try {
+    if (!req.file) {
+      res.status(400);
+      throw new Error("No file uploaded");
+    }
 
-router.post("/", upload.single("image"), async (req, res) => {
-    try {
-        if (!req.file) { 
-            return res.status(400).json({ message: "No file uploaded" });
-        }
-        //Function to handle the stream upload to CLoudinary
-        const streamUpload = (fileBuffer) => {
-            return new Promise((resolve, reject) => {
-                const stream = cloudinary.uploader.upload_stream((error, result) => {
-                    if (result) {
-                        resolve(result);
-                    }
-                    else {
-                        reject(error);
-                    }
-                });
-                // Use streamifer to convert file buffer to a stream
-                streamifier.createReadStream(fileBuffer).pipe(stream);
-            });
-        };
-        //calll the streamuplaod funciton
-        const result = await streamUpload(req.file.buffer);
-        // Respnd with the uploaded image uRL
-        res.json({ imageUrl: result.secure_url });
+    const result = await uploadToCloudinary(req.file.buffer, "zyra");
+    res.json({ imageUrl: result.secure_url, publicId: result.public_id });
+  } catch (error) {
+    // Multer file-type errors come through here
+    if (error.message && error.message.includes("Invalid file type")) {
+      res.status(400);
     }
-    catch(error){
-        console.error(error);
-        res.status(500).json({ message: "Server Error" });
-    }
+    next(error);
+  }
 });
 
-module.exports = router;
+export default router;
+

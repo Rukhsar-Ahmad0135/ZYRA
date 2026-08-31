@@ -1,106 +1,172 @@
 /*
  * Copyright (c) - All Rights Reserved.
- * 
+ *
  * See the license file for more information.
  */
 
-const express = require("express");
-const User= require("../models/Users");
-const jwt = require("jsonwebtoken");
+import express from "express";
+import User from "../models/Users.js";
+import jwt from "jsonwebtoken";
+import { protect } from "../middleware/authMiddleware.js";
+import {
+  validate,
+  nameValidator,
+  emailValidator,
+  passwordValidator,
+  roleValidator,
+} from "../middleware/validate.js";
+
 const router = express.Router();
-const { protect } = require("../middleware/authMiddleware");
 
-// @route post /api/users/register
-// @desc register a new user
-// @access public
+const DEFAULT_TOKEN_TTL = "40h";
 
-router.post("/register", async (req, res) => {
-    const { name, email, password, role } = req.body;
-    try {
-        //registeration logic
-        let user = await User.findOne({ email });
-        if (user) return res.status(400).json({ message: "User already exists" });
-        user = new User({ name, email, password, role: role || 'customer' });
-        await user.save();
+/**
+ * Sign a JWT for a user. Pulls TTL from JWT_EXPIRES_IN when present.
+ */
+const signAuthToken = (user) => {
+  const payload = { user: { id: user._id, role: user.role } };
+  return jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || DEFAULT_TOKEN_TTL,
+  });
+};
 
-        //create jwt payload
-        const payload = { user: { id: user._id, role: user.role } };
-
-        // sign and return the token along with user data
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "40h" },
-            (err, token) => {
-                if (err) throw err;
-                // send token and user data in response
-                res.status(201).json({
-                    user: {
-                        _id: user._id,
-                        name: user.name,
-                        email: user.email,
-                        role: user.role
-                    },
-                    token,
-                });
-            }
-        ); 
-    }
-    catch (error) {
-        console.error("Register error details:", {
-            message: error?.message,
-            name: error?.name,
-            stack: error?.stack,
-        });
-        res.status(500).json({
-            message: "Server error",
-            details: {
-                message: error?.message,
-                name: error?.name,
-            },
-        });
-    }
+/**
+ * Shape user for safe public-facing responses (drops sensitive fields).
+ */
+const toPublicUser = (user) => ({
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  role: user.role,
+  phone: user.phone,
+  addresses: user.addresses || [],
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt,
 });
 
-//@route POST /api/users/login
-//@desc authenticate user
-//@access public
-router.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+// @route POST /api/users/register
+// @desc Register a new user
+// @access Public
+router.post(
+  "/register",
+  [nameValidator(), emailValidator(), passwordValidator(), roleValidator(), validate],
+  async (req, res, next) => {
     try {
-        // Find user by email
-        let user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "Invalid credentials" });
-        // Check if password matches
-        const isMatch = await user.matchPassword(password);
-        if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+      const { name, email, password, role } = req.body;
+      const existing = await User.findOne({ email });
+      if (existing) {
+        res.status(409); // 409 Conflict is semantically correct for duplicate
+        throw new Error("An account with this email already exists");
+      }
 
-        // Create jwt payload
-        const payload = { user: { id: user._id, role: user.role } };
+      const user = await User.create({
+        name,
+        email,
+        password,
+        role: role || "customer",
+      });
 
-        // Sign and return the token along with user data
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "40h" },
-            (err, token) => {
-                if (err) throw err;
-                //send the user and token in response
-                res.json({
-                    user: {
-                        _id: user._id,
-                        name: user.name,
-                        email: user.email,
-                        role: user.role
-                    },
-                    token
-                });
-            }
-        );
+      const token = signAuthToken(user);
+      res.status(201).json({ user: toPublicUser(user), token });
     } catch (error) {
-        console.error(error);
-        res.status(500).send("Server error");
+      next(error);
     }
+  }
+);
+
+// @route POST /api/users/login
+// @desc Authenticate user
+// @access Public
+router.post(
+  "/login",
+  [emailValidator(), validate],
+  async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+      // Explicitly select password — schema sets select:false by default.
+      const user = await User.findOne({ email }).select("+password");
+      if (!user) {
+        // Use the same generic message for both not-found and wrong-password
+        // to avoid leaking which emails are registered.
+        res.status(401);
+        throw new Error("Invalid email or password");
+      }
+
+      const isMatch = await user.matchPassword(password);
+      if (!isMatch) {
+        res.status(401);
+        throw new Error("Invalid email or password");
+      }
+
+      const token = signAuthToken(user);
+      res.json({ user: toPublicUser(user), token });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// @route GET /api/users/profile
+// @desc Get logged-in user's profile
+// @access Private
+router.get("/profile", protect, async (req, res) => {
+  res.json({ user: toPublicUser(req.user) });
 });
 
-//@route GET /api/users/profile
-//@desc get loggedin users profile (protected route)
-//@access private
-router.get("/profile", protect, async (req, res) => {
-    res.json(req.user);
-});
-module.exports = router;
+// @route PUT /api/users/profile
+// @desc Update logged-in user's profile
+// @access Private
+router.put(
+  "/profile",
+  protect,
+  [
+    nameValidator().optional(),
+    emailValidator().optional(),
+    // If password is included in the update, validate complexity +
+    // length. We do NOT trust the model validator alone because the
+    // field uses select:false and pre-save hooks bypass the path-level
+    // validators when called programmatically.
+    passwordValidator().optional(),
+    validate,
+  ],
+  async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user._id).select("+password");
+      if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+      }
+
+      if (typeof req.body.name === "string" && req.body.name.length >= 2) {
+        user.name = req.body.name;
+      }
+      if (typeof req.body.email === "string" && req.body.email) {
+        const existing = await User.findOne({ email: req.body.email });
+        if (existing && existing._id.toString() !== user._id.toString()) {
+          res.status(409);
+          throw new Error("Email already in use");
+        }
+        user.email = req.body.email;
+      }
+      if (typeof req.body.phone === "string") {
+        user.phone = req.body.phone;
+      }
+      if (Array.isArray(req.body.addresses)) {
+        user.addresses = req.body.addresses;
+      }
+      if (typeof req.body.password === "string" && req.body.password.length > 0) {
+        // Assigning to a selected-off field via Mongoose still works
+        // because we explicitly .select("+password") above.
+        user.password = req.body.password;
+      }
+
+      const updatedUser = await user.save();
+      const token = signAuthToken(updatedUser);
+      res.json({ user: toPublicUser(updatedUser), token });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+export default router;

@@ -5,24 +5,26 @@
  */
 
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-const FilterSidebar = () => {
-  const [searchParams, setSearchParams] = useSearchParams("");
-  const navigate = useNavigate();
-  const [filter, setFilter] = useState({
-    category: "",
-    gender: "",
-    color: "",
-    size: [],
-    material: [],
-    brand: [],
-    minPrice: 0,
-    maxPrice: 100,
-  });
+import { useMemo } from "react";
 
-  const [priceRange, setPriceRange] = useState([0, 100]);
+const getFilterState = (params) => ({
+  category: params.get("category") || "",
+  gender: params.get("gender") || "",
+  color: params.get("color") || "",
+  size: params.get("size") ? params.get("size").split(",") : [],
+  material: params.get("material") ? params.get("material").split(",") : [],
+  brand: params.get("brand") ? params.get("brand").split(",") : [],
+  minPrice: parseFloat(params.get("minPrice")) || 0,
+  maxPrice: parseFloat(params.get("maxPrice")) || 100,
+});
+
+const FilterSidebar = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = useMemo(() => getFilterState(searchParams), [searchParams]);
+  const priceRange = useMemo(
+    () => [0, parseFloat(searchParams.get("maxPrice")) || 100],
+    [searchParams],
+  );
   const categories = ["Top Wear", "Bottom Wear"];
   const colors = [
     "Red",
@@ -52,25 +54,40 @@ const FilterSidebar = () => {
     "Modern Fit",
     "Street Style",
     "Beach Breeze",
-    "Fashionista",
+    "Urban Chic",
+    "Polo Classics",
+    "Street Vibes",
+    "Heritage Wear",
+    "Winter Basics",
+    "Everyday Comfort",
+    "ActiveWear",
+    "UrbanStyle",
+    "ChillZone",
+    "DenimCo",
+    "CasualLook",
+    "SportX",
+    "ExecutiveStyle",
+    "StreetWear",
+    "LoungeWear",
+    "ElegantStyle",
+    "DenimStyle",
+    "ElegantWear",
+    "ComfyFit",
     "ChicStyle",
+    "BreezyVibes",
+    "SunnyStyle",
+    "ChicKnit",
+    "BohoVibes",
+    "ComfyTees",
+    "Elegance",
+    "DelicateWear",
+    "StreetStyle",
+    "ComfortFit",
+    "FeminineWear",
+    "ClassicStyle",
+    "ChicWrap",
   ];
   const genders = ["Men", "Women"];
-  useEffect(() => {
-    const params = Object.fromEntries([...searchParams]);
-    setFilter({
-      category: params.category || "",
-      gender: params.gender || "",
-      color: params.color || "",
-      size: params.size ? params.size.split(",") : [],
-      material: params.material ? params.material.split(",") : [],
-      brand: params.brand ? params.brand.split(",") : [],
-      minPrice: parseFloat(params.minPrice) || 0,
-      maxPrice: parseFloat(params.maxPrice) || 100,
-    });
-    setPriceRange([0, params.maxPrice || 100]);
-  }, [searchParams]);
-
   const handleFilterChange = (e) => {
     const { name, value, checked, type } = e.target;
     let newFilters = { ...filter };
@@ -83,7 +100,6 @@ const FilterSidebar = () => {
     } else {
       newFilters[name] = value;
     }
-    setFilter(newFilters);
     updateURLParams(newFilters);
   };
 
@@ -98,14 +114,11 @@ const FilterSidebar = () => {
       }
     });
     setSearchParams(params);
-    navigate(`?${params.toString()}`); //?category=bottom+wear&size=XS%2CS
   };
 
   const handlePriceChange = (e) => {
     const newPrice = e.target.value;
-    setPriceRange([0, newPrice]);
     const newFilters = { ...filter, minPrice: 0, maxPrice: newPrice };
-    setFilter(newFilters);
     updateURLParams(newFilters);
   };
 
@@ -157,6 +170,8 @@ const FilterSidebar = () => {
           {colors.map((color) => (
             <button
               key={color}
+              type="button"
+              name="color"
               value={color}
               onClick={handleFilterChange}
               className={`w-8 h-8 rounded-full border border-gray-300 cursor-pointer transition hover:scale-105 ${
