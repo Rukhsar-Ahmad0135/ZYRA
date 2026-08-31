@@ -140,6 +140,10 @@ const LocalLogin = () => {
                 Use Clerk Sign In instead
               </a>
             </p>
+            
+            <p className="mt-2 text-center text-sm text-gray-500">
+              New admin: rukhsar11@example.com / rukhsar@123111
+            </p>
           </div>
         </div>
         

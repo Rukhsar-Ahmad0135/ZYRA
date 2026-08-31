@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-29T06:32:44.260Z",
-    "updatedAt": "2026-08-30T06:54:46.051Z"
+    "updatedAt": "2026-08-31T03:50:40.446Z"
   },
   "products": [
     {
@@ -1700,6 +1700,15 @@
           "_id": "addr_1787987466312_xwigpqi55"
         }
       ]
+    },
+    {
+      "_id": "6a927d0c28938d1c41660d74",
+      "name": "Rukhsar Ahmad",
+      "email": "rukhsar11@example.com",
+      "password": "$2b$10$qXkpiw/.bgqOfcg7S8l9WOoykzcazSjCt9nFTMlDvCNzS0HVgM7oy",
+      "role": "admin",
+      "createdAt": "2026-08-31T03:50:00.000Z",
+      "updatedAt": "2026-08-31T03:50:00.000Z"
     }
   ],
   "carts": [
@@ -1818,9 +1827,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "Pending",
-      "status": "processing",
+      "status": "cancelled",
       "createdAt": "2026-08-29T06:47:02.681Z",
-      "updatedAt": "2026-08-29T06:47:02.682Z"
+      "updatedAt": "2026-08-31T03:50:03.093Z"
     },
     {
       "_id": "6a9287aeaaabaed202ad0b7b",
@@ -1850,9 +1859,9 @@
       "isDelivered": false,
       "deliveredAt": null,
       "paymentStatus": "Pending",
-      "status": "processing",
+      "status": "shipped",
       "createdAt": "2026-08-29T07:18:06.858Z",
-      "updatedAt": "2026-08-29T07:18:06.858Z"
+      "updatedAt": "2026-08-31T03:50:40.446Z"
     }
   ],
   "subscribers": [

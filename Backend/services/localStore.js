@@ -1,11 +1,14 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import products from "../data/products.js";
 
-const storePath = path.resolve(process.cwd(), "data", "local-store.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const storePath = path.resolve(__dirname, "..", "data", "local-store.json");
 
 const generateId = () => new mongoose.Types.ObjectId().toString();
 
