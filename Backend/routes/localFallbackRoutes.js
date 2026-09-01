@@ -978,4 +978,100 @@ router.post("/upload", (req, res, next) => {
   });
 });
 
+router.post("/stylist/recommend", express.json(), async (req, res, next) => {
+  if (!isLocalMode()) return next();
+  try {
+    const { prompt } = req.body || {};
+    if (!prompt || typeof prompt !== "string" || !prompt.trim()) {
+      return res.status(400).json({ message: "prompt is required" });
+    }
+    const { recommendOutfit, isAiConfigured } = await import("../services/stylistService.js");
+    const { responseProducts, fetchProductByIds } = await import("../services/stylistResponse.js");
+    const result = await recommendOutfit({ prompt: prompt.trim() });
+    const products = responseProducts(await fetchProductByIds(result.productIds));
+    res.json({
+      outfitName: result.outfitName,
+      summary: result.summary,
+      source: result.source,
+      aiConfigured: isAiConfigured(),
+      aiError: result.aiError,
+      products,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/cart/batch", express.json(), async (req, res, next) => {
+  if (!isLocalMode()) return next();
+  try {
+    const { userId, guestId, items } = req.body || {};
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: "items must be a non-empty array" });
+    }
+    if (!userId && !guestId) {
+      return res.status(400).json({ message: "guestId or userId is required" });
+    }
+    const result = withStore((store) => {
+      const cart = ensureCart(store, userId || null, guestId || null);
+      if (!cart) return { error: "guestId or userId is required" };
+      let added = 0;
+      const skipped = [];
+      for (const raw of items) {
+        const productId = raw?.productId;
+        if (!productId) {
+          skipped.push({ reason: "missing productId" });
+          continue;
+        }
+        const product = store.products.find((p) => String(p._id) === String(productId));
+        if (!product) {
+          skipped.push({ productId, reason: "not found" });
+          continue;
+        }
+        const size = raw.size || (product.sizes && product.sizes[0]) || "M";
+        const color = raw.color || (product.colors && product.colors[0]) || "";
+        const quantity = Math.max(1, Number(raw.quantity) || 1);
+        const existingIndex = cart.products.findIndex(
+          (line) => line.product === String(productId) && line.size === size && line.color === color,
+        );
+        if (existingIndex >= 0) {
+          cart.products[existingIndex].quantity += quantity;
+        } else {
+          cart.products.push({
+            product: String(productId),
+            name: product.name,
+            image: product.images?.[0]?.url,
+            price: product.price,
+            size,
+            color,
+            quantity,
+          });
+        }
+        added += 1;
+      }
+      if (added === 0) {
+        return { error: "no valid products found in batch", skipped };
+      }
+      recalcCart(cart);
+      return { cart, added, skipped };
+    });
+
+    if (result.error) {
+      const status = result.error === "guestId or userId is required" ? 400 : 404;
+      return res.status(status).json({ message: result.error, skipped: result.skipped || [] });
+    }
+    res.status(201).json({
+      message: `${result.added} item(s) added to cart`,
+      addedCount: result.added,
+      skipped: result.skipped,
+      cart: {
+        products: result.cart.products,
+        totalPrice: result.cart.totalPrice,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;

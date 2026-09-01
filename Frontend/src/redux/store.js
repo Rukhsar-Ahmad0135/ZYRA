@@ -14,6 +14,7 @@ import orderReducer from "./slices/orderSlice";
 import adminReducer from "./slices/adminSlice";
 import adminProductReducer from "./slices/adminProductSlice";
 import adminOrderReducer from "./slices/adminOrderSlice";
+import stylistReducer from "./slices/stylistSlice";
 const store = configureStore({
     reducer: {
         auth: authReducer,
@@ -24,6 +25,7 @@ const store = configureStore({
         admin: adminReducer,
         adminProducts: adminProductReducer,
         adminOrders: adminOrderReducer,
+        stylist: stylistReducer,
     },
 });
 export default store;

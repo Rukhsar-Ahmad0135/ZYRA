@@ -26,6 +26,8 @@ import productAdminUploadRoutes from "./routes/productAdminUploadRoutes.js";
 import adminOrderRoutes from "./routes/adminOrderRoutes.js";
 import adminStatsRoutes from "./routes/adminStatsRoutes.js";
 import localFallbackRoutes from "./routes/localFallbackRoutes.js";
+import stylistRoutes from "./routes/stylistRoutes.js";
+import cartBatchRoutes from "./routes/cartBatchRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import seedInitialData from "./config/seedInitialData.js";
 dotenv.config();
@@ -147,6 +149,10 @@ const mountRouters = () => {
   app.use("/api/admin/products/upload", productAdminUploadRoutes);
   app.use("/api/admin/orders", adminOrderRoutes);
   app.use("/api/admin/stats", adminStatsRoutes);
+
+  // AI Stylist (Mongo mode)
+  app.use("/api/stylist", stylistRoutes);
+  app.use("/api/cart/batch", cartBatchRoutes);
 
   // Local fallback routes — early-return in real-DB mode so they're a
   // no-op when mongoose is connected.

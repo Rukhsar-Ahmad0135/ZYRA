@@ -74,6 +74,13 @@ const Navbar = () => {
           >
             Bottom Wear
           </Link>
+          <Link
+            to="/stylist"
+            className="text-zyra-primary hover:text-zyra-secondary text-sm font-semibold uppercase inline-flex items-center gap-1.5"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-zyra-primary animate-pulse" />
+            AI Stylist
+          </Link>
         </div>
         <div className="flex items-center space-x-4">
           <Show when="signed-in">
@@ -198,6 +205,13 @@ const Navbar = () => {
               className="block text-gray-600 hover:text-black"
             >
               Bottom Wear
+            </Link>
+            <Link
+              to="/stylist"
+              onClick={toggleNavDrawer}
+              className="block text-zyra-primary hover:text-zyra-secondary font-semibold"
+            >
+              ✨ AI Stylist
             </Link>
           </nav>
         </div>

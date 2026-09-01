@@ -17,6 +17,7 @@ const LocalLogin = lazy(() => import("./Pages/LocalLogin"));
 const Register = lazy(() => import("./Pages/Register"));
 const Profile = lazy(() => import("./Pages/Profile"));
 const CollectionPage = lazy(() => import("./Pages/CollectionPage"));
+const Stylist = lazy(() => import("./Pages/Stylist"));
 const CartCheckout = lazy(() => import("./components/cart/Checkout"));
 const ProductsDetails = lazy(() => import("./components/products/ProductsDetails"));
 const OrderConfirmation = lazy(() => import("./Pages/OrderConfirmation"));
@@ -87,8 +88,12 @@ function App() {
                   }
                 />
                 <Route
-                  path="/collections/:collection"
+                  path="collections/:collection"
                   element={<CollectionPage />}
+                />
+                <Route
+                  path="stylist"
+                  element={<Stylist />}
                 />
                 <Route
                   path="products/:id"

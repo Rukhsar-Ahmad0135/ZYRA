@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-29T06:32:44.260Z",
-    "updatedAt": "2026-09-01T17:25:46.331Z"
+    "updatedAt": "2026-09-01T18:23:23.209Z"
   },
   "products": [
     {
@@ -1848,6 +1848,118 @@
       "totalPrice": 316,
       "createdAt": "2026-09-01T17:20:02.435Z",
       "updatedAt": "2026-09-01T17:20:30.507Z"
+    },
+    {
+      "_id": "6a97154e6131b63f4cae51fd",
+      "key": "guest:stylist-test-guest",
+      "guestId": "stylist-test-guest",
+      "products": [
+        {
+          "product": "6a97091f03e09fc26848881d",
+          "name": "Men's Premium Casual Shirt",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1788283154/ZYRA/y7nofyop4rjxcjp0scxo.jpg",
+          "price": 79,
+          "size": "S",
+          "color": "White",
+          "quantity": 1
+        },
+        {
+          "product": "6a927d0c28938d1c41660d96",
+          "name": "Lace-Trimmed Cami Top",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922067/Lace-Trimmed_Cami_Top_1_kawcud.jpg",
+          "price": 35,
+          "size": "S",
+          "color": "Black",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 114,
+      "createdAt": "2026-09-01T18:11:26.383Z",
+      "updatedAt": "2026-09-01T18:11:26.383Z"
+    },
+    {
+      "_id": "6a97172a6131b63f4cae51fe",
+      "key": "guest:e2e-stylist-guest",
+      "guestId": "e2e-stylist-guest",
+      "products": [
+        {
+          "product": "6a927d0c28938d1c41660d94",
+          "name": "Casual T-Shirt",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950347/Casual_T-Shirt1_pcccw4.jpg",
+          "price": 25,
+          "size": "S",
+          "color": "Black",
+          "quantity": 3
+        },
+        {
+          "product": "6a927d0c28938d1c41660d90",
+          "name": "Culottes",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787921825/Culottes1_mgpnol.jpg",
+          "price": 50,
+          "size": "S",
+          "color": "Black",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 125,
+      "createdAt": "2026-09-01T18:19:22.076Z",
+      "updatedAt": "2026-09-01T18:19:48.358Z"
+    },
+    {
+      "_id": "6a9717446131b63f4cae51ff",
+      "key": "guest:g",
+      "guestId": "g",
+      "products": [],
+      "totalPrice": 0,
+      "createdAt": "2026-09-01T18:19:48.342Z",
+      "updatedAt": "2026-09-01T18:19:48.342Z"
+    },
+    {
+      "_id": "6a9717cc6131b63f4cae5200",
+      "key": "user:6a92800caaabaed202ad0b76",
+      "user": "6a92800caaabaed202ad0b76",
+      "guestId": "guest_1788283514618",
+      "products": [
+        {
+          "product": "6a927d0c28938d1c41660d74",
+          "name": "Classic Oxford Button-Down Shirt",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785927489/Classic_Oxford_Button-Down_Shirt_xmtvvu.jpg",
+          "price": 39.99,
+          "size": "S",
+          "color": "Red",
+          "quantity": 1
+        },
+        {
+          "product": "6a927d0c28938d1c41660d7e",
+          "name": "Slim Fit Joggers",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950358/Slim_Fit_Joggers_b0rj3m.jpg",
+          "price": 40,
+          "size": "S",
+          "color": "Black",
+          "quantity": 1
+        },
+        {
+          "product": "6a927d0c28938d1c41660d92",
+          "name": "Knitted Cropped Top",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922066/Knitted_Cropped_Top_az7sus.jpg",
+          "price": 40,
+          "size": "S",
+          "color": "Beige",
+          "quantity": 1
+        },
+        {
+          "product": "6a927d0c28938d1c41660d8e",
+          "name": "Paperbag Waist Shorts",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1787922079/Paperbag_Waist_Shorts1_yw3y4r.jpg",
+          "price": 35,
+          "size": "S",
+          "color": "White",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 154.99,
+      "createdAt": "2026-09-01T18:22:04.868Z",
+      "updatedAt": "2026-09-01T18:23:23.208Z"
     }
   ],
   "checkouts": [
