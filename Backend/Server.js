@@ -66,19 +66,19 @@ app.use((req, res, next) => {
 });
 
 // CORS — restrict to allowed origins from env (CLIENT_URL, comma-separated)
-const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:5173,http://localhost:5174")
+const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:3001,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176,http://localhost:2012")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-console.log('CORS allowedOrigins:', allowedOrigins);
-console.log('CLIENT_URL from env:', process.env.CLIENT_URL);
+if (process.env.NODE_ENV !== "production") {
+  console.log(`CORS allowed origins: ${allowedOrigins.join(", ")}`);
+}
 
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (e.g. Postman, server-to-server, curl)
-      console.log('CORS check - origin:', origin, 'allowed:', allowedOrigins.includes(origin));
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }

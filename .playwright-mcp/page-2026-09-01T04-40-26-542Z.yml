@@ -1,0 +1,338 @@
+- generic [ref=f1e2]:
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f1e327]:
+        - button "Close toast" [ref=f1e328] [cursor=pointer]
+        - generic [ref=f1e335]: Please select a color and size before adding to cart.
+  - banner [ref=f1e7]:
+    - generic [ref=f1e9]:
+      - generic [ref=f1e10]:
+        - link [ref=f1e11] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=f1e15] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=f1e19] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=f1e22]: We ship worldwide - Fast adn reliable shipping!
+      - 'link "Call us: +92 000 000 000" [ref=f1e24] [cursor=pointer]':
+        - /url: tel:+9200000000
+    - generic [ref=f1e25]:
+      - navigation [ref=f1e26]:
+        - link "ZYRA" [ref=f1e28] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f1e29]:
+          - link "Men" [ref=f1e30] [cursor=pointer]:
+            - /url: /collections/all?gender=Men
+          - link "Women" [ref=f1e31] [cursor=pointer]:
+            - /url: /collections/all?gender=Women
+          - link "Top Wear" [ref=f1e32] [cursor=pointer]:
+            - /url: /collections/all?category=Top Wear
+          - link "Bottom Wear" [ref=f1e33] [cursor=pointer]:
+            - /url: /collections/all?category=Bottom Wear
+        - generic [ref=f1e34]:
+          - link "Admin" [ref=f1e35] [cursor=pointer]:
+            - /url: /admin
+          - button "Admin Logout" [ref=f1e36]
+          - button "1" [ref=f1e37]
+          - button [ref=f1e43]
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Your Cart" [level=2]
+          - generic:
+            - generic:
+              - generic:
+                - img "Slim-Fit Stretch Shirt"
+                - generic:
+                  - heading "Slim-Fit Stretch Shirt" [level=3]
+                  - paragraph: size:M| color:Navy Blue
+                  - generic:
+                    - button "-"
+                    - generic: "1"
+                    - button "+"
+              - generic:
+                - paragraph: $29.99
+                - button
+        - generic:
+          - button "Checkout"
+          - paragraph: Shipping, taxes, and discounts calculated at checkout.
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Menu" [level=2]
+          - navigation:
+            - link "Men":
+              - /url: /collections/all?gender=Men
+            - link "Women":
+              - /url: /collections/all?gender=Women
+            - link "Top Wear":
+              - /url: /collections/all?category=Top Wear
+            - link "Bottom Wear":
+              - /url: /collections/all?category=Bottom Wear
+  - main [ref=f1e46]:
+    - generic [ref=f1e47]:
+      - generic [ref=f1e48]:
+        - img "ZRYA" [ref=f1e49]
+        - generic [ref=f1e51]:
+          - heading "Vacation Ready" [level=1] [ref=f1e52]
+          - paragraph [ref=f1e53]: Explore our vacation-ready outfits with fast worldwide shipping.
+          - link "Shop Now" [ref=f1e54] [cursor=pointer]:
+            - /url: /
+      - generic [ref=f1e56]:
+        - generic [ref=f1e57]:
+          - img "women's collection" [ref=f1e58]
+          - generic [ref=f1e59]:
+            - heading "Women's Collection" [level=2] [ref=f1e60]
+            - link "Shop" [ref=f1e61] [cursor=pointer]:
+              - /url: /collections/all?gender=women
+        - generic [ref=f1e62]:
+          - img "men's collection" [ref=f1e63]
+          - generic [ref=f1e64]:
+            - heading "Men's Collection" [level=2] [ref=f1e65]
+            - link "Shop" [ref=f1e66] [cursor=pointer]:
+              - /url: /collections/all?gender=men
+      - generic [ref=f1e67]:
+        - generic [ref=f1e68]:
+          - heading "Explore New Arrivals" [level=3] [ref=f1e69]
+          - paragraph [ref=f1e70]: Discover the latest style straight off the runway, freshly added to keep your wardrobe on the cutting edge of fashion.
+          - generic [ref=f1e71]:
+            - button [disabled] [ref=f1e72]
+            - button [ref=f1e75]
+        - generic [ref=f1e78]:
+          - generic [ref=f1e79]:
+            - img "Lace-Trimmed Cami Top front view" [ref=f1e80]
+            - link [ref=f1e82] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d96
+              - heading "Lace-Trimmed Cami Top" [level=4] [ref=f1e83]
+              - paragraph [ref=f1e84]: $35
+          - generic [ref=f1e85]:
+            - img "Graphic Print Tee front view" [ref=f1e86]
+            - link [ref=f1e88] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d97
+              - heading "Graphic Print Tee" [level=4] [ref=f1e89]
+              - paragraph [ref=f1e90]: $30
+          - generic [ref=f1e91]:
+            - img "Ribbed Long-Sleeve Top front view" [ref=f1e92]
+            - link [ref=f1e94] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d98
+              - heading "Ribbed Long-Sleeve Top" [level=4] [ref=f1e95]
+              - paragraph [ref=f1e96]: $55
+          - generic [ref=f1e97]:
+            - img "Ruffle-Sleeve Blouse front view" [ref=f1e98]
+            - link [ref=f1e100] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d99
+              - heading "Ruffle-Sleeve Blouse" [level=4] [ref=f1e101]
+              - paragraph [ref=f1e102]: $45
+          - generic [ref=f1e103]:
+            - img "Classic Button-Up Shirt front view" [ref=f1e104]
+            - link [ref=f1e106] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d9a
+              - heading "Classic Button-Up Shirt" [level=4] [ref=f1e107]
+              - paragraph [ref=f1e108]: $60
+          - generic [ref=f1e109]:
+            - img "V-Neck Wrap Top front view" [ref=f1e110]
+            - link [ref=f1e112] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d9b
+              - heading "V-Neck Wrap Top" [level=4] [ref=f1e113]
+              - paragraph [ref=f1e114]: $50
+          - generic [ref=f1e115]:
+            - img "Slim-Fit Stretch Shirt front view" [ref=f1e116]
+            - link [ref=f1e118] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d75
+              - heading "Slim-Fit Stretch Shirt" [level=4] [ref=f1e119]
+              - paragraph [ref=f1e120]: $29.99
+          - generic [ref=f1e121]:
+            - img "Casual Denim Shirt front view" [ref=f1e122]
+            - link [ref=f1e124] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d76
+              - heading "Casual Denim Shirt" [level=4] [ref=f1e125]
+              - paragraph [ref=f1e126]: $49.99
+      - heading "Best Seller" [level=2] [ref=f1e127]
+      - generic [ref=f1e129]:
+        - generic [ref=f1e130]:
+          - generic [ref=f1e131]:
+            - img "Slim-Fit Easy-Iron Shirt front view" [ref=f1e132] [cursor=pointer]
+            - img "Slim-Fit Easy-Iron Shirt back view" [ref=f1e133] [cursor=pointer]
+          - img "Main Product" [ref=f1e136]
+          - generic [ref=f1e137]:
+            - heading "Slim-Fit Easy-Iron Shirt" [level=1] [ref=f1e138]
+            - paragraph
+            - paragraph [ref=f1e139]: $34.99
+            - paragraph [ref=f1e140]: A slim-fit, easy-iron shirt in woven cotton fabric with a fitted silhouette. Features a turn-down collar, classic button placket, and a yoke at the back. Long sleeves and adjustable button cuffs with a rounded hem.
+            - generic [ref=f1e141]:
+              - paragraph [ref=f1e142]: "Color:"
+              - generic [ref=f1e143]:
+                - button "Select color White" [ref=f1e144]
+                - button "Select color Gray" [ref=f1e145]
+            - generic [ref=f1e146]:
+              - paragraph [ref=f1e147]: "Size:"
+              - generic [ref=f1e148]:
+                - button "S" [ref=f1e149]
+                - button "M" [ref=f1e150]
+                - button "L" [ref=f1e151]
+                - button "XL" [ref=f1e152]
+            - generic [ref=f1e153]:
+              - paragraph [ref=f1e154]: "Quantity:"
+              - generic [ref=f1e155]:
+                - button "-" [ref=f1e156]
+                - generic [ref=f1e157]: "1"
+                - button "+" [ref=f1e158]
+            - button "Add to Cart" [active] [ref=f1e159]
+            - generic [ref=f1e160]:
+              - heading "Characteristics" [level=3] [ref=f1e161]
+              - table [ref=f1e162]:
+                - rowgroup [ref=f1e163]:
+                  - row [ref=f1e164]:
+                    - cell "Brand" [ref=f1e165]
+                    - cell "Urban Chic" [ref=f1e166]
+                  - row [ref=f1e167]:
+                    - cell "Material" [ref=f1e168]
+                    - cell "Cotton" [ref=f1e169]
+        - generic [ref=f1e170]:
+          - heading "You May Also Like" [level=2] [ref=f1e171]
+          - generic [ref=f1e172]:
+            - link [ref=f1e173] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d75
+              - generic [ref=f1e174]:
+                - img "Slim-Fit Stretch Shirt front view" [ref=f1e176]
+                - heading "Slim-Fit Stretch Shirt" [level=3] [ref=f1e177]
+                - paragraph [ref=f1e178]: $29.99
+            - link [ref=f1e179] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d7e
+              - generic [ref=f1e180]:
+                - img "Slim Fit Joggers front view" [ref=f1e182]
+                - heading "Slim Fit Joggers" [level=3] [ref=f1e183]
+                - paragraph [ref=f1e184]: $40
+            - link [ref=f1e185] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d84
+              - generic [ref=f1e186]:
+                - img "Slim Fit Trousers front view" [ref=f1e188]
+                - heading "Slim Fit Trousers" [level=3] [ref=f1e189]
+                - paragraph [ref=f1e190]: $65
+            - link [ref=f1e191] [cursor=pointer]:
+              - /url: /products/6a927d0c28938d1c41660d7b
+              - generic [ref=f1e192]:
+                - img "Regular-Fit Henley Shirt front view" [ref=f1e194]
+                - heading "Regular-Fit Henley Shirt" [level=3] [ref=f1e195]
+                - paragraph [ref=f1e196]: $22.99
+      - generic [ref=f1e197]:
+        - heading "Top Wears for Women" [level=2] [ref=f1e198]
+        - generic [ref=f1e199]:
+          - link [ref=f1e200] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d96
+            - generic [ref=f1e201]:
+              - img "Lace-Trimmed Cami Top front view" [ref=f1e203]
+              - heading "Lace-Trimmed Cami Top" [level=3] [ref=f1e204]
+              - paragraph [ref=f1e205]: $35
+          - link [ref=f1e206] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d97
+            - generic [ref=f1e207]:
+              - img "Graphic Print Tee front view" [ref=f1e209]
+              - heading "Graphic Print Tee" [level=3] [ref=f1e210]
+              - paragraph [ref=f1e211]: $30
+          - link [ref=f1e212] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d98
+            - generic [ref=f1e213]:
+              - img "Ribbed Long-Sleeve Top front view" [ref=f1e215]
+              - heading "Ribbed Long-Sleeve Top" [level=3] [ref=f1e216]
+              - paragraph [ref=f1e217]: $55
+          - link [ref=f1e218] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d99
+            - generic [ref=f1e219]:
+              - img "Ruffle-Sleeve Blouse front view" [ref=f1e221]
+              - heading "Ruffle-Sleeve Blouse" [level=3] [ref=f1e222]
+              - paragraph [ref=f1e223]: $45
+          - link [ref=f1e224] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d9a
+            - generic [ref=f1e225]:
+              - img "Classic Button-Up Shirt front view" [ref=f1e227]
+              - heading "Classic Button-Up Shirt" [level=3] [ref=f1e228]
+              - paragraph [ref=f1e229]: $60
+          - link [ref=f1e230] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d9b
+            - generic [ref=f1e231]:
+              - img "V-Neck Wrap Top front view" [ref=f1e233]
+              - heading "V-Neck Wrap Top" [level=3] [ref=f1e234]
+              - paragraph [ref=f1e235]: $50
+          - link [ref=f1e236] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d92
+            - generic [ref=f1e237]:
+              - img "Knitted Cropped Top front view" [ref=f1e239]
+              - heading "Knitted Cropped Top" [level=3] [ref=f1e240]
+              - paragraph [ref=f1e241]: $40
+          - link [ref=f1e242] [cursor=pointer]:
+            - /url: /products/6a927d0c28938d1c41660d93
+            - generic [ref=f1e243]:
+              - img "Boho Floral Blouse front view" [ref=f1e245]
+              - heading "Boho Floral Blouse" [level=3] [ref=f1e246]
+              - paragraph [ref=f1e247]: $50
+      - generic [ref=f1e249]:
+        - generic [ref=f1e250]:
+          - heading "Comfort and Style" [level=2] [ref=f1e251]
+          - heading "Apparel made for your everyday life" [level=2] [ref=f1e252]
+          - paragraph [ref=f1e253]: Discover high-quality, comfortable clothing that effortlessly blends fashion and function. Designed to make you look and feel great every day.
+          - link "Shop Now" [ref=f1e254] [cursor=pointer]:
+            - /url: /collections/all
+        - img "Featured Product" [ref=f1e256]
+      - generic [ref=f1e258]:
+        - generic [ref=f1e259]:
+          - heading "FREE INTERNATIONAL SHIPPING" [level=4] [ref=f1e263]
+          - paragraph [ref=f1e264]: On all orders over $100.00
+        - generic [ref=f1e265]:
+          - heading "45 DAYS RETURN POLICY" [level=4] [ref=f1e269]
+          - paragraph [ref=f1e270]: Money back guarantee
+        - generic [ref=f1e271]:
+          - heading "SECURE CHECKOUT" [level=4] [ref=f1e275]
+          - paragraph [ref=f1e276]: 100% secure payment processing
+  - contentinfo [ref=f1e277]:
+    - generic [ref=f1e278]:
+      - generic [ref=f1e279]:
+        - heading "Newletter" [level=3] [ref=f1e280]
+        - paragraph [ref=f1e281]: Be the first to hear about new products, exclusive offers, and online offers.
+        - paragraph [ref=f1e282]: Sign up and get 10% off your first order.
+        - generic [ref=f1e283]:
+          - textbox "Enter your email" [ref=f1e284]
+          - button "Subscribe" [ref=f1e285]
+      - generic [ref=f1e286]:
+        - heading "Shop" [level=3] [ref=f1e287]
+        - list [ref=f1e288]:
+          - listitem [ref=f1e289]:
+            - link "Men's top Wear" [ref=f1e290] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e291]:
+            - link "Women top Wear" [ref=f1e292] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e293]:
+            - link "Men's bottom Wear" [ref=f1e294] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e295]:
+            - link "Women bottom Wear" [ref=f1e296] [cursor=pointer]:
+              - /url: /
+      - generic [ref=f1e297]:
+        - heading "Support" [level=3] [ref=f1e298]
+        - list [ref=f1e299]:
+          - listitem [ref=f1e300]:
+            - link "Contact Us" [ref=f1e301] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e302]:
+            - link "About Us" [ref=f1e303] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e304]:
+            - link "FAQs" [ref=f1e305] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1e306]:
+            - link "Features" [ref=f1e307] [cursor=pointer]:
+              - /url: /
+      - generic [ref=f1e308]:
+        - heading "Follow Us" [level=3] [ref=f1e309]
+        - generic [ref=f1e310]:
+          - link [ref=f1e311] [cursor=pointer]:
+            - /url: https://www.facebook.com
+          - link [ref=f1e315] [cursor=pointer]:
+            - /url: https://www.instagram.com
+          - link [ref=f1e319] [cursor=pointer]:
+            - /url: https://www.twitter.com
+        - paragraph [ref=f1e322]: Call Us
+    - paragraph [ref=f1e326]: 2026, CompileTab. All Right Reserved

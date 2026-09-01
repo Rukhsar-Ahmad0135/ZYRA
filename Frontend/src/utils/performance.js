@@ -25,6 +25,7 @@ export function trackWebVitals() {
   // Track CLS (Cumulative Layout Shift)
   let clsValue = 0;
   new PerformanceObserver((entryList) => {
+    const entries = entryList.getEntries();
     entries.forEach((entry) => {
       if (!entry.hadRecentInput) {
         clsValue += entry.value;
@@ -76,6 +77,7 @@ export function trackResourceTiming() {
   if (typeof window === 'undefined') return;
 
   new PerformanceObserver((entryList) => {
+    const entries = entryList.getEntries();
     entries.forEach((entry) => {
       // Log slow resources (> 1000ms)
       if (entry.duration > 1000) {
@@ -90,6 +92,7 @@ export function trackLongTasks() {
   if (typeof window === 'undefined') return;
 
   new PerformanceObserver((entryList) => {
+    const entries = entryList.getEntries();
     entries.forEach((entry) => {
       // Log tasks longer than 50ms
       if (entry.duration > 50) {

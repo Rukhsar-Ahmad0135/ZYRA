@@ -1,0 +1,148 @@
+- generic [ref=f2e2]:
+  - region "Notifications alt+T"
+  - banner [ref=f2e7]:
+    - generic [ref=f2e9]:
+      - generic [ref=f2e10]:
+        - link [ref=f2e11] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=f2e15] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=f2e19] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=f2e22]: We ship worldwide - Fast adn reliable shipping!
+      - 'link "Call us: +92 000 000 000" [ref=f2e24] [cursor=pointer]':
+        - /url: tel:+9200000000
+    - generic [ref=f2e25]:
+      - navigation [ref=f2e26]:
+        - link "ZYRA" [ref=f2e28] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f2e29]:
+          - link "Men" [ref=f2e30] [cursor=pointer]:
+            - /url: /collections/all?gender=Men
+          - link "Women" [ref=f2e31] [cursor=pointer]:
+            - /url: /collections/all?gender=Women
+          - link "Top Wear" [ref=f2e32] [cursor=pointer]:
+            - /url: /collections/all?category=Top Wear
+          - link "Bottom Wear" [ref=f2e33] [cursor=pointer]:
+            - /url: /collections/all?category=Bottom Wear
+        - generic [ref=f2e34]:
+          - button [ref=f2e35]
+          - button [ref=f2e40]
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Your Cart" [level=2]
+          - paragraph: Your cart is empty.
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Menu" [level=2]
+          - navigation:
+            - link "Men":
+              - /url: /collections/all?gender=Men
+            - link "Women":
+              - /url: /collections/all?gender=Women
+            - link "Top Wear":
+              - /url: /collections/all?category=Top Wear
+            - link "Bottom Wear":
+              - /url: /collections/all?category=Bottom Wear
+  - main [ref=f2e43]:
+    - generic [ref=f2e45]:
+      - generic [ref=f2e46]:
+        - generic [ref=f2e47]:
+          - paragraph [ref=f2e48]: Join the store
+          - heading "Create one account and use the same profile everywhere." [level=2] [ref=f2e49]
+        - generic [ref=f2e50]:
+          - generic [ref=f2e51]: Google and social providers via Clerk
+          - generic [ref=f2e52]: Email verification
+          - generic [ref=f2e53]: Built-in profile management
+      - generic [ref=f2e54]:
+        - paragraph [ref=f2e55]: Create account
+        - heading "Start shopping in minutes" [level=1] [ref=f2e56]
+        - paragraph [ref=f2e57]: Sign up with Google, social providers, or your email and continue straight into checkout.
+        - generic [ref=f2e58]:
+          - generic [ref=f2e59]:
+            - paragraph [ref=f2e60]: Clerk not configured
+            - paragraph [ref=f2e61]:
+              - text: Set
+              - code [ref=f2e62]: VITE_CLERK_PUBLISHABLE_KEY
+              - text: in
+              - code [ref=f2e63]: Frontend/.env
+              - text: to enable Google sign-up. You can still create an account with the email & password form below.
+          - generic [ref=f2e64]:
+            - generic [ref=f2e65]:
+              - generic [ref=f2e66]: Full name
+              - textbox "Full name" [ref=f2e67]:
+                - /placeholder: Jane Doe
+            - generic [ref=f2e68]:
+              - generic [ref=f2e69]: Email
+              - textbox "Email" [ref=f2e70]:
+                - /placeholder: you@zyra.com
+            - generic [ref=f2e71]:
+              - generic [ref=f2e72]: Password
+              - generic [ref=f2e73]:
+                - textbox "Password" [ref=f2e74]:
+                  - /placeholder: At least 8 characters
+                - button "👁" [ref=f2e75]
+            - button "Create account" [ref=f2e76]
+          - generic [ref=f2e77]:
+            - paragraph [ref=f2e78]:
+              - text: Already have an account?
+              - link "Sign in" [ref=f2e79] [cursor=pointer]:
+                - /url: /login?redirect=%2F
+            - paragraph [ref=f2e80]:
+              - text: Administrator?
+              - link "Use the admin login" [ref=f2e81] [cursor=pointer]:
+                - /url: /local-login?redirect=%2F
+  - contentinfo [ref=f2e82]:
+    - generic [ref=f2e83]:
+      - generic [ref=f2e84]:
+        - heading "Newletter" [level=3] [ref=f2e85]
+        - paragraph [ref=f2e86]: Be the first to hear about new products, exclusive offers, and online offers.
+        - paragraph [ref=f2e87]: Sign up and get 10% off your first order.
+        - generic [ref=f2e88]:
+          - textbox "Enter your email" [ref=f2e89]
+          - button "Subscribe" [ref=f2e90]
+      - generic [ref=f2e91]:
+        - heading "Shop" [level=3] [ref=f2e92]
+        - list [ref=f2e93]:
+          - listitem [ref=f2e94]:
+            - link "Men's top Wear" [ref=f2e95] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=f2e96]:
+            - link "Women top Wear" [ref=f2e97] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=f2e98]:
+            - link "Men's bottom Wear" [ref=f2e99] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=f2e100]:
+            - link "Women bottom Wear" [ref=f2e101] [cursor=pointer]:
+              - /url: /register
+      - generic [ref=f2e102]:
+        - heading "Support" [level=3] [ref=f2e103]
+        - list [ref=f2e104]:
+          - listitem [ref=f2e105]:
+            - link "Contact Us" [ref=f2e106] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=f2e107]:
+            - link "About Us" [ref=f2e108] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=f2e109]:
+            - link "FAQs" [ref=f2e110] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=f2e111]:
+            - link "Features" [ref=f2e112] [cursor=pointer]:
+              - /url: /register
+      - generic [ref=f2e113]:
+        - heading "Follow Us" [level=3] [ref=f2e114]
+        - generic [ref=f2e115]:
+          - link [ref=f2e116] [cursor=pointer]:
+            - /url: https://www.facebook.com
+          - link [ref=f2e120] [cursor=pointer]:
+            - /url: https://www.instagram.com
+          - link [ref=f2e124] [cursor=pointer]:
+            - /url: https://www.twitter.com
+        - paragraph [ref=f2e127]: Call Us
+    - paragraph [ref=f2e131]: 2026, CompileTab. All Right Reserved

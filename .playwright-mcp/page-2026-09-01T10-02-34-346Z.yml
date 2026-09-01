@@ -1,0 +1,134 @@
+- generic [ref=f1e2]:
+  - region "Notifications alt+T"
+  - banner [ref=f1e7]:
+    - generic [ref=f1e9]:
+      - generic [ref=f1e10]:
+        - link [ref=f1e11] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=f1e15] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=f1e19] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=f1e22]: We ship worldwide - Fast adn reliable shipping!
+      - 'link "Call us: +92 000 000 000" [ref=f1e24] [cursor=pointer]':
+        - /url: tel:+9200000000
+    - generic [ref=f1e25]:
+      - navigation [ref=f1e26]:
+        - link "ZYRA" [ref=f1e28] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f1e29]:
+          - link "Men" [ref=f1e30] [cursor=pointer]:
+            - /url: /collections/all?gender=Men
+          - link "Women" [ref=f1e31] [cursor=pointer]:
+            - /url: /collections/all?gender=Women
+          - link "Top Wear" [ref=f1e32] [cursor=pointer]:
+            - /url: /collections/all?category=Top Wear
+          - link "Bottom Wear" [ref=f1e33] [cursor=pointer]:
+            - /url: /collections/all?category=Bottom Wear
+        - generic [ref=f1e34]:
+          - button [ref=f1e35]
+          - button [ref=f1e40]
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Your Cart" [level=2]
+          - paragraph: Your cart is empty.
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Menu" [level=2]
+          - navigation:
+            - link "Men":
+              - /url: /collections/all?gender=Men
+            - link "Women":
+              - /url: /collections/all?gender=Women
+            - link "Top Wear":
+              - /url: /collections/all?category=Top Wear
+            - link "Bottom Wear":
+              - /url: /collections/all?category=Bottom Wear
+  - main [ref=f1e43]:
+    - generic [ref=f1e45]:
+      - generic [ref=f1e46]:
+        - generic [ref=f1e47]: Z
+        - paragraph [ref=f1e48]: Admin access
+        - heading "Administrator sign-in" [level=1] [ref=f1e49]
+        - paragraph [ref=f1e50]: Restricted area. Authorized admin and superadmin accounts only. Customer accounts should use the regular sign-in page.
+        - generic [ref=f1e51]:
+          - generic [ref=f1e52]:
+            - generic [ref=f1e53]:
+              - generic [ref=f1e54]: Admin email
+              - textbox "Admin email" [ref=f1e55]:
+                - /placeholder: superadmin@zyra.com
+            - generic [ref=f1e56]:
+              - generic [ref=f1e57]: Password
+              - generic [ref=f1e58]:
+                - textbox "Password" [ref=f1e59]:
+                  - /placeholder: ••••••••
+                - button "👁" [ref=f1e60]
+            - button "Sign in to admin" [ref=f1e61]
+          - generic [ref=f1e62]:
+            - paragraph [ref=f1e63]: Default superadmin
+            - paragraph [ref=f1e64]: superadmin@zyra.com / SuperAdmin@123!
+            - paragraph [ref=f1e65]: "New admin: rukhsar11@example.com / rukhsar@123111"
+          - link "← Back to customer sign-in" [ref=f1e67] [cursor=pointer]:
+            - /url: /login
+      - generic [ref=f1e68]:
+        - generic [ref=f1e69]:
+          - paragraph [ref=f1e70]: Admin control center
+          - heading "Manage products, orders, and users from one dashboard." [level=2] [ref=f1e71]
+        - generic [ref=f1e72]:
+          - generic [ref=f1e73]: Product management
+          - generic [ref=f1e74]: Order processing
+          - generic [ref=f1e75]: User administration
+  - contentinfo [ref=f1e76]:
+    - generic [ref=f1e77]:
+      - generic [ref=f1e78]:
+        - heading "Newletter" [level=3] [ref=f1e79]
+        - paragraph [ref=f1e80]: Be the first to hear about new products, exclusive offers, and online offers.
+        - paragraph [ref=f1e81]: Sign up and get 10% off your first order.
+        - generic [ref=f1e82]:
+          - textbox "Enter your email" [ref=f1e83]
+          - button "Subscribe" [ref=f1e84]
+      - generic [ref=f1e85]:
+        - heading "Shop" [level=3] [ref=f1e86]
+        - list [ref=f1e87]:
+          - listitem [ref=f1e88]:
+            - link "Men's top Wear" [ref=f1e89] [cursor=pointer]:
+              - /url: /local-login
+          - listitem [ref=f1e90]:
+            - link "Women top Wear" [ref=f1e91] [cursor=pointer]:
+              - /url: /local-login
+          - listitem [ref=f1e92]:
+            - link "Men's bottom Wear" [ref=f1e93] [cursor=pointer]:
+              - /url: /local-login
+          - listitem [ref=f1e94]:
+            - link "Women bottom Wear" [ref=f1e95] [cursor=pointer]:
+              - /url: /local-login
+      - generic [ref=f1e96]:
+        - heading "Support" [level=3] [ref=f1e97]
+        - list [ref=f1e98]:
+          - listitem [ref=f1e99]:
+            - link "Contact Us" [ref=f1e100] [cursor=pointer]:
+              - /url: /local-login
+          - listitem [ref=f1e101]:
+            - link "About Us" [ref=f1e102] [cursor=pointer]:
+              - /url: /local-login
+          - listitem [ref=f1e103]:
+            - link "FAQs" [ref=f1e104] [cursor=pointer]:
+              - /url: /local-login
+          - listitem [ref=f1e105]:
+            - link "Features" [ref=f1e106] [cursor=pointer]:
+              - /url: /local-login
+      - generic [ref=f1e107]:
+        - heading "Follow Us" [level=3] [ref=f1e108]
+        - generic [ref=f1e109]:
+          - link [ref=f1e110] [cursor=pointer]:
+            - /url: https://www.facebook.com
+          - link [ref=f1e114] [cursor=pointer]:
+            - /url: https://www.instagram.com
+          - link [ref=f1e118] [cursor=pointer]:
+            - /url: https://www.twitter.com
+        - paragraph [ref=f1e121]: Call Us
+    - paragraph [ref=f1e125]: 2026, CompileTab. All Right Reserved

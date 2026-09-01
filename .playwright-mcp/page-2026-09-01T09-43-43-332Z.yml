@@ -1,0 +1,115 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - banner [ref=e7]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - link [ref=e11] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=e15] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=e19] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e22]: We ship worldwide - Fast adn reliable shipping!
+      - 'link "Call us: +92 000 000 000" [ref=e24] [cursor=pointer]':
+        - /url: tel:+9200000000
+    - generic [ref=e25]:
+      - navigation [ref=e26]:
+        - link "ZYRA" [ref=e28] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e29]:
+          - link "Men" [ref=e30] [cursor=pointer]:
+            - /url: /collections/all?gender=Men
+          - link "Women" [ref=e31] [cursor=pointer]:
+            - /url: /collections/all?gender=Women
+          - link "Top Wear" [ref=e32] [cursor=pointer]:
+            - /url: /collections/all?category=Top Wear
+          - link "Bottom Wear" [ref=e33] [cursor=pointer]:
+            - /url: /collections/all?category=Bottom Wear
+        - generic [ref=e34]:
+          - button [ref=e35]
+          - button [ref=e40]
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Your Cart" [level=2]
+          - paragraph: Your cart is empty.
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Menu" [level=2]
+          - navigation:
+            - link "Men":
+              - /url: /collections/all?gender=Men
+            - link "Women":
+              - /url: /collections/all?gender=Women
+            - link "Top Wear":
+              - /url: /collections/all?category=Top Wear
+            - link "Bottom Wear":
+              - /url: /collections/all?category=Bottom Wear
+  - main [ref=e43]:
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - generic [ref=e47]: Z
+        - paragraph [ref=e48]: Welcome back
+        - heading "Sign in with email, Google, or any Clerk provider you enable." [level=1] [ref=e49]
+        - paragraph [ref=e50]: Your profile, orders, and saved cart stay connected once you're signed in.
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - paragraph [ref=e53]: Secure commerce
+          - heading "One auth system for login, signup, profile, and social sign-in." [level=2] [ref=e54]
+        - generic [ref=e55]:
+          - generic [ref=e56]: Google sign-in
+          - generic [ref=e57]: Passwordless-ready flows
+          - generic [ref=e58]: Profile and session management
+  - contentinfo [ref=e59]:
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - heading "Newletter" [level=3] [ref=e62]
+        - paragraph [ref=e63]: Be the first to hear about new products, exclusive offers, and online offers.
+        - paragraph [ref=e64]: Sign up and get 10% off your first order.
+        - generic [ref=e65]:
+          - textbox "Enter your email" [ref=e66]
+          - button "Subscribe" [ref=e67]
+      - generic [ref=e68]:
+        - heading "Shop" [level=3] [ref=e69]
+        - list [ref=e70]:
+          - listitem [ref=e71]:
+            - link "Men's top Wear" [ref=e72] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e73]:
+            - link "Women top Wear" [ref=e74] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e75]:
+            - link "Men's bottom Wear" [ref=e76] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e77]:
+            - link "Women bottom Wear" [ref=e78] [cursor=pointer]:
+              - /url: /login
+      - generic [ref=e79]:
+        - heading "Support" [level=3] [ref=e80]
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - link "Contact Us" [ref=e83] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e84]:
+            - link "About Us" [ref=e85] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e86]:
+            - link "FAQs" [ref=e87] [cursor=pointer]:
+              - /url: /login
+          - listitem [ref=e88]:
+            - link "Features" [ref=e89] [cursor=pointer]:
+              - /url: /login
+      - generic [ref=e90]:
+        - heading "Follow Us" [level=3] [ref=e91]
+        - generic [ref=e92]:
+          - link [ref=e93] [cursor=pointer]:
+            - /url: https://www.facebook.com
+          - link [ref=e97] [cursor=pointer]:
+            - /url: https://www.instagram.com
+          - link [ref=e101] [cursor=pointer]:
+            - /url: https://www.twitter.com
+        - paragraph [ref=e104]: Call Us
+    - paragraph [ref=e108]: 2026, CompileTab. All Right Reserved

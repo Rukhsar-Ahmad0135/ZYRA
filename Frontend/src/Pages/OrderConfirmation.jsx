@@ -68,7 +68,7 @@ const OrderConfirmation = () => {
           <div>
             <p className="text-emerald-700 text-sm">
               Estimated delivery:{" "}
-              {calculatEstimatedDelivery(order.createdAt)}
+              {order.createdAt ? calculatEstimatedDelivery(order.createdAt) : "N/A"}
             </p>
           </div>
         </div>

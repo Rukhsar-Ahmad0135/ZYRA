@@ -14,7 +14,7 @@ const ProductGrid = ({ products, loading, error }) => {
     );
   }
   if (error) {
-    return <p className="text-center text-lg font-semibold">Error{error}</p>;
+    return <p className="text-center text-lg font-semibold">Error: {error}</p>;
   }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

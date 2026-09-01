@@ -7,6 +7,15 @@ import App from "./App.jsx";
 // Register Service Worker for offline support & performance
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
+    // Unregister any stale SWs from a previous origin/port before re-registering
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((reg) => {
+        if (reg.scope !== `${window.location.origin}/`) {
+          reg.unregister();
+        }
+      });
+    });
+
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
         console.log('SW registered:', registration.scope);

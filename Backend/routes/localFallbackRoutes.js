@@ -511,7 +511,7 @@ router.put("/cart", express.json(), (req, res, next) => {
 
 router.delete("/cart", express.json(), (req, res, next) => {
   if (!isLocalMode()) return next();
-  const { userId, guestId, productId } = req.body;
+  const { userId, guestId, productId, size, color } = req.body;
   const result = withStore((storeState) => {
     const cart = findCartByIdentity(storeState, userId, guestId);
     if (!cart) return "cart-not-found";
@@ -541,7 +541,7 @@ router.post("/cart/merge", express.json(), async (req, res, next) => {
   const result = withStore((store) => {
     const guestCart = store.carts.find((entry) => entry.guestId === guestId);
     const userCart = store.carts.find((entry) => entry.user === authUser._id);
-    if (!guestCart) return userCart || null;
+    if (!guestCart) return userCart || { products: [], totalPrice: 0 };
     if (!userCart) {
       guestCart.user = authUser._id;
       guestCart.guestId = undefined;
@@ -558,7 +558,7 @@ router.post("/cart/merge", express.json(), async (req, res, next) => {
     store.carts = store.carts.filter((entry) => entry.guestId !== guestId);
     return userCart;
   });
-  if (!result) return res.status(404).json({ message: "Guest cart not found" });
+  if (!result) return res.json({ products: [], totalPrice: 0 });
   res.json(responseCart(result));
 });
 
@@ -921,9 +921,9 @@ router.post("/subscribers", express.json(), (req, res, next) => {
   res.status(201).json({ message: "Successfully subscribed to the newsletter" });
 });
 
-router.post("/admin/products/upload", (req, res, next) => {
+router.post("/admin/products/upload", async (req, res, next) => {
   if (!isLocalMode()) return next();
-  const user = requireLocalAdmin(req, res);
+  const user = await requireLocalAdmin(req, res);
   if (!user) return;
   localUpload.array("images", 10)(req, res, async (error) => {
     if (error) {

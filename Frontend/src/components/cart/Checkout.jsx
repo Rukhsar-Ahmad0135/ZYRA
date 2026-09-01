@@ -147,7 +147,6 @@ const [shippingAddress, setShippingAddress] = useState({
       // 5) Optionally save this address to the user's profile for future use
       if (saveAddressForFuture && user) {
         try {
-          const token = localStorage.getItem("userToken");
           const userId = user._id || user.id;
           if (userId) {
             // Fetch current profile to merge addresses
