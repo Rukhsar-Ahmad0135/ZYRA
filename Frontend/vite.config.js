@@ -16,20 +16,14 @@ export default defineConfig({
     // Optimize chunk splitting
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Vendor chunks
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-clerk': ['@clerk/react'],
-          'vendor-redux': ['@reduxjs/toolkit', 'react-redux'],
-          'vendor-ui': ['sonner', 'lucide-react'],
-          // Admin chunk (loaded only when needed)
-          admin: [
-            './src/components/Admin/AdminLayout.jsx',
-            './src/Pages/AdminHomePage.jsx',
-            './src/components/Admin/UserManagment.jsx',
-            './src/components/Admin/ProductManagement.jsx',
-            './src/components/Admin/OrderManagement.jsx',
-          ],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) return 'vendor-react';
+            if (id.includes('@clerk')) return 'vendor-clerk';
+            if (id.includes('@reduxjs') || id.includes('react-redux')) return 'vendor-redux';
+            if (id.includes('sonner') || id.includes('lucide-react')) return 'vendor-ui';
+          }
+          if (id.includes('/src/components/Admin/') || id.includes('/src/Pages/AdminHomePage.jsx')) return 'admin';
         },
         // Cache busting with content hashes
         chunkFileNames: 'assets/js/[name]-[hash].js',

@@ -122,7 +122,6 @@ const productSchema = new mongoose.Schema(
 
 // Indexes for common query patterns
 productSchema.index({ name: "text", description: "text" });
-productSchema.index({ sku: 1 });
 productSchema.index({ collections: 1 });
 productSchema.index({ gender: 1 });
 productSchema.index({ category: 1 });

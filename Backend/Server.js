@@ -10,7 +10,6 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
-import mongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -64,7 +63,23 @@ app.use((req, res, next) => {
   if (process.env.USE_LOCAL_DATA === "true") {
     return next();
   }
-  return mongoSanitize()(req, res, next);
+  // express-mongo-sanitize v2.2.0 is incompatible with Express 5.x
+  // Using a lightweight alternative: sanitize req.query, req.body, req.params manually
+  // In Express 5, req.query is a getter, so we mutate in place
+  const sanitize = (obj) => {
+    if (!obj || typeof obj !== "object") return;
+    for (const key of Object.keys(obj)) {
+      if (key.startsWith("$") || key.includes(".")) {
+        delete obj[key];
+      } else if (typeof obj[key] === "object") {
+        sanitize(obj[key]);
+      }
+    }
+  };
+  sanitize(req.query);
+  sanitize(req.body);
+  sanitize(req.params);
+  next();
 });
 
 // CORS — restrict to allowed origins from env (CLIENT_URL, comma-separated)

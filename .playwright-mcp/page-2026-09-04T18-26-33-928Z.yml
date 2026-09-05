@@ -1,0 +1,253 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=e11] [cursor=pointer]:
+          - /url: "#"
+        - link [ref=e15] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e18]: We ship worldwide - Fast adn reliable shipping!
+      - 'link "Call us: +92 000 000 000" [ref=e20] [cursor=pointer]':
+        - /url: tel:+9200000000
+    - generic [ref=e21]:
+      - navigation [ref=e22]:
+        - link "ZYRA" [ref=e24] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e25]:
+          - link "Men" [ref=e26] [cursor=pointer]:
+            - /url: /collections/all?gender=Men
+          - link "Women" [ref=e27] [cursor=pointer]:
+            - /url: /collections/all?gender=Women
+          - link "Top Wear" [ref=e28] [cursor=pointer]:
+            - /url: /collections/all?category=Top Wear
+          - link "Bottom Wear" [ref=e29] [cursor=pointer]:
+            - /url: /collections/all?category=Bottom Wear
+          - link "AI Stylist" [ref=e30] [cursor=pointer]:
+            - /url: /stylist
+        - generic [ref=e32]:
+          - button [ref=e33]
+          - button [ref=e38]
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Your Cart" [level=2]
+          - paragraph: Your cart is empty.
+      - generic:
+        - generic:
+          - button
+        - generic:
+          - heading "Menu" [level=2]
+          - navigation:
+            - link "Men":
+              - /url: /collections/all?gender=Men
+            - link "Women":
+              - /url: /collections/all?gender=Women
+            - link "Top Wear":
+              - /url: /collections/all?category=Top Wear
+            - link "Bottom Wear":
+              - /url: /collections/all?category=Bottom Wear
+            - link "✨ AI Stylist":
+              - /url: /stylist
+  - main [ref=e41]:
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - img "ZRYA" [ref=e44]
+        - generic [ref=e46]:
+          - heading "Vacation Ready" [level=1] [ref=e47]
+          - paragraph [ref=e48]: Explore our vacation-ready outfits with fast worldwide shipping.
+          - link "Shop Now" [ref=e49] [cursor=pointer]:
+            - /url: /
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - img "women's collection" [ref=e53]
+          - generic [ref=e54]:
+            - heading "Women's Collection" [level=2] [ref=e55]
+            - link "Shop" [ref=e56] [cursor=pointer]:
+              - /url: /collections/all?gender=women
+        - generic [ref=e57]:
+          - img "men's collection" [ref=e58]
+          - generic [ref=e59]:
+            - heading "Men's Collection" [level=2] [ref=e60]
+            - link "Shop" [ref=e61] [cursor=pointer]:
+              - /url: /collections/all?gender=men
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - heading "Explore New Arrivals" [level=3] [ref=e64]
+          - paragraph [ref=e65]: Discover the latest style straight off the runway, freshly added to keep your wardrobe on the cutting edge of fashion.
+          - generic [ref=e66]:
+            - button [disabled] [ref=e67]
+            - button [ref=e70]
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - img "Women's V-Neck Wrap Top" [ref=e75]
+            - link [ref=e77] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f424298
+              - heading "V-Neck Wrap Top" [level=4] [ref=e78]
+              - paragraph [ref=e79]: $50
+          - generic [ref=e80]:
+            - img "Women's Classic Button-Up Shirt" [ref=e81]
+            - link [ref=e83] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f424295
+              - heading "Classic Button-Up Shirt" [level=4] [ref=e84]
+              - paragraph [ref=e85]: $60
+          - generic [ref=e86]:
+            - img "Women's Ruffle-Sleeve Blouse" [ref=e87]
+            - link [ref=e89] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f424292
+              - heading "Ruffle-Sleeve Blouse" [level=4] [ref=e90]
+              - paragraph [ref=e91]: $45
+          - generic [ref=e92]:
+            - img "Women's Knitted Cropped Top" [ref=e93]
+            - link [ref=e95] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f42427d
+              - heading "Knitted Cropped Top" [level=4] [ref=e96]
+              - paragraph [ref=e97]: $40
+          - generic [ref=e98]:
+            - img "Women's Boho Floral Blouse" [ref=e99]
+            - link [ref=e101] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f424280
+              - heading "Boho Floral Blouse" [level=4] [ref=e102]
+              - paragraph [ref=e103]: $50
+          - generic [ref=e104]:
+            - img "Women's Classic Pleated Trousers" [ref=e105]
+            - link [ref=e107] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f42427a
+              - heading "Classic Pleated Trousers" [level=4] [ref=e108]
+              - paragraph [ref=e109]: $70
+          - generic [ref=e110]:
+            - img "Women's Stretch Denim Shorts" [ref=e111]
+            - link [ref=e113] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f424274
+              - heading "Stretch Denim Shorts" [level=4] [ref=e114]
+              - paragraph [ref=e115]: $40
+          - generic [ref=e116]:
+            - img "Women's Off-Shoulder Top" [ref=e117]
+            - link [ref=e119] [cursor=pointer]:
+              - /url: /products/6a5f075ee45445b71f424286
+              - heading "Off-Shoulder Top" [level=4] [ref=e120]
+              - paragraph [ref=e121]: $45
+      - heading "Best Seller" [level=2] [ref=e122]
+      - paragraph [ref=e123]: Product not found.
+      - generic [ref=e124]:
+        - heading "Top Wears for Women" [level=2] [ref=e125]
+        - generic [ref=e126]:
+          - link [ref=e127] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f42427d
+            - generic [ref=e128]:
+              - img "Women's Knitted Cropped Top" [ref=e130]
+              - heading "Knitted Cropped Top" [level=3] [ref=e131]
+              - paragraph [ref=e132]: $40
+          - link [ref=e133] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f424280
+            - generic [ref=e134]:
+              - img "Women's Boho Floral Blouse" [ref=e136]
+              - heading "Boho Floral Blouse" [level=3] [ref=e137]
+              - paragraph [ref=e138]: $50
+          - link [ref=e139] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f424283
+            - generic [ref=e140]:
+              - img "Women's Casual T-Shirt" [ref=e142]
+              - heading "Casual T-Shirt" [level=3] [ref=e143]
+              - paragraph [ref=e144]: $25
+          - link [ref=e145] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f424286
+            - generic [ref=e146]:
+              - img "Women's Off-Shoulder Top" [ref=e148]
+              - heading "Off-Shoulder Top" [level=3] [ref=e149]
+              - paragraph [ref=e150]: $45
+          - link [ref=e151] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f424289
+            - generic [ref=e152]:
+              - img "Women's Lace-Trimmed Cami Top" [ref=e154]
+              - heading "Lace-Trimmed Cami Top" [level=3] [ref=e155]
+              - paragraph [ref=e156]: $35
+          - link [ref=e157] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f42428c
+            - generic [ref=e158]:
+              - img "Women's Graphic Print Tee" [ref=e160]
+              - heading "Graphic Print Tee" [level=3] [ref=e161]
+              - paragraph [ref=e162]: $30
+          - link [ref=e163] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f42428f
+            - generic [ref=e164]:
+              - img "Women's Ribbed Long-Sleeve Top" [ref=e166]
+              - heading "Ribbed Long-Sleeve Top" [level=3] [ref=e167]
+              - paragraph [ref=e168]: $55
+          - link [ref=e169] [cursor=pointer]:
+            - /url: /products/6a5f075ee45445b71f424292
+            - generic [ref=e170]:
+              - img "Women's Ruffle-Sleeve Blouse" [ref=e172]
+              - heading "Ruffle-Sleeve Blouse" [level=3] [ref=e173]
+              - paragraph [ref=e174]: $45
+      - generic [ref=e176]:
+        - generic [ref=e177]:
+          - heading "Comfort and Style" [level=2] [ref=e178]
+          - heading "Apparel made for your everyday life" [level=2] [ref=e179]
+          - paragraph [ref=e180]: Discover high-quality, comfortable clothing that effortlessly blends fashion and function. Designed to make you look and feel great every day.
+          - link "Shop Now" [ref=e181] [cursor=pointer]:
+            - /url: /collections/all
+        - img "Featured Product" [ref=e183]
+      - generic [ref=e185]:
+        - generic [ref=e186]:
+          - heading "FREE INTERNATIONAL SHIPPING" [level=4] [ref=e190]
+          - paragraph [ref=e191]: On all orders over $100.00
+        - generic [ref=e192]:
+          - heading "45 DAYS RETURN POLICY" [level=4] [ref=e196]
+          - paragraph [ref=e197]: Money back guarantee
+        - generic [ref=e198]:
+          - heading "SECURE CHECKOUT" [level=4] [ref=e202]
+          - paragraph [ref=e203]: 100% secure payment processing
+  - contentinfo [ref=e204]:
+    - generic [ref=e205]:
+      - generic [ref=e206]:
+        - heading "Newletter" [level=3] [ref=e207]
+        - paragraph [ref=e208]: Be the first to hear about new products, exclusive offers, and online offers.
+        - paragraph [ref=e209]: Sign up and get 10% off your first order.
+        - generic [ref=e210]:
+          - textbox "Enter your email" [ref=e211]
+          - button "Subscribe" [ref=e212]
+      - generic [ref=e213]:
+        - heading "Shop" [level=3] [ref=e214]
+        - list [ref=e215]:
+          - listitem [ref=e216]:
+            - link "Men's top Wear" [ref=e217] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e218]:
+            - link "Women top Wear" [ref=e219] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e220]:
+            - link "Men's bottom Wear" [ref=e221] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e222]:
+            - link "Women bottom Wear" [ref=e223] [cursor=pointer]:
+              - /url: /
+      - generic [ref=e224]:
+        - heading "Support" [level=3] [ref=e225]
+        - list [ref=e226]:
+          - listitem [ref=e227]:
+            - link "Contact Us" [ref=e228] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e229]:
+            - link "About Us" [ref=e230] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e231]:
+            - link "FAQs" [ref=e232] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e233]:
+            - link "Features" [ref=e234] [cursor=pointer]:
+              - /url: /
+      - generic [ref=e235]:
+        - heading "Follow Us" [level=3] [ref=e236]
+        - generic [ref=e237]:
+          - link [ref=e238] [cursor=pointer]:
+            - /url: https://www.facebook.com
+          - link [ref=e242] [cursor=pointer]:
+            - /url: https://www.instagram.com
+          - link [ref=e246] [cursor=pointer]:
+            - /url: https://www.twitter.com
+        - paragraph [ref=e249]: Call Us
+    - paragraph [ref=e253]: 2026, CompileTab. All Right Reserved

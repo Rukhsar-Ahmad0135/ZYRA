@@ -12,13 +12,14 @@ import { mergeCart as mergeCartThunk } from "./cartSlice.js";
 // via getAuthToken() in api/client.js — we never persist it in localStorage.
 // For local mode (USE_LOCAL_DATA=true), we store the legacy JWT token.
 const USER_KEY = "userInfo";
-const GUEST_KEY = "guestId";
+const GUEST_KEY = "zyra_guest_id_v1";
 const LEGACY_TOKEN_KEY = "legacyToken";
 
 const getUserFromStorage = () => {
   try {
     const raw = localStorage.getItem(USER_KEY);
-    return raw ? JSON.parse(raw) : null;
+    const parsed = raw ? JSON.parse(raw) : null;
+    return parsed?.user || parsed;
   } catch {
     return null;
   }
@@ -27,6 +28,11 @@ const getUserFromStorage = () => {
 const getGuestId = () => {
   const existing = localStorage.getItem(GUEST_KEY);
   if (existing) return existing;
+  const legacyGuestId = localStorage.getItem("guestId");
+  if (legacyGuestId) {
+    localStorage.setItem(GUEST_KEY, legacyGuestId);
+    return legacyGuestId;
+  }
   const id = `guest_${Date.now()}_${Math.random().toString(16).slice(2)}`;
   localStorage.setItem(GUEST_KEY, id);
   return id;
@@ -123,7 +129,7 @@ export const fetchProfile = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await apiClient.get("/api/users/profile");
-      return response.data;
+      return response.data?.user || response.data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -165,7 +171,9 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
       localStorage.removeItem(USER_KEY);
-      // Note: We don't remove legacy token here as it might be needed for local mode
+      state.guestId = `guest_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+      localStorage.setItem(GUEST_KEY, state.guestId);
+      // Preserve the legacy token because local-mode login can coexist with Clerk.
     },
     // Directly set user data without an API call. Used when we already have
     // updated data from the server and need to persist it locally.
@@ -208,7 +216,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchProfile.fulfilled, (state, action) => {
         state.user = action.payload;
-        localStorage.setItem(USER_KEY, JSON.stringify(action.payload));
+        saveUser(action.payload);
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.user = action.payload;

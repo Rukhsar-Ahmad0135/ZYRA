@@ -225,8 +225,7 @@ router.get("/", async (req, res, next) => {
     if (cart) {
       res.json(cart);
     } else {
-      res.status(404);
-      throw new Error("Cart not found");
+      res.json({ products: [], totalPrice: 0 });
     }
   } catch (error) {
     next(error);
@@ -281,8 +280,7 @@ router.post("/merge", protect, async (req, res, next) => {
       if (userCart) {
         return res.status(200).json(userCart);
       }
-      res.status(404);
-      throw new Error("Guest cart not found");
+      return res.status(200).json({ products: [], totalPrice: 0 });
     }
   } catch (error) {
     next(error);

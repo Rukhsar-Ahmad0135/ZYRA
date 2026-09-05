@@ -12,27 +12,12 @@ const RequireAuth = ({ children }) => {
 
   const isLocalMode = import.meta.env.VITE_USE_LOCAL_DATA === "true";
 
-  // Redirect to login if not authenticated — run once per mount via ref
-  useEffect(() => {
-    if (hasRedirected.current) return;
+  // Determine redirect URL
+  const redirectUrl = `/login?redirect=${encodeURIComponent(
+    location.pathname + location.search
+  )}`;
 
-    const shouldRedirect =
-      (isLocalMode && !user && !authLoading) ||
-      (!isLocalMode && !isSignedIn);
-
-    if (!shouldRedirect) return;
-
-    hasRedirected.current = true;
-    const redirectUrl = `/login?redirect=${encodeURIComponent(
-      location.pathname + location.search
-    )}`;
-
-    // Use setTimeout to ensure the redirect happens after current render cycle
-    setTimeout(() => {
-      window.location.href = redirectUrl;
-    }, 0);
-  }, [isLocalMode, user, authLoading, isSignedIn, location]);
-
+  // Show loading state while Clerk is initializing
   if (!isLoaded) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
@@ -41,40 +26,29 @@ const RequireAuth = ({ children }) => {
     );
   }
 
-  // In local mode: require legacy JWT token, otherwise redirect to Clerk login
-  if (isLocalMode && !user && !authLoading) {
-    return (
-      <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
-        Redirecting to login...
-      </div>
-    );
-  }
-
-  // In local mode: Clerk says signed in but no Redux user yet + still loading
-  if (isLocalMode && isSignedIn && !user && authLoading) {
-    return (
-      <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
-        Loading profile...
-      </div>
-    );
-  }
-
-  // In Clerk mode (production): if Clerk says user is signed in, allow access
-  if (!isLocalMode && isSignedIn) {
+  // In local mode: require legacy JWT token
+  if (isLocalMode) {
+    if (!user && !authLoading) {
+      return <Navigate to={redirectUrl} replace />;
+    }
+    if (isSignedIn && !user && authLoading) {
+      return (
+        <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
+          Loading profile...
+        </div>
+      );
+    }
+    // User is authenticated in local mode
     return children;
   }
 
-  // In Clerk mode: not signed in
-  if (!isLocalMode && !isSignedIn) {
-    return (
-      <div className="flex min-h-[40vh] items-center justify-center text-sm text-gray-500">
-        Redirecting to login...
-      </div>
-    );
+  // In Clerk mode (production): check Clerk's isSignedIn state
+  if (isSignedIn) {
+    return children;
   }
 
-  // If none of the above matched but we have a user, render children
-  return children;
+  // Not signed in Clerk mode - redirect to login
+  return <Navigate to={redirectUrl} replace />;
 };
 
 export default RequireAuth;
