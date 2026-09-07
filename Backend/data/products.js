@@ -61,11 +61,11 @@ const products = [
     "gender": "Men",
     "images": [
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950359/Slim-Fit_Stretch_Shirt1_c5q8va.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950359/Slim-Fit_Stretch_Shirt_jaolne.jpg",
         "altText": "Slim-Fit Stretch Shirt front view"
       },
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950359/Slim-Fit_Stretch_Shirt_jaolne.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950359/Slim-Fit_Stretch_Shirt1_c5q8va.jpg",
         "altText": "Slim-Fit Stretch Shirt back view"
       }
     ],
@@ -561,11 +561,11 @@ const products = [
     "gender": "Men",
     "images": [
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/Track_Pants1_j9jkvf.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/Track_Pants_zpz5nc.jpg",
         "altText": "Track Pants front view"
       },
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/Track_Pants_zpz5nc.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/Track_Pants1_j9jkvf.jpg",
         "altText": "Track Pants back view"
       }
     ],
@@ -1165,11 +1165,11 @@ const products = [
     "gender": "Women",
     "images": [
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950347/Casual_T-Shirt1_pcccw4.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950347/Casual_T-Shirt_velrap.jpg",
         "altText": "Casual T-Shirt front view"
       },
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950347/Casual_T-Shirt_velrap.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950347/Casual_T-Shirt1_pcccw4.jpg",
         "altText": "Casual T-Shirt back view"
       }
     ],
@@ -1411,11 +1411,11 @@ const products = [
     "gender": "Women",
     "images": [
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950363/V-Neck_Wrap_Top1_dxtd9m.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/V-Neck_Wrap_Top_p2uwxs.jpg",
         "altText": "V-Neck Wrap Top front view"
       },
       {
-        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/V-Neck_Wrap_Top_p2uwxs.jpg",
+        "url": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950363/V-Neck_Wrap_Top1_dxtd9m.jpg",
         "altText": "V-Neck Wrap Top back view"
       }
     ],
