@@ -16,6 +16,7 @@ import {
 } from "../../redux/slices/productSlice";
 import { addToCart as addToCartThunk } from "../../redux/slices/cartSlice";
 import { getOrCreateGuestId } from "../../utils/guestId";
+import { formatPrice } from "../../utils/priceUtils";
 
 const ProductsDetails = ({ productId }) => {
   const { id } = useParams();
@@ -186,9 +187,9 @@ const ProductsDetails = ({ productId }) => {
             </h1>
 
             <p className="text-lg text-gray-600 mb-1 line-through">
-              {product.originalPrice ? ` $${product.originalPrice}` : null}
+              {product.originalPrice ? formatPrice(product.originalPrice, "USD") : null}
             </p>
-            <p className="text-xl text-gray-500 mb-2">${product.price}</p>
+            <p className="text-xl text-gray-500 mb-2">{formatPrice(product.discountPrice || product.price, "USD")}</p>
             <p className="text-gray-600 mb-4">{product.description}</p>
 
             <div className="mb-4">

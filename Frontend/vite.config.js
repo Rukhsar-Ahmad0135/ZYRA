@@ -45,14 +45,14 @@ export default defineConfig({
   },
   // Server config for SPA refresh
   server: {
-    port: 3001,
-    strictPort: true,
+    port: 5173,
+    strictPort: false,
     host: true,
     // SPA fallback for refresh
     middlewareMode: false,
   },
   preview: {
-    port: 3001,
+    port: 5173,
     host: true,
   },
 })

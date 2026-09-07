@@ -20,6 +20,96 @@ import {
 
 const router = express.Router();
 
+// @route   GET /api/checkout
+// @desc    Get checkout sessions for a user
+// @access  Private
+router.get(
+  "/",
+  protect,
+  async (req, res, next) => {
+    try {
+      const { userId } = req.query;
+
+      let query = {};
+      if (userId) {
+        query.user = userId;
+      } else if (req.user.role !== "admin") {
+        query.user = req.user._id;
+      }
+
+      const checkouts = await Checkout.find(query)
+        .sort({ createdAt: -1 })
+        .limit(20);
+
+      res.json({ checkouts });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// @route   GET /api/checkout/:id
+// @desc    Get a specific checkout session
+// @access  Private
+router.get(
+  "/:id",
+  protect,
+  validateObjectId("id"),
+  validate,
+  async (req, res, next) => {
+    try {
+      const checkout = await Checkout.findById(req.params.id);
+      if (!checkout) {
+        res.status(404);
+        throw new Error("Checkout not found");
+      }
+
+      if (checkout.user.toString() !== req.user._id.toString() && req.user.role !== "admin") {
+        res.status(403);
+        throw new Error("Not authorized to access this checkout");
+      }
+
+      res.json(checkout);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// @route   DELETE /api/checkout/:id
+// @desc    Delete a checkout session
+// @access  Private
+router.delete(
+  "/:id",
+  protect,
+  validateObjectId("id"),
+  validate,
+  async (req, res, next) => {
+    try {
+      const checkout = await Checkout.findById(req.params.id);
+      if (!checkout) {
+        res.status(404);
+        throw new Error("Checkout not found");
+      }
+
+      if (checkout.user.toString() !== req.user._id.toString() && req.user.role !== "admin") {
+        res.status(403);
+        throw new Error("Not authorized to delete this checkout");
+      }
+
+      if (checkout.isPaid) {
+        res.status(400);
+        throw new Error("Cannot delete a paid checkout");
+      }
+
+      await Checkout.findByIdAndDelete(req.params.id);
+      res.json({ message: "Checkout deleted" });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 // @route   POST /api/checkout
 // @desc    Create a new checkout session
 // @access  Private

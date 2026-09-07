@@ -95,6 +95,23 @@ const orderSchema = new mongoose.Schema(
       enum: ["processing", "shipped", "delivered", "cancelled"],
       default: "processing",
     },
+    // Safepay payment tracking
+    safepayTracker: {
+      type: String,
+      index: true,
+    },
+    safepayPaymentMethod: {
+      type: String,
+    },
+    safepayCardLastFour: {
+      type: String,
+    },
+    safepayTransactionId: {
+      type: String,
+    },
+    safepayPaidAt: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
@@ -102,6 +119,7 @@ const orderSchema = new mongoose.Schema(
 orderSchema.index({ user: 1, createdAt: -1 });
 orderSchema.index({ status: 1 });
 orderSchema.index({ orderStatus: 1 });
+orderSchema.index({ safepayTracker: 1 });
 
 
 const Order = mongoose.models.Order || mongoose.model("Order", orderSchema);

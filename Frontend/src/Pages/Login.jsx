@@ -5,9 +5,9 @@
  */
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { SignIn, useAuth } from "@clerk/react";
+import { SignIn, useAuth, useClerk } from "@clerk/react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/slices/authSlice.js";
+import { loginUser, logout } from "../redux/slices/authSlice.js";
 import { toast } from "sonner";
 
 const safeRedirectPath = (raw) => {
@@ -113,6 +113,7 @@ const Login = () => {
   const user = useSelector((state) => state.auth.user);
   const authLoading = useSelector((state) => state.auth.loading);
   const { isSignedIn, isLoaded } = useAuth();
+  const { signOut } = useClerk();
 
   const clerkPublishableKey =
     import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || "";
@@ -128,9 +129,11 @@ const Login = () => {
       return;
     }
     if (user && !authLoading) {
-      // Block admin role from logging in here
+      // Auto logout admin role when trying to login as customer
       if (["admin", "superadmin"].includes(user?.role)) {
-        toast.error("Admin accounts must use the admin login page");
+        toast.error("Logging you out from admin account...");
+        dispatch(logout());
+        signOut().catch(() => {});
         return;
       }
       navigate(redirectTo, { replace: true });

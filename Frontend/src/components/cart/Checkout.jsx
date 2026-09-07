@@ -15,6 +15,7 @@ import { fetchCart } from "../../redux/slices/cartSlice";
 
 import { toast } from "sonner";
 import apiClient from "../../api/client.js";
+import { formatPrice } from "../../utils/priceUtils";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -23,7 +24,9 @@ const Checkout = () => {
   const { user, guestId } = useSelector((state) => state.auth);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [showAdminWarning, setShowAdminWarning] = useState(false);
-const [shippingAddress, setShippingAddress] = useState({
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState({
       firstName: "",
       lastName: "",
       address: "",
@@ -112,14 +115,39 @@ const [shippingAddress, setShippingAddress] = useState({
         createCheckoutSession({
           checkoutItems: orderItems,
           shippingAddress: shippingPayload,
-          paymentMethod: "Cash on Delivery",
+          paymentMethod: paymentMethod,
           totalPrice,
           userId: user?._id || user?.id,
           guestId,
         }),
       ).unwrap();
 
-      // 2) Finalize checkout -> creates the order.
+      // 2) Handle based on payment method
+      if (paymentMethod === "Safepay") {
+        // For Safepay, create a payment session and redirect to Safepay
+        setIsProcessingPayment(true);
+        try {
+          const safepayRes = await apiClient.post("/api/safepay/create-session", {
+            checkoutId: checkoutResult._id,
+          });
+
+          if (safepayRes.data?.checkoutUrl) {
+            // Redirect to Safepay hosted checkout
+            window.location.href = safepayRes.data.checkoutUrl;
+            return;
+          } else {
+            throw new Error("Failed to get Safepay checkout URL");
+          }
+        } catch (safepayErr) {
+          console.error("Safepay error:", safepayErr);
+          toast.error(safepayErr?.response?.data?.message || "Failed to initiate payment");
+          setIsProcessingPayment(false);
+          setIsPlacingOrder(false);
+          return;
+        }
+      }
+
+      // 3) Finalize checkout -> creates the order.
       // For Cash on Delivery, the order stays paymentStatus = "Pending"
       // until an admin marks it Paid on delivery (see Step 12).
 
@@ -127,7 +155,7 @@ const [shippingAddress, setShippingAddress] = useState({
         finalizeCheckout(checkoutResult._id),
       ).unwrap();
 
-      // 3) Refresh the local cart from the server. The backend may have
+      // 4) Refresh the local cart from the server. The backend may have
       // just merged a guest cart into the user cart during checkout
       // creation, so we re-pull to stay in sync.
       try {
@@ -141,10 +169,10 @@ const [shippingAddress, setShippingAddress] = useState({
         // best-effort
       }
 
-      // 4) Clear local cart
+      // 5) Clear local cart
       clearCart();
 
-      // 5) Optionally save this address to the user's profile for future use
+      // 6) Optionally save this address to the user's profile for future use
       if (saveAddressForFuture && user) {
         try {
           const userId = user._id || user.id;
@@ -179,6 +207,7 @@ const [shippingAddress, setShippingAddress] = useState({
       toast.error(err?.message || "Failed to place order");
     } finally {
       setIsPlacingOrder(false);
+      setIsProcessingPayment(false);
     }
   };
 
@@ -344,28 +373,71 @@ const [shippingAddress, setShippingAddress] = useState({
               <span className="text-sm text-stone-700">Save this address for future orders</span>
             </label>
           </div>
-          <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-amber-800">
+          <div className="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-stone-800 mb-3">
               Payment Method
             </h3>
-            <p className="mt-2 text-sm text-amber-900">
-              Cash on Delivery only. Pay when your order arrives at your door.
-            </p>
+            <div className="space-y-2">
+              <label className="flex items-center gap-3 p-3 rounded-lg border border-stone-200 bg-white cursor-pointer hover:bg-stone-50 transition">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="Cash on Delivery"
+                  checked={paymentMethod === "Cash on Delivery"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="w-4 h-4 text-zyra-primary border-stone-300 focus:ring-zyra-primary"
+                />
+                <div className="flex-1">
+                  <span className="font-medium text-stone-800">Cash on Delivery</span>
+                  <p className="text-sm text-stone-500">Pay when your order arrives at your door</p>
+                </div>
+              </label>
+              <label className="flex items-center gap-3 p-3 rounded-lg border border-stone-200 bg-white cursor-pointer hover:bg-stone-50 transition">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="Safepay"
+                  checked={paymentMethod === "Safepay"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="w-4 h-4 text-zyra-primary border-stone-300 focus:ring-zyra-primary"
+                />
+                <div className="flex-1">
+                  <span className="font-medium text-stone-800">Credit/Debit Card</span>
+                  <p className="text-sm text-stone-500">Pay now with Visa or Mastercard via Safepay</p>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="h-6" viewBox="0 0 36 24" fill="none">
+                    <rect width="36" height="24" rx="3" fill="#1A1F71"/>
+                    <text x="18" y="15" textAnchor="middle" fill="#FF5F00" fontSize="8" fontWeight="bold">VISA</text>
+                  </svg>
+                  <svg className="h-6" viewBox="0 0 36 24" fill="none">
+                    <rect width="36" height="24" rx="3" fill="#fff" stroke="#ccc"/>
+                    <circle cx="14" cy="12" r="7" fill="#EB001B"/>
+                    <circle cx="22" cy="12" r="7" fill="#F79E1B"/>
+                    <path d="M18 7.5c1.5 1.2 2.5 3 2.5 5s-1 3.8-2.5 5c-1.5-1.2-2.5-3-2.5-5s1-3.8 2.5-5z" fill="#FF5F00"/>
+                  </svg>
+                </div>
+              </label>
+            </div>
           </div>
           <div className="mt-6">
             <button
               type="submit"
-              disabled={isPlacingOrder || isCartEmpty || isAdmin || !isLoggedIn}
+              disabled={isPlacingOrder || isCartEmpty || isAdmin || !isLoggedIn || isProcessingPayment}
               className="w-full bg-black text-white py-3 rounded disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isPlacingOrder
-                ? "Placing Order..."
+              {isPlacingOrder || isProcessingPayment
+                ? paymentMethod === "Safepay"
+                  ? "Redirecting to Payment..."
+                  : "Placing Order..."
                 : isCartEmpty
                 ? "Cart is Empty"
                 : isAdmin
                 ? "Logout as Admin First"
                 : !isLoggedIn
                 ? "Login to Checkout"
+                : paymentMethod === "Safepay"
+                ? "Proceed to Payment"
                 : "Place Cash on Delivery Order"}
             </button>
           </div>
@@ -397,7 +469,7 @@ const [shippingAddress, setShippingAddress] = useState({
                 </div>
               </div>
               <p className="text-xl font-semibold">
-                ${(product.price * product.quantity).toLocaleString()}
+                {formatPrice(product.price * product.quantity, "USD")}
               </p>
             </div>
           ))}
@@ -407,7 +479,7 @@ const [shippingAddress, setShippingAddress] = useState({
         </div>
         <div className="flex justify-between items-center text-lg mb-4">
           <p>Subtotal</p>
-          <p>${totalPrice.toLocaleString()}</p>
+          <p>{formatPrice(totalPrice, "USD")}</p>
         </div>
         <div className="flex justify-between items-center text-lg">
           <p>Shipping</p>
@@ -415,7 +487,7 @@ const [shippingAddress, setShippingAddress] = useState({
         </div>
         <div className="flex justify-between items-center text-lg mt-4 border-t pt-4">
           <p>Total</p>
-          <p>${totalPrice.toLocaleString()}</p>
+          <p>{formatPrice(totalPrice, "USD")}</p>
         </div>
       </div>
     </div>

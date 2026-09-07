@@ -3,9 +3,12 @@
  *
  * See the LICENSE file for more information.
  */
+
+// Load environment variables FIRST - must be before any other imports
+import "./config/env.js";
+
 import express from "express";
 import path from "path";
-import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -27,9 +30,9 @@ import adminStatsRoutes from "./routes/adminStatsRoutes.js";
 import localFallbackRoutes from "./routes/localFallbackRoutes.js";
 import stylistRoutes from "./routes/stylistRoutes.js";
 import cartBatchRoutes from "./routes/cartBatchRoutes.js";
+import safepayRoutes from "./routes/safepayRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import seedInitialData from "./config/seedInitialData.js";
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -168,6 +171,9 @@ const mountRouters = () => {
   // AI Stylist (Mongo mode)
   app.use("/api/stylist", stylistRoutes);
   app.use("/api/cart/batch", cartBatchRoutes);
+
+  // Safepay Payment Gateway
+  app.use("/api/safepay", safepayRoutes);
 
   // Local fallback routes — early-return in real-DB mode so they're a
   // no-op when mongoose is connected.

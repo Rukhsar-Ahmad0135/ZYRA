@@ -4,6 +4,7 @@
  * See the LICENSE file for more information.
  */
 import { Link } from "react-router-dom";
+import { formatPrice } from "../../utils/priceUtils";
 
 const ProductGrid = ({ products, loading, error }) => {
   const safeProducts = Array.isArray(products) ? products : [];
@@ -34,7 +35,7 @@ const ProductGrid = ({ products, loading, error }) => {
             </div>
             <h3 className="text-sm mb-2">{product.name}</h3>
             <p className="text-gray-500 font-medium text-sm tracking-tighter">
-              ${product.price}
+              {formatPrice(product.discountPrice || product.price, "USD")}
             </p>
           </div>
         </Link>

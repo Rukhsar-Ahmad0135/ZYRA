@@ -1,10 +1,15 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useAuth } from "@clerk/react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth, useClerk } from "@clerk/react";
+import { toast } from "sonner";
+import { useEffect } from "react";
+import { logout } from "../../redux/slices/authSlice";
 
 const RequireAdmin = ({ children }) => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const { isLoaded, isSignedIn } = useAuth();
+  const { signOut } = useClerk();
   const user = useSelector((state) => state.auth.user);
   const authLoading = useSelector((state) => state.auth.loading);
 
@@ -21,6 +26,15 @@ const RequireAdmin = ({ children }) => {
   };
 
   const effectiveUser = user || (isLocalMode ? getLocalUser() : null);
+
+  // Auto logout non-admin users when trying to access admin routes
+  useEffect(() => {
+    if (effectiveUser && !["admin", "superadmin"].includes(effectiveUser.role)) {
+      toast.error("Logging you out from customer account...");
+      dispatch(logout());
+      signOut().catch(() => {});
+    }
+  }, [effectiveUser]);
 
   if (!isLocalMode && !isLoaded) {
     return (

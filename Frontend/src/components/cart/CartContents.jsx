@@ -5,6 +5,7 @@
  */
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { useCart } from "./useCart";
+import { formatPrice } from "../../utils/priceUtils";
 
 const CartContents = ({ cart }) => {
   const { items, updateQuantity, removeItem } = useCart();
@@ -89,7 +90,7 @@ const CartContents = ({ cart }) => {
               </div>
             </div>
             <div>
-              <p>${(product.price * product.quantity).toFixed(2)}</p>
+              <p>{formatPrice(product.price * product.quantity, "USD")}</p>
               <button onClick={() => handleRemove(product)}>
                 <RiDeleteBin3Line className="h-6 w-6 mt-2" />
               </button>

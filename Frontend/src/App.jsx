@@ -23,6 +23,8 @@ const ProductsDetails = lazy(() => import("./components/products/ProductsDetails
 const OrderConfirmation = lazy(() => import("./Pages/OrderConfirmation"));
 const OrderDetailsPage = lazy(() => import("./Pages/OrderDetailsPage"));
 const MyOrderPage = lazy(() => import("./Pages/MyOrderPage"));
+const SafepaySuccess = lazy(() => import("./Pages/SafepaySuccess"));
+const SafepayCancel = lazy(() => import("./Pages/SafepayCancel"));
 const AdminOrderDetailsPage = lazy(() => import("./Pages/Admin/AdminOrderDetailsPage"));
 const AdminLayout = lazy(() => import("./components/Admin/AdminLayout"));
 const AdminHomePage = lazy(() => import("./Pages/AdminHomePage"));
@@ -128,6 +130,22 @@ function App() {
                   element={
                     <RequireAuth>
                       <MyOrderPage />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="safepay/success"
+                  element={
+                    <RequireAuth>
+                      <SafepaySuccess />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="safepay/cancel"
+                  element={
+                    <RequireAuth>
+                      <SafepayCancel />
                     </RequireAuth>
                   }
                 />

@@ -15,6 +15,7 @@ import {
   setStylistPrompt,
 } from "../redux/slices/stylistSlice";
 import { fetchCart } from "../redux/slices/cartSlice";
+import { formatPrice } from "../utils/priceUtils";
 
 const SUGGESTIONS = [
   { label: "Casual college outfit for men", icon: "🎓" },
@@ -71,9 +72,9 @@ const ProductCard = ({ product, onAdd, adding }) => {
           {product.name}
         </Link>
         <div className="mt-2 flex items-baseline gap-2">
-          <span className="text-base font-bold text-stone-900">${price.toFixed(2)}</span>
+          <span className="text-base font-bold text-stone-900">{formatPrice(price, "USD")}</span>
           {onSale && (
-            <span className="text-xs text-stone-400 line-through">${original.toFixed(2)}</span>
+            <span className="text-xs text-stone-400 line-through">{formatPrice(original, "USD")}</span>
           )}
         </div>
         {product.colors?.length > 0 && (

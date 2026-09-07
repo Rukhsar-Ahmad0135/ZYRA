@@ -75,9 +75,22 @@ const checkoutSchema = new mongoose.Schema(
     finalizedAt: {
       type: Date,
     },
+    // Safepay payment tracking
+    safepayTracker: {
+      type: String,
+      index: true,
+    },
+    safepayPaymentMethod: {
+      type: String,
+    },
+    safepayCardLastFour: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
+
+checkoutSchema.index({ safepayTracker: 1 });
 
 const Checkout = mongoose.models.Checkout || mongoose.model("Checkout", checkoutSchema);
 export default Checkout;

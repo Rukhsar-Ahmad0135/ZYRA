@@ -1,7 +1,7 @@
 {
   "meta": {
     "createdAt": "2026-08-29T06:32:44.260Z",
-    "updatedAt": "2026-09-01T18:23:23.209Z"
+    "updatedAt": "2026-09-06T05:44:54.902Z"
   },
   "products": [
     {
@@ -1945,7 +1945,7 @@
           "price": 40,
           "size": "S",
           "color": "Beige",
-          "quantity": 1
+          "quantity": 2
         },
         {
           "product": "6a927d0c28938d1c41660d8e",
@@ -1955,11 +1955,39 @@
           "size": "S",
           "color": "White",
           "quantity": 1
+        },
+        {
+          "product": "6a927d0c28938d1c41660d89",
+          "name": "Wide-Leg Trousers",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950362/Wide-Leg_Trousers_wntcgq.jpg",
+          "price": 60,
+          "size": "S",
+          "color": "Beige",
+          "quantity": 1
         }
       ],
-      "totalPrice": 154.99,
+      "totalPrice": 254.99,
       "createdAt": "2026-09-01T18:22:04.868Z",
-      "updatedAt": "2026-09-01T18:23:23.208Z"
+      "updatedAt": "2026-09-05T10:56:19.606Z"
+    },
+    {
+      "_id": "6a9cfdd61df70d8cd8038ea0",
+      "key": "user:6a9ba938f6788db65ce4f6c5",
+      "user": "6a9ba938f6788db65ce4f6c5",
+      "products": [
+        {
+          "product": "6a927d0c28938d1c41660d78",
+          "name": "Slim-Fit Easy-Iron Shirt",
+          "image": "https://res.cloudinary.com/dab9s1yeq/image/upload/v1785950359/Slim-Fit_Stretch_Shirt1_c5q8va.jpg",
+          "price": 34.99,
+          "size": "S",
+          "color": "Gray",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 34.99,
+      "createdAt": "2026-09-06T05:44:54.901Z",
+      "updatedAt": "2026-09-06T05:44:54.902Z"
     }
   ],
   "checkouts": [
