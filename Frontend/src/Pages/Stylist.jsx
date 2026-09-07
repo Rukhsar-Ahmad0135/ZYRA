@@ -8,21 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import {
+  processRecommendation,
+  lockProduct,
+  unlockProduct,
+  clearOutfitSession,
+  stylistChat,
   addOutfitToCart,
   clearStylistAddedMessage,
-  clearStylistResult,
-  fetchStylistRecommendation,
-  setStylistPrompt,
+  clearSession,
+  setStylistPrompt
 } from "../redux/slices/stylistSlice";
 import { fetchCart } from "../redux/slices/cartSlice";
 import { formatPrice } from "../utils/priceUtils";
 
 const SUGGESTIONS = [
   { label: "Casual college outfit for men", icon: "🎓" },
-  { label: "Office formal look for women under $150", icon: "💼" },
+  { label: "Office formal look for women", icon: "💼" },
   { label: "Weekend streetwear outfit", icon: "🛹" },
-  { label: "Date night elegant look for women", icon: "✨" },
-  { label: "Smart casual outfit for men", icon: "🍷" },
+  { label: "Date night elegant look", icon: "✨" },
+  { label: "Smart casual for men", icon: "🍷" },
   { label: "Beach vacation look", icon: "🏖️" },
 ];
 
@@ -33,13 +37,51 @@ const Spinner = ({ className = "w-5 h-5" }) => (
   />
 );
 
-const ProductCard = ({ product, onAdd, adding }) => {
+const LockIcon = ({ locked }) => (
+  <svg
+    className={`w-4 h-4 ${locked ? "text-amber-500" : "text-stone-400"}`}
+    fill={locked ? "currentColor" : "none"}
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    {locked ? (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+    ) : (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+    )}
+  </svg>
+);
+
+const ProductCard = ({ product, onAdd, adding, onToggleLock, isLocked, canModify }) => {
   const image = product.images?.[0]?.url;
   const price = Number(product.discountPrice || product.price) || 0;
   const original = Number(product.price) || 0;
   const onSale = original > price && price > 0;
+
   return (
-    <div className="group bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-col">
+    <div className={`group bg-white rounded-2xl border overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col relative ${isLocked ? "border-amber-400 ring-2 ring-amber-100" : "border-stone-200"}`}>
+      {isLocked && (
+        <div className="absolute top-2 left-2 z-10 bg-amber-500 text-white text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded flex items-center gap-1">
+          <LockIcon locked />
+          Locked
+        </div>
+      )}
+
+      {canModify && (
+        <button
+          type="button"
+          onClick={() => onToggleLock(product)}
+          className={`absolute top-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow-sm transition-all ${
+            isLocked
+              ? "bg-amber-100 hover:bg-amber-200 text-amber-600"
+              : "bg-white/90 hover:bg-stone-100 text-stone-500"
+          }`}
+          title={isLocked ? "Unlock item (allow changes)" : "Lock item (keep in outfit)"}
+        >
+          <LockIcon locked={isLocked} />
+        </button>
+      )}
+
       <Link to={`/products/${product._id}`} className="block">
         <div className="relative aspect-[3/4] bg-stone-100 overflow-hidden">
           {image ? (
@@ -55,15 +97,16 @@ const ProductCard = ({ product, onAdd, adding }) => {
             </div>
           )}
           {onSale && (
-            <span className="absolute top-2 left-2 bg-zyra-primary text-white text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded">
+            <span className="absolute bottom-2 left-2 bg-zyra-primary text-white text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded">
               Sale
             </span>
           )}
         </div>
       </Link>
+
       <div className="flex flex-col flex-1 p-4">
         <p className="text-[11px] uppercase tracking-wider text-stone-500">
-          {product.category} · {product.collections}
+          {product.category}
         </p>
         <Link
           to={`/products/${product._id}`}
@@ -78,8 +121,8 @@ const ProductCard = ({ product, onAdd, adding }) => {
           )}
         </div>
         {product.colors?.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1">
-            {product.colors.slice(0, 5).map((color) => (
+          <div className="mt-2 flex flex-wrap gap-1">
+            {product.colors.slice(0, 4).map((color) => (
               <span
                 key={color}
                 className="text-[10px] uppercase tracking-wider text-stone-600 border border-stone-200 rounded-full px-2 py-0.5"
@@ -96,29 +139,153 @@ const ProductCard = ({ product, onAdd, adding }) => {
           >
             View
           </Link>
-          <button
-            type="button"
-            onClick={() => onAdd(product)}
-            disabled={adding}
-            className="flex-1 text-xs font-semibold uppercase tracking-wider text-white bg-zyra-primary rounded-lg py-2 hover:bg-zyra-secondary disabled:opacity-50 transition-colors"
-          >
-            {adding ? <Spinner className="w-4 h-4 mx-auto" /> : "Add to cart"}
-          </button>
+          {onAdd && !isLocked && (
+            <button
+              type="button"
+              onClick={() => onAdd(product)}
+              disabled={adding}
+              className="flex-1 text-xs font-semibold uppercase tracking-wider text-white bg-zyra-primary rounded-lg py-2 hover:bg-zyra-secondary disabled:opacity-50 transition-colors"
+            >
+              {adding ? <Spinner className="w-4 h-4 mx-auto" /> : "Add"}
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
+const OutfitSummary = ({ outfitState, lockedItems, onRemove, onClearSession, onStartNew }) => {
+  if (!outfitState || outfitState.items?.length === 0) return null;
+
+  const lockedIds = lockedItems?.map(l => l.productId) || [];
+
+  return (
+    <div className="bg-gradient-to-r from-stone-100 to-stone-50 rounded-2xl p-5 mb-6 border border-stone-200">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-semibold text-stone-900">
+            {outfitState.name || "Your Outfit"}
+          </h3>
+          <p className="text-sm text-stone-600">
+            {outfitState.items?.length || 0} items
+            {lockedItems?.length > 0 && ` · ${lockedItems.length} locked`}
+            · Total: {formatPrice(outfitState.totalPrice || 0, "USD")}
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={onStartNew}
+            className="text-xs font-semibold uppercase tracking-wider text-stone-600 hover:text-stone-900 transition-colors"
+          >
+            New outfit
+          </button>
+          <button
+            type="button"
+            onClick={onClearSession}
+            className="text-xs font-semibold uppercase tracking-wider text-red-600 hover:text-red-700 transition-colors"
+          >
+            Clear all
+          </button>
+        </div>
+      </div>
+
+      <div className="flex gap-3 overflow-x-auto pb-2">
+        {outfitState.items?.map((item) => (
+          <div key={item.productId} className="flex-shrink-0 text-center">
+            <div className="relative w-20">
+              {item.imageUrl ? (
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className={`w-20 h-20 object-cover rounded-lg ${lockedIds.includes(item.productId) ? "ring-2 ring-amber-400" : ""}`}
+                />
+              ) : (
+                <div className="w-20 h-20 bg-stone-200 rounded-lg flex items-center justify-center text-xs text-stone-500">
+                  No img
+                </div>
+              )}
+              {lockedIds.includes(item.productId) && (
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center">
+                  <LockIcon locked />
+                </div>
+              )}
+              {!lockedIds.includes(item.productId) && (
+                <button
+                  type="button"
+                  onClick={() => onRemove(item.productId)}
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm text-stone-400 hover:text-red-600 transition-colors"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+            <p className="text-[10px] text-stone-600 mt-1 truncate w-20">{item.name}</p>
+            <p className="text-[10px] font-semibold text-stone-900">{formatPrice(item.price, "USD")}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ContextBadge = ({ context }) => {
+  if (!context || (!context.gender && !context.style && !context.occasion)) return null;
+
+  return (
+    <div className="flex flex-wrap gap-2 mt-3 justify-center">
+      {context.gender && (
+        <span className="text-xs bg-stone-800 text-white px-3 py-1 rounded-full capitalize">
+          {context.gender}
+        </span>
+      )}
+      {context.style && (
+        <span className="text-xs bg-zyra-primary/10 text-zyra-primary px-3 py-1 rounded-full capitalize">
+          {context.style}
+        </span>
+      )}
+      {context.occasion && (
+        <span className="text-xs bg-stone-200 text-stone-700 px-3 py-1 rounded-full capitalize">
+          {context.occasion}
+        </span>
+      )}
+      {context.budget && (
+        <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">
+          Under ${context.budget}
+        </span>
+      )}
+    </div>
+  );
+};
+
 const Stylist = () => {
   const dispatch = useDispatch();
-  const { prompt, outfitName, summary, products, source, aiConfigured, aiError, loading, adding, error, addedMessage } =
-    useSelector((state) => state.stylist);
+  const {
+    sessionId,
+    outfitName,
+    summary,
+    products,
+    source,
+    aiConfigured,
+    loading,
+    adding,
+    error,
+    addedMessage,
+    lockedItems,
+    outfitState,
+    context,
+    chatMessages,
+    ragConfigured,
+    provider
+  } = useSelector((state) => state.stylist);
   const user = useSelector((state) => state.auth?.user);
   const guestId = useSelector((state) => state.auth?.guestId);
   const userId = user?._id || user?.id || null;
 
   const [localPrompt, setLocalPrompt] = useState("");
+  const [chatInput, setChatInput] = useState("");
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     if (addedMessage) {
@@ -127,30 +294,53 @@ const Stylist = () => {
     }
   }, [addedMessage, dispatch]);
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const trimmed = localPrompt.trim();
     if (!trimmed) {
-      toast.error("Describe the outfit you want first.");
+      toast.error("Describe what you want first!");
       return;
     }
     dispatch(setStylistPrompt(trimmed));
-    dispatch(fetchStylistRecommendation(trimmed));
+    dispatch(processRecommendation({ prompt: trimmed, sessionId }));
   };
 
   const handleSuggestion = (text) => {
     setLocalPrompt(text);
     dispatch(setStylistPrompt(text));
-    dispatch(fetchStylistRecommendation(text));
+    dispatch(processRecommendation({ prompt: text, sessionId }));
+  };
+
+  const handleToggleLock = (product) => {
+    if (!sessionId) return;
+
+    const isLocked = lockedItems?.some(l => l.productId === product._id);
+    if (isLocked) {
+      dispatch(unlockProduct({ sessionId, productId: product._id }));
+      toast.info("Item unlocked - AI can now change it");
+    } else {
+      dispatch(lockProduct({ sessionId, productId: product._id, category: product.category }));
+      toast.success("Item locked - AI will keep this item");
+    }
+  };
+
+  const handleRemoveItem = (productId) => {
+    const isLocked = lockedItems?.some(l => l.productId === productId);
+    if (isLocked) {
+      toast.error("Unlock the item first before removing");
+      return;
+    }
+    const prompt = `Remove the item with ID ${productId}`;
+    dispatch(processRecommendation({ prompt, sessionId }));
   };
 
   const handleAddOne = (product) => {
-    const item = {
-      productId: product._id,
-      size: (product.sizes && product.sizes[0]) || "M",
-      color: (product.colors && product.colors[0]) || "",
-      quantity: 1,
-    };
     dispatch(
       addOutfitToCart({
         products: [product],
@@ -171,10 +361,34 @@ const Stylist = () => {
     ).then(() => dispatch(fetchCart({ userId, guestId })));
   };
 
-  const handleClear = () => {
+  const handleStartNew = () => {
+    if (sessionId) {
+      dispatch(clearOutfitSession(sessionId));
+    }
     setLocalPrompt("");
-    dispatch(clearStylistResult());
+    dispatch(clearSession());
   };
+
+  const handleClearSession = () => {
+    if (sessionId) {
+      dispatch(clearOutfitSession(sessionId));
+    }
+    dispatch(clearSession());
+  };
+
+  const handleChatSubmit = (event) => {
+    event.preventDefault();
+    const trimmed = chatInput.trim();
+    if (!trimmed) return;
+    if (!sessionId) {
+      toast.error("Generate an outfit first, then chat!");
+      return;
+    }
+    dispatch(stylistChat({ prompt: trimmed, sessionId }));
+    setChatInput("");
+  };
+
+  const lockedIds = lockedItems?.map(l => l.productId) || [];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
@@ -183,15 +397,13 @@ const Stylist = () => {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
           <span className="inline-flex items-center gap-2 bg-stone-900 text-white text-[11px] font-semibold uppercase tracking-[0.25em] px-3 py-1 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-zyra-primary animate-pulse" />
-            New · AI Stylist
+            AI Fashion Stylist
           </span>
           <h1 className="mt-6 text-3xl sm:text-5xl font-semibold tracking-tight text-stone-950">
             Tell us the vibe. <span className="text-zyra-primary">We'll dress you.</span>
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-stone-600 text-sm sm:text-base leading-relaxed">
-            Describe an occasion, mood, or budget and our stylist will pull a complete
-            outfit using only real products in the ZYRA catalog. Try a suggestion below
-            or write your own.
+            Describe an occasion, mood, or budget. Lock items you want to keep, and ask for changes.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 max-w-2xl mx-auto">
@@ -210,7 +422,7 @@ const Stylist = () => {
                 className="inline-flex items-center justify-center gap-2 bg-stone-900 text-white text-sm font-semibold uppercase tracking-wider px-5 py-3 rounded-xl hover:bg-zyra-primary disabled:opacity-60 transition-colors"
               >
                 {loading ? <Spinner /> : null}
-                {loading ? "Styling..." : "Generate outfit"}
+                {loading ? "Styling..." : "Generate"}
               </button>
             </div>
           </form>
@@ -230,27 +442,74 @@ const Stylist = () => {
             ))}
           </div>
 
-          <p className="mt-6 text-[11px] uppercase tracking-[0.25em] text-stone-400">
-            {aiConfigured
-              ? "Powered by AI · ZYRA catalog"
-              : "Smart fallback · ZYRA catalog (add STYLIST_API_KEY for live AI)"}
-          </p>
+          {sessionId && <ContextBadge context={context} />}
+
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-stone-400">
+              {provider ? `Powered by ${provider}` : "Configure AI for recommendations"}
+            </p>
+            {sessionId && (
+              <button
+                type="button"
+                onClick={() => setShowChat(!showChat)}
+                className="text-[11px] uppercase tracking-wider text-zyra-primary hover:text-zyra-secondary transition-colors"
+              >
+                {showChat ? "Hide chat" : "Chat"}
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-        {error && (
-          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
-            {error}
+        {showChat && sessionId && (
+          <div className="mb-6 bg-white rounded-2xl border border-stone-200 p-4">
+            <h3 className="text-sm font-semibold text-stone-900 mb-3">Chat with ZARA</h3>
+            <div className="space-y-2 max-h-48 overflow-y-auto mb-3">
+              {chatMessages.map((msg, idx) => (
+                <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div className={`max-w-[85%] rounded-xl px-3 py-2 text-sm ${
+                    msg.role === "user" ? "bg-zyra-primary text-white" : "bg-stone-100 text-stone-900"
+                  }`}>
+                    {msg.message}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <form onSubmit={handleChatSubmit} className="flex gap-2">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                placeholder="Change the shirt, add accessories..."
+                className="flex-1 px-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm outline-none focus:border-zyra-primary"
+                disabled={loading}
+              />
+              <button
+                type="submit"
+                disabled={loading || !chatInput.trim()}
+                className="bg-zyra-primary text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-zyra-secondary disabled:opacity-50 transition-colors"
+              >
+                Send
+              </button>
+            </form>
           </div>
+        )}
+
+        {sessionId && (
+          <OutfitSummary
+            outfitState={outfitState}
+            lockedItems={lockedItems}
+            onRemove={handleRemoveItem}
+            onClearSession={handleClearSession}
+            onStartNew={handleStartNew}
+          />
         )}
 
         {(outfitName || products.length > 0) && (
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-stone-500">
-                Your curated look
-              </p>
+              <p className="text-xs uppercase tracking-[0.25em] text-stone-500">Your look</p>
               <h2 className="text-2xl sm:text-3xl font-semibold text-stone-950 mt-1">
                 {outfitName || "AI Stylist Pick"}
               </h2>
@@ -259,24 +518,19 @@ const Stylist = () => {
                   {summary}
                 </p>
               )}
-              {source === "fallback" && !aiConfigured && (
-                <p className="mt-2 text-[11px] uppercase tracking-wider text-amber-700">
-                  Local fallback used — set STYLIST_API_KEY in the backend .env for AI-driven picks.
-                </p>
-              )}
-              {aiError && (
-                <p className="mt-2 text-[11px] uppercase tracking-wider text-amber-700">
-                  AI provider error: {aiError} — showing fallback.
+              {lockedItems?.length > 0 && (
+                <p className="mt-2 text-xs text-amber-600">
+                  {lockedItems.length} item{lockedItems.length !== 1 ? "s" : ""} locked. Locked items won't be changed.
                 </p>
               )}
             </div>
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={handleClear}
+                onClick={handleStartNew}
                 className="text-xs font-semibold uppercase tracking-wider text-stone-700 border border-stone-300 rounded-lg px-4 py-2 hover:bg-stone-100"
               >
-                Clear
+                New
               </button>
               <button
                 type="button"
@@ -285,7 +539,7 @@ const Stylist = () => {
                 className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-white bg-zyra-primary rounded-lg px-5 py-2.5 hover:bg-zyra-secondary disabled:opacity-50 transition-colors"
               >
                 {adding ? <Spinner className="w-4 h-4" /> : null}
-                {adding ? "Adding..." : `Add entire outfit (${products.length})`}
+                {adding ? "Adding..." : `Add all (${products.length})`}
               </button>
             </div>
           </div>
@@ -294,10 +548,7 @@ const Stylist = () => {
         {loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="bg-white rounded-2xl border border-stone-200 overflow-hidden animate-pulse"
-              >
+              <div key={i} className="bg-white rounded-2xl border border-stone-200 overflow-hidden animate-pulse">
                 <div className="aspect-[3/4] bg-stone-200" />
                 <div className="p-4 space-y-2">
                   <div className="h-3 bg-stone-200 rounded w-1/3" />
@@ -317,12 +568,15 @@ const Stylist = () => {
                 product={product}
                 onAdd={handleAddOne}
                 adding={adding}
+                onToggleLock={handleToggleLock}
+                isLocked={lockedIds.includes(product._id)}
+                canModify={sessionId}
               />
             ))}
           </div>
         )}
 
-        {!loading && products.length === 0 && !error && (
+        {!loading && products.length === 0 && !sessionId && (
           <div className="text-center py-20">
             <div className="mx-auto w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center text-2xl">
               👗
@@ -331,9 +585,8 @@ const Stylist = () => {
               Your outfit will appear here
             </h3>
             <p className="mt-2 text-sm text-stone-500 max-w-md mx-auto">
-              Use the box above to describe what you're looking for — a casual
-              hangout, a wedding guest look, a gym-ready set, anything. We'll
-              match real products from the catalog.
+              Describe what you're looking for and the AI will create an outfit.
+              Lock items you want to keep, then ask for changes.
             </p>
           </div>
         )}

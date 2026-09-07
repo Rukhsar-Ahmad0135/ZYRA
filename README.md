@@ -64,7 +64,8 @@ The platform supports both **guests and signed-in users**, has a fully-featured 
 | Logged-in cart | Server-authoritative cart keyed by user id |
 | Cart merge | Guest cart is merged into the user cart on sign-in |
 | Add to cart | Single-item and **batch** (entire outfit) endpoints |
-| Checkout | Multi-step form, address book, payment-method selection, server-side validation |
+| Checkout | Multi-step form, address book, payment-method selection, server-side validation, **Safepay sandbox** |
+| Payment | Safepay integration ready — needs sandbox API keys; Cash on Delivery works immediately |
 | Order history | My orders, order details, reorder flow |
 | Order confirmation | Estimated delivery, order summary, items |
 | Profile | Personal info, saved addresses, password change |
@@ -80,6 +81,38 @@ The platform supports both **guests and signed-in users**, has a fully-featured 
 - **Order management**: list, search, status update (processing, shipped, delivered, cancelled, etc.), delete
 - **Admin-only routes** gated server-side (`requireLocalAdmin`) and client-side (`RequireAdmin`)
 - **Statistics endpoint** for charts
+
+### 💳 Payment (Sandbox Mode)
+
+| Status | Notes |
+|--------|-------|
+| ⚠️ **Sandbox Config Required** | Payment works in sandbox but requires Safepay API keys |
+
+**Current Status:** The payment integration is implemented with **Safepay** as the payment gateway and is **fully functional in sandbox mode**. However, it requires API credentials to be configured.
+
+**To enable payments:**
+1. Get sandbox credentials from [Safepay Dashboard](https://sandbox.api.getsafepay.com/dashboard)
+2. Add to `Backend/.env`:
+   ```
+   SAFEPAY_ENVIRONMENT=sandbox
+   SAFEPAY_API_KEY=your_sandbox_api_key
+   SAFEPAY_SECRET_KEY=your_sandbox_secret_key
+   SAFEPAY_CLIENT_URL=http://localhost:5173
+   ```
+3. Restart the backend
+
+**What's working:**
+- Checkout flow renders correctly
+- Payment session creation works
+- Safepay iframe/widget loads
+- Payment verification after completion
+- Order creation on successful payment
+
+**What needs configuration:**
+- Safepay sandbox API keys (free to obtain)
+- Optional: Production keys when ready to go live
+
+**Cash on Delivery (COD)** — works without any payment configuration.
 
 ### 🤖 AI Virtual Stylist
 
@@ -562,10 +595,12 @@ curl -X POST http://localhost:5000/api/stylist/recommend \
 
 ## Roadmap
 
+- [x] AI Virtual Stylist with server-side product validation
+- [x] Safepay payment integration (sandbox mode — requires API keys)
 - [ ] Reviews & ratings (frontend UI, backend persistence)
 - [ ] Wishlist
 - [ ] Email notifications (order confirmation, shipping)
-- [ ] Payment gateway integration (Stripe)
+- [ ] Stripe payment gateway (as secondary/alternative processor)
 - [ ] Multi-currency + i18n
 - [ ] Product recommendations via collaborative filtering on top of stylist
 - [ ] AI stylist: streaming responses, conversation history, image-aware prompts

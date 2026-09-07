@@ -46,19 +46,36 @@ router.post("/batch", express.json(), async (req, res, next) => {
     }
     for (const item of validItems) {
       const existing = cart.products.find(
-        (line) => String(line.productId) === item.productId && line.size === item.size && line.color === item.color,
+        (line) => String(line.product) === item.productId && line.size === item.size && line.color === item.color,
       );
       if (existing) existing.quantity += item.quantity;
-      else cart.products.push(item);
+      else cart.products.push({
+        product: item.productId,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        size: item.size,
+        color: item.color,
+        quantity: item.quantity,
+      });
     }
     cart.totalPrice = cart.products.reduce((sum, line) => sum + Number(line.price || 0) * Number(line.quantity || 0), 0);
     await cart.save();
 
+    const cartProducts = cart.products.map((p) => ({
+      productId: String(p.product),
+      name: p.name,
+      image: p.image,
+      price: p.price,
+      size: p.size,
+      color: p.color,
+      quantity: p.quantity,
+    }));
     res.status(201).json({
       message: `${validItems.length} item(s) added to cart`,
       addedCount: validItems.length,
       skipped,
-      cart: { products: cart.products, totalPrice: cart.totalPrice },
+      cart: { products: cartProducts, totalPrice: cart.totalPrice },
     });
   } catch (error) {
     next(error);

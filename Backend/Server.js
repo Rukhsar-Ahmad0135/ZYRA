@@ -170,7 +170,7 @@ const mountRouters = () => {
 
   // AI Stylist (Mongo mode)
   app.use("/api/stylist", stylistRoutes);
-  app.use("/api/cart/batch", cartBatchRoutes);
+  app.use("/api/cart", cartBatchRoutes);
 
   // Safepay Payment Gateway
   app.use("/api/safepay", safepayRoutes);

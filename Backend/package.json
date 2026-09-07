@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node Server.js",
     "dev": "nodemon Server.js",
-    "seed": "node seeder.js"
+    "seed": "node seeder.js",
+    "index-products": "node scripts/index-products.js",
+    "index:reindex": "node scripts/index-products.js reindex",
+    "index:delete": "node scripts/index-products.js delete"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,8 @@
   "dependencies": {
     "@clerk/backend": "^3.15.1",
     "@clerk/express": "^2.1.50",
+    "@google/generative-ai": "^0.24.1",
+    "@pinecone-database/pinecone": "^8.2.0",
     "@sfpy/node-core": "^0.3.5",
     "axios": "^1.20.0",
     "bcryptjs": "^3.0.3",
