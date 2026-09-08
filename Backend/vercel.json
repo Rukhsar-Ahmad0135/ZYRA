@@ -1,7 +1,7 @@
 {
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "port": 3000,
+
   "functions": {
     "api/index.js": {
       "maxDuration": 30
