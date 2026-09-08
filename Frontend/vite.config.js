@@ -34,14 +34,6 @@ export default defineConfig({
     // Optimize CSS
     cssCodeSplit: true,
     cssMinify: true,
-    // Minify JS
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
   },
   // Server config for SPA refresh
   server: {
