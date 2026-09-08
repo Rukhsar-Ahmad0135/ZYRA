@@ -19,8 +19,10 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   const userId = user ? user.id : null;
   const handleCheckout = () => {
     toggleCartDrawer();
-    // In Clerk mode: check isSignedIn instead of Redux user state
-    // In local mode: check Redux user state
+    if (!isLoaded) {
+      toast.error("Authentication is still loading. Please wait a moment.");
+      return;
+    }
     const isAuthenticated = isLocalMode ? !!user : isSignedIn;
     if (!isAuthenticated) {
       navigate("/login?redirect=/checkout");

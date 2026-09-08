@@ -51,6 +51,30 @@ const ProfileContent = () => {
     );
   }
 
+  if (!isLocalMode && clerkTimedOut && !clerkUser) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-sm text-gray-500">
+        <div className="max-w-md rounded-lg border border-red-200 bg-red-50 p-6 text-center text-red-800">
+          <p className="text-lg font-semibold">Profile unavailable</p>
+          <p className="mt-2 text-sm">
+            We could not load your profile from the authentication service. This
+            can happen when the app is deployed on Vercel and Clerk is not fully
+            configured for this domain yet.
+          </p>
+          <div className="mt-4 flex flex-col gap-2 text-sm">
+            <Link to="/" className="font-medium underline">Go to store</Link>
+            <button
+              onClick={() => window.location.reload()}
+              className="font-medium underline"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const displayName = clerkUser?.fullName || user?.name || "Customer";
   const displayEmail = clerkUser?.primaryEmailAddress?.emailAddress || user?.email || "";
   const displayPhone = clerkUser?.primaryPhoneNumber?.phoneNumber || "Not set";

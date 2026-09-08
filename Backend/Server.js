@@ -88,7 +88,7 @@ app.use((req, res, next) => {
 // CORS — restrict to allowed origins from env (CLIENT_URL, comma-separated)
 const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:3001,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176,http://localhost:2012")
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/$/, ""))
   .filter(Boolean);
 
 if (process.env.NODE_ENV !== "production") {
