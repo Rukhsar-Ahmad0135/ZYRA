@@ -79,9 +79,21 @@ const RequireAdmin = ({ children }) => {
   }
 
   if (!["admin", "superadmin"].includes(effectiveUser.role)) {
-    const target = location.pathname + location.search;
-    const search = `?redirect=${encodeURIComponent(target)}`;
-    return <Navigate to={isLocalMode ? `/local-login${search}` : `/login${search}`} replace />;
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center">
+        <div className="max-w-md rounded-lg border border-red-200 bg-red-50 p-6 text-center text-red-800">
+          <p className="text-lg font-semibold">Access denied</p>
+          <p className="mt-2 text-sm">
+            Your account does not have admin access. If you believe this is an
+            error, contact support or try the admin login.
+          </p>
+          <div className="mt-4 flex flex-col gap-2 text-sm">
+            <Link to="/" className="font-medium underline">Go to store</Link>
+            <Link to="/local-login" className="font-medium underline">Admin login</Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return children;

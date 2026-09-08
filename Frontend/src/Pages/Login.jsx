@@ -112,7 +112,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const authLoading = useSelector((state) => state.auth.loading);
-  const { isSignedIn, isLoaded } = useAuth();
+  const { isSignedIn, isLoaded, error: clerkError } = useAuth();
   const { signOut } = useClerk();
 
   const clerkPublishableKey =
@@ -129,7 +129,6 @@ const Login = () => {
       return;
     }
     if (user && !authLoading) {
-      // Auto logout admin role when trying to login as customer
       if (["admin", "superadmin"].includes(user?.role)) {
         toast.error("Logging you out from admin account...");
         dispatch(logout());
@@ -163,6 +162,20 @@ const Login = () => {
           </p>
 
           <div className="mt-10 max-w-md space-y-6">
+            {clerkError && (
+              <div className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-800">
+                <p className="font-semibold">Authentication service error</p>
+                <p className="mt-1">
+                  Clerk sign-in is currently unavailable. Please use email &
+                  password below, or try again later.
+                </p>
+              </div>
+            )}
+            {isClerkConfigured && !isLoaded && (
+              <div className="rounded-lg border border-blue-300 bg-blue-50 p-4 text-sm text-blue-800">
+                Loading secure sign-in...
+              </div>
+            )}
             {/* Clerk SignIn (Google + Clerk email/password) */}
             {isClerkConfigured ? (
               <SignIn
