@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import apiClient from "../../api/client.js";
 import { requestWithRetry } from "../../utils/requestWithRetry.js";
+import { formatPrice } from "../../utils/priceUtils";
 const NewArrivals = () => {
   const scrollRef = React.useRef(null);
   // Scroll helpers (used for showing can/cannot scroll state)
@@ -139,7 +140,7 @@ const NewArrivals = () => {
             <div className="absolute bottom-0 left-0 right-0  bg-opacity-50 backdrop-blur-md text-white p-4 rounded-b-lg">
               <Link to={`/products/${products._id}`} className="block">
                 <h4 className="font-medium">{products.name}</h4>
-                <p className="mt-1">${products.price}</p>
+                <p className="mt-1">{formatPrice(products.price, "USD")}</p>
               </Link>
             </div>
           </div>

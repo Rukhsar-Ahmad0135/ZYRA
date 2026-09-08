@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserOrders } from "../redux/slices/orderSlice";
+import { formatPrice } from "../utils/priceUtils";
 
 const MyOrderPage = () => {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const MyOrderPage = () => {
                       {order.orderItems?.length ?? 0}
                     </td>
                     <td className="py-3 px-4">
-                      ${Number(order.totalPrice || 0).toFixed(2)}
+                      {formatPrice(order.totalPrice, "USD")}
                     </td>
                     <td className="py-3 px-4">
                       {order.isPaid ? (

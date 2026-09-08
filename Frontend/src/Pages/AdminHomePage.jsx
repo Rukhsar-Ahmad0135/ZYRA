@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import apiClient from "../api/client.js";
+import { formatPrice } from "../utils/priceUtils";
 
 const AdminHomePage = () => {
   const [stats, setStats] = useState(null);
@@ -48,7 +49,7 @@ const AdminHomePage = () => {
   }
 
   const statCards = [
-    { label: "Revenue", value: `$${stats.revenue?.toFixed(2) || "0.00"}` },
+    { label: "Revenue", value: formatPrice(stats.revenue, "USD") },
     { label: "Total Orders", value: stats.totalOrders || 0 },
     { label: "Total Products", value: stats.totalProducts || 0 },
     { label: "Total Users", value: stats.totalUsers || 0 },
@@ -98,7 +99,7 @@ const AdminHomePage = () => {
                   <tr key={order._id} className="border-b hover:bg-gray-50 cursor-pointer">
                     <td className="px-4 font-mono text-xs">{order._id}</td>
                     <td className="px-4">{order.user?.name || order.user?.email || "N/A"}</td>
-                    <td className="px-4">${order.totalPrice?.toFixed(2)}</td>
+                    <td className="px-4">{formatPrice(order.totalPrice, "USD")}</td>
                     <td className="px-4 capitalize">{order.status}</td>
                     <td className="px-4">
                       <Link

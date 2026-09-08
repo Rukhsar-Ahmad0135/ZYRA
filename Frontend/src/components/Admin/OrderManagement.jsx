@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAdminOrders, updateOrderStatus, deleteOrder } from "../../redux/slices/adminOrderSlice";
 import { toast } from "sonner";
+import { formatPrice } from "../../utils/priceUtils";
 
 const CANONICAL_ORDER_STATUSES = [
   "Pending",
@@ -59,7 +60,7 @@ const OrderManagement = () => {
         <h2 className="text-2xl font-bold">Order Management</h2>
         <div className="text-sm text-gray-600">
           Total Orders: <span className="font-semibold">{total}</span> | Total Sales:{" "}
-          <span className="font-semibold">${totalSales.toFixed(2)}</span>
+          <span className="font-semibold">{formatPrice(totalSales, "USD")}</span>
         </div>
       </div>
 
@@ -112,7 +113,7 @@ const OrderManagement = () => {
                     <tr key={order._id} className="border-b hover:bg-gray-50">
                       <td className="p-4 font-mono text-xs">{order._id}</td>
                       <td className="p-4">{order.user?.name || order.user?.email || "N/A"}</td>
-                      <td className="p-4">${order.totalPrice?.toFixed(2)}</td>
+                      <td className="p-4">{formatPrice(order.totalPrice, "USD")}</td>
                       <td className="p-4">
                         <select
                           value={order.orderStatus || order.status || "pending"}

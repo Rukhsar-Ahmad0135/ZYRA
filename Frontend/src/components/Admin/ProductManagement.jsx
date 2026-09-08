@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAdminProducts, deleteProduct } from "../../redux/slices/adminProductSlice";
 import { toast } from "sonner";
+import { formatPrice } from "../../utils/priceUtils";
 
 const ProductManagement = () => {
   const dispatch = useDispatch();
@@ -110,7 +111,7 @@ const ProductManagement = () => {
                       <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
                         {product.name}
                       </td>
-                      <td className="p-4">${product.price?.toFixed(2)}</td>
+                      <td className="p-4">{formatPrice(product.price, "USD")}</td>
                       <td className="p-4">{product.countInStock}</td>
                       <td className="p-4">{product.sku}</td>
                       <td className="p-4">

@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdminOrders } from "../../redux/slices/adminOrderSlice";
+import { formatPrice } from "../../utils/priceUtils";
 
 const AdminOrderListPage = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const AdminOrderListPage = () => {
                       <td className="px-4 py-2">
                         {order.user?.name || order.user?.email || "N/A"}
                       </td>
-                      <td className="px-4 py-2">${order.totalPrice?.toFixed(2)}</td>
+                      <td className="px-4 py-2">{formatPrice(order.totalPrice, "USD")}</td>
                       <td className="px-4 py-2">
                         <span
                           className={`${order.isPaid ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"} px-3 py-1 rounded-full text-sm font-medium`}

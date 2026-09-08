@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "../redux/slices/cartSlice";
 import apiClient from "../api/client.js";
 import { toast } from "sonner";
+import { formatPrice } from "../utils/priceUtils";
 
 const SafepaySuccess = () => {
   const [searchParams] = useSearchParams();
@@ -150,7 +151,7 @@ const SafepaySuccess = () => {
             <div className="bg-stone-50 rounded-lg p-4 mb-6">
               <p className="text-sm text-gray-500">Order Total</p>
               <p className="text-2xl font-bold text-gray-900">
-                Rs. {order.totalPrice?.toLocaleString()}
+                {formatPrice(order.totalPrice)}
               </p>
             </div>
             <p className="text-sm text-gray-500">Redirecting to confirmation...</p>

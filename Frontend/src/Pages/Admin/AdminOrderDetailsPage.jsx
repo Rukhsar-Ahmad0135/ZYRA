@@ -12,6 +12,7 @@ import {
   resetOrderDetails,
 } from "../../redux/slices/adminOrderSlice";
 import { toast } from "sonner";
+import { formatPrice } from "../../utils/priceUtils";
 
 const CANONICAL_ORDER_STATUSES = [
   "Pending",
@@ -160,11 +161,9 @@ const AdminOrderDetailsPage = () => {
                       {item.name}
                     </Link>
                   </td>
-                  <td className="px-4 py-2">${item.price}</td>
+                  <td className="px-4 py-2">{formatPrice(item.price, "USD")}</td>
                   <td className="px-4 py-2">{item.quantity}</td>
-                  <td className="px-4 py-2">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </td>
+                  <td className="px-4 py-2">{formatPrice(item.price * item.quantity, "USD")}</td>
                 </tr>
               ))}
             </tbody>
@@ -173,7 +172,7 @@ const AdminOrderDetailsPage = () => {
 
         <div className="flex justify-between items-center mb-4">
           <div className="text-lg font-semibold">
-            Total: ${orderDetails.totalPrice?.toFixed(2)}
+            Total: {formatPrice(orderDetails.totalPrice, "USD")}
           </div>
           <div>
             <label className="text-sm text-gray-600 mr-2">Order Status:</label>

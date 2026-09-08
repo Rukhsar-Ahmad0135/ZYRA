@@ -5,6 +5,7 @@
  */
 import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { formatPrice } from "../utils/priceUtils";
 
 const OrderConfirmation = () => {
   const location = useLocation();
@@ -88,7 +89,7 @@ const OrderConfirmation = () => {
                 </p>
               </div>
               <div className="ml-auto text-right">
-                <p className="text-md">${item.price}</p>
+                <p className="text-md">{formatPrice(item.price, "USD")}</p>
                 <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
               </div>
             </div>
