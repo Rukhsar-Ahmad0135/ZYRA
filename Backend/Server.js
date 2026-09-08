@@ -201,7 +201,6 @@ if (isLocalMode()) {
   /* ------------------------------------------------------------------ */
   app.use(notFound);
   app.use(errorHandler);
-  startServer();
 } else {
   // Connect to MongoDB first, then mount routers and start the server.
   connectDB()
@@ -213,10 +212,15 @@ if (isLocalMode()) {
       /* ------------------------------------------------------------------ */
       app.use(notFound);
       app.use(errorHandler);
-      startServer();
     })
     .catch((err) => {
       console.error("Failed to start server:", err);
       process.exit(1);
     });
 }
+
+if (!process.env.VERCEL) {
+  startServer();
+}
+
+export default app;

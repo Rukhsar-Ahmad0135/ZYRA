@@ -9,7 +9,8 @@
     "seed": "node seeder.js",
     "index-products": "node scripts/index-products.js",
     "index:reindex": "node scripts/index-products.js reindex",
-    "index:delete": "node scripts/index-products.js delete"
+    "index:delete": "node scripts/index-products.js delete",
+    "build": "echo 'no build needed'"
   },
   "keywords": [],
   "author": "",
